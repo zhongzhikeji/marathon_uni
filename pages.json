@@ -1,0 +1,410 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/home/lottery-draw/lottery-draw",
+			"style": {
+				"navigationBarTitleText": "抽奖"
+			}
+		},
+
+		{
+			"path": "pages/home/assistant/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/home/coupon/index",
+			"style": {
+				"navigationBarTitleText": "优惠劵"
+			}
+		},
+		{
+			"path": "pages/home/notification/index",
+			"style": {
+				"navigationBarTitleText": "通知"
+			}
+		},
+		{
+			"path": "pages/home/assistant/result",
+		    "style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/home/calendar/index",
+			"style": {
+				"navigationBarTitleText": "赛事日历"
+			}
+		},
+
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/message/details",
+			"style": {
+				"navigationBarTitleText": "资讯详情"
+			}
+		},
+		{
+			"path": "pages/category/product-list",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/user/vip",
+			"style": {
+				"navigationBarTitleText": "开通VIP"
+			}
+		},
+		{
+			"path": "pages/user/purse/index",
+			"style": {
+				"navigationBarTitleText": "我的钱包"
+			}
+		},
+		{
+			"path": "pages/user/user_coupon/index",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+			}
+		},
+		{
+			"path": "pages/user/entrant/index",
+			"style": {
+				"navigationBarTitleText": "参赛选手"
+			}
+		},
+		{
+			"path": "pages/user/entrant/addInfo",
+			"style": {
+				"navigationBarTitleText": "添加参赛人"
+			}
+		},
+		{
+			"path": "pages/user/energy/index",
+			"style": {
+				"navigationBarTitleText": "我的能量"
+			}
+		},
+		{
+			"path": "pages/user/tram/index",
+			"style": {
+				"navigationBarTitleText": "我的团队"
+			}
+		},
+		{
+			"path": "pages/user/order_list/index",
+			"style": {
+				"navigationBarTitleText": "商城订单"
+			}
+		},
+		{
+			"path": "pages/user/goods_return/index",
+			"style": {
+				"navigationBarTitleText": "申请退款"
+			}
+		},
+		{
+			"path": "pages/user/goods_logistics/index",
+			"style": {
+				"navigationBarTitleText": "查看物流"
+			}
+		},
+		{
+			"path": "pages/user/order_details/index",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/cashier",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},
+		{
+			"path": "pages/order/orderPayStatus",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/user/collect/index",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+			}
+		},
+		{
+			"path": "pages/user/SignIn/index",
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/user/vote/index",
+			"style": {
+				"navigationBarTitleText": "我的投票"
+			}
+		},
+		{
+			"path": "pages/user/vote/details",
+			"style": {
+				"navigationBarTitleText": "投票详情"
+			}
+		},
+		{
+			"path": "pages/login/mobile",
+			"style": {
+				"navigationBarTitleText": "手机登录"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "手机登录"
+			}
+		},
+		{
+			"path": "pages/login/wxchat",
+			"style": {
+				"navigationBarTitleText": "微信登录"
+			}
+		},
+		{
+			"path": "pages/forgot/forgot",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+			"path": "pages/profile/profile",
+			"style": {
+				"navigationBarTitleText": "个人资料"
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "账户设置"
+			}
+		},
+		{
+			"path": "pages/product/product",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/checkout/checkout",
+			"style": {
+				"navigationBarTitleText": "填写订单"
+			}
+		},
+
+
+		{
+			"path": "pages/order/orderConfirm",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
+		},
+		{
+			"path": "pages/order/evaluate",
+			"style": {
+				"navigationBarTitleText": "评价"
+			}
+		},
+		{
+			"path": "pages/order/address",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
+		},
+		{
+			"path": "pages/order/orderDetails",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/addressEdit",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
+		},
+		{
+			"path": "pages/order/orderAddcart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/order/userAddress",
+			"style": {
+				"navigationBarTitleText": "新增地址"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
+			"path": "pages/search/resSearch",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+
+
+		{
+			"path": "pages/competition/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/competition/details",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white", // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+				},
+				"mp-alipay": {
+					"allowsBounceVertical": "NO"
+				} // 取消支付宝和钉钉小程序的iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+			}
+		},
+		{
+			"path": "pages/competition/lookout",
+			"style": {
+				"navigationBarTitleText": "注意事项"
+			}
+		},
+		{
+			"path": "pages/competition/regulation",
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/competition/eventsMsg",
+			"style": {
+				"navigationBarTitleText": "活动资讯"
+			}
+		},
+		{
+			"path": "pages/competition/order",
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/competition/orderConfi",
+			"style": {
+				"navigationBarTitleText": "确认订单"
+			}
+		},
+		{
+			"path": "pages/competition/paySuccess",
+			"style": {
+				"navigationBarTitleText": "确认信息"
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "#333333",
+		"color": "#bfbfbf",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"text": "首页",
+				"iconPath": "/static/images/tabbar/index.png",
+				"selectedIconPath": "/static/images/tabbar/index-active.png"
+			},
+			{
+				"pagePath": "pages/competition/index",
+				"text": "赛事",
+				"iconPath": "/static/images/tabbar/category.png",
+				"selectedIconPath": "/static/images/tabbar/category-active.png"
+			},
+			{
+				"pagePath": "pages/index/index",
+				"text": "商城",
+				"iconPath": "/static/images/tabbar/cart.png",
+				"selectedIconPath": "/static/images/tabbar/cart-active.png"
+			},
+			{
+				"pagePath": "pages/message/index",
+				"text": "资讯",
+				"iconPath": "/static/images/tabbar/category.png",
+				"selectedIconPath": "/static/images/tabbar/category-active.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "/static/images/tabbar/user.png",
+				"selectedIconPath": "/static/images/tabbar/user-active.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "yudao-ui-app",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+	}
+}
