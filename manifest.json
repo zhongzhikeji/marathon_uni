@@ -1,7 +1,7 @@
 {
-    "name" : "yudao-ui-app",
+    "name" : "跑加",
     "appid" : "__UNI__8B2D2F9",
-    "description" : "yudao-ui-app for ruoyi-vue-pro",
+    "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -85,6 +85,7 @@
                     "serviceHost" : ""
                 }
             }
-        }
+        },
+        "title" : "跑加"
     }
 }

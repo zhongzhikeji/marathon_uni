@@ -4,9 +4,14 @@
 			<view>
 				<u-navbar :safeAreaInsetTop="true" :placeholder='true' :fixed="false" bgColor="transparent">
 					<view class="flex" slot="left" @click="getlocation">
-						<u-icon name="https://marathon.zznet.live/file/uploadPath/img/nav.png" size="22"></u-icon>
-						<view class="ml10 cl-w ft18">马拉松报名网</view>
+						<u-icon name="map-fill" size="18"></u-icon>
+						<view class="ml10  ft14">{{cityName == ''?'授权我的定位':cityName}}</view>
 
+					</view>
+					<view slot='center'>
+						<u--image :showLoading="true"
+							src="https://marathon.zznet.live/file/uploadPath/image/home/logo.png" width="83px"
+							height="36px"></u--image>
 					</view>
 				</u-navbar>
 			</view>
@@ -63,16 +68,28 @@
 		<!--宫格菜单按钮-->
 		<view class="home_grid ml10 mr10">
 			<view class="banners bg1" @click="$u.route('/pages/home/assistant/index')">
-
+				<view class="bgItem">
+					<view class="ft18 ftw600">参赛助手</view>
+					<view class="mt5" style="color: #F6F7FA;">参赛辅助</view>
+				</view>
 			</view>
 			<view class="banners bg2" @click="$u.route('/pages/home/calendar/index')">
-
+					<view class="bgItem">
+					<view  class="ft18 ftw600">赛事日历</view>
+					<view class="mt5" style="color: #F6F7FA;">全网赛事</view>
+				</view>
 			</view>
 			<view class="banners bg3" @click="$u.route('/pages/user/vote/details')">
-
+				<view class="bgItem">
+					<view  class="ft18 ftw600">人气投票</view>
+					<view class="mt5" style="color: #F6F7FA;">人气王</view>
+				</view>
 			</view>
 			<view class="banners bg4">
-
+				<view class="bgItem">
+					<view  class="ft18 ftw600">装备商城</view>
+					<view class="mt5" style="color: #F6F7FA;">装备优选</view>
+				</view>
 			</view>
 
 		</view>
@@ -83,26 +100,25 @@
 					  fontSize:'16px',
 			          transform: 'scale(1.05)',
 					 
-			      }"  :inactiveStyle="{
+			      }" :inactiveStyle="{
 			          color: '#606266',
 			          transform: 'scale(1)'
 			      }" itemStyle="padding-left: 20px; padding-right: 20px; height: 50px;">
 			</u-tabs>
 			<view class="ml10 mr10">
-			 <view class="mt20 ">
-				 <view class="flex mb10" v-for="i in 4">
-					 <view>
-						 <u--image :showLoading="true"
-						 radius='5'
-						 	src="https://cdn.uviewui.com/uview/album/1.jpg" width="94px"
-						 	height="94px"></u--image>
-					 </view>
-					 <view class="ml10">
-						 <view class="ft16  mb10">2023摇滚马拉松洛阳站11月18日开跑</view>
-						 <u--text size='14' color='#ccc' :lines="2" text="2023摇滚马拉松洛阳站共设置两个项目分别是半程马拉松（21.0975公里）与欢..."></u--text>
-					 </view>
-				 </view>
-			 </view>
+				<view class="mt20 ">
+					<view class="flex mb10" v-for="i in 4">
+						<view>
+							<u--image :showLoading="true" radius='5' src="https://cdn.uviewui.com/uview/album/1.jpg"
+								width="94px" height="94px"></u--image>
+						</view>
+						<view class="ml10">
+							<view class="ft16  mb10">2023摇滚马拉松洛阳站11月18日开跑</view>
+							<u--text size='14' color='#ccc' :lines="2"
+								text="2023摇滚马拉松洛阳站共设置两个项目分别是半程马拉松（21.0975公里）与欢..."></u--text>
+						</view>
+					</view>
+				</view>
 			</view>
 			<u-loadmore marginTop='25' status="loadmore" @loadmore="loadmore" loadmoreText='查看全部' />
 		</view>
@@ -134,16 +150,16 @@
 				status: 'loadmore',
 				list: 5,
 				page: 0,
-				lineBg :'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
-				list4: [
-					{
-						name:'头条资讯'
+				cityName:'',
+				lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
+				list4: [{
+						name: '头条资讯'
 					},
 					{
-						name:'推荐赛事'
+						name: '推荐赛事'
 					},
 					{
-						name:'热销商品'
+						name: '热销商品'
 					}
 				],
 
@@ -169,19 +185,20 @@
 
 				})
 			},
-           async getlocation(){
-			 const res = await location.reverseGeocoder();
-			    console.log(res.cityName,99);
+			async getlocation() {
+				const res = await location.reverseGeocoder();
+				this.cityName = res.cityName
+			
 			},
 			handleSearchClick(e) {
 				// 未登录，需要跳转
 				if (!this.isLogin) {
 					toLogin();
 					return;
-				}else{
+				} else {
 					uni.$u.route('/pages/search/search')
 				}
-				
+
 			}
 		},
 		computed: {
@@ -251,9 +268,13 @@
 			background-size: cover;
 		}
 	}
-
+   .bgItem{
+	   margin-left: 60rpx;
+	   margin-top: 50rpx;
+	   color: #fff;
+   }
 	.footer {
-		margin:20rpx;
+		margin: 20rpx;
 		background-color: #fff;
 		border-radius: 20rpx;
 		padding-bottom: 20rpx;

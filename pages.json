@@ -314,6 +314,13 @@
 			}
 		},
 		{
+			"path": "pages/competition/payResult",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
 			"path": "pages/competition/details",
 			"style": {
 				"navigationStyle": "custom", // 隐藏系统导航栏
@@ -403,7 +410,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "yudao-ui-app",
+		"navigationBarTitleText": "跑加",
 		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#ffffff"
 	}

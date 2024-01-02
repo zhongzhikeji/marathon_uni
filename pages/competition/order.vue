@@ -8,7 +8,7 @@
 			<view class="flex space pt10 pb10 bg-w mt10 mb10 pl10 pr10" style="border-radius: 10rpx;">
 				<view class="outTime">
 					<view class="stepn">1</view>
-					<view class="ft14" >
+					<view class="ft14">
 						<view>阅读</view>
 						<view>规程</view>
 					</view>
@@ -95,36 +95,32 @@
 							</u-checkbox>
 						</u-checkbox-group>
 					</view>
-					<u-line></u-line>
-					<view	>
+					<u-line margin="25rpx 0"></u-line>
+					<view>
 						<view class='flex'>
 							<view>邀请码报名</view>
 							<view class="cl-placeholder ml20">使用邀请码报名不需要抽签</view>
 						</view>
-						<view  class="mt10">
-							  <u--input
-							    placeholder="请输入内容"
-							    border="surround"
-							    v-model="value"
-							    @change="change"
-							  ></u--input>
+						<view class="mt10">
+							<u--input inputAlign='center' border="surround" v-model="value" @change="change"
+								:customStyle="{background:'#F2F2F2'}"></u--input>
 						</view>
 					</view>
-					<u-line></u-line>
+					<u-line margin="20rpx 0 0 0"></u-line>
 					<view class="mt20">
 						<view class="flex end">
 							<view>小计：</view>
 							<view class="cl-eb ftw600">￥912.00</view>
 						</view>
-					
+
 					</view>
 				</view>
 
 			</view>
 
 
-			<view class="bg-w mt20">
-				<view class="ml20 mr20 pb20 pt20">
+			<view class="bg-w mt20 ">
+				<view class="ml20 mr20  pt20 pb30">
 					<view class="flex alcenter">
 						<view class="lhder"></view>
 						<view class="ft16 ftw600">支付方式</view>
@@ -132,9 +128,9 @@
 					<view class="pb20 pt10">
 						<view class="mt10 flex  space mb10">
 							<view class="flex alcenter">
-							<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/wx.png"
-								width="19px" height="18px"></u--image>
-							<view class="ml10">微信支付</view>
+								<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/wx.png"
+									width="19px" height="18px"></u--image>
+								<view class="ml10">微信支付</view>
 							</view>
 							<u-checkbox-group v-model="checkboxValue7" @change="checkboxChange" iconPlacement="right">
 								<u-checkbox v-for="(item, index) in checkboxList7" :key="index" :name="item.disabled"
@@ -145,32 +141,32 @@
 					</view>
 					<u-line></u-line>
 					<view class="mt20">
-					<view class="flex alcenter ft12">
-						<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
-							width="12px" height="12px"></u--image>
+						<view class="flex alcenter ft12">
+							<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
+								width="12px" height="12px"></u--image>
 							<view class="ml5">请在<text class="cl-eb ftw600">30分钟内</text>完成支付，否则订单自动取消</view>
-					</view>	
-					<view class="flex mt10 ft12">
-						<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
-							width="12px" height="12px" style="margin-top: 5px;"></u--image>
+						</view>
+						<view class="flex mt10 ft12">
+							<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
+								width="12px" height="12px" style="margin-top: 5px;"></u--image>
 							<view class="ml5 cl-eb ftw600">由于比赛报名属于竞赛性质，非普通商品，具有时效性特征，一旦完成支付，不支持退款</view>
-					</view>	
-					<view class="flex alcenter mt10 ft12">
-						<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
-							width="12px" height="12px"></u--image>
+						</view>
+						<view class="flex alcenter mt10 ft12">
+							<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
+								width="12px" height="12px"></u--image>
 							<view class="ml5">缴费之后不支持退款</view>
-					</view>	
-					<view class="flex alcenter mt10 ft12">
-						<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
-							width="12px" height="12px"></u--image>
+						</view>
+						<view class="flex alcenter mt10 ft12">
+							<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/th.png"
+								width="12px" height="12px"></u--image>
 							<view class="ml5">我已关注公众</view>
-					</view>	
+						</view>
 					</view>
-				
+
 				</view>
 
 			</view>
-
+			<u-gap height="40"></u-gap>
 		</view>
 
 
@@ -188,13 +184,31 @@
 				</view>
 
 				<view class="mr10">
-					<u-button @click="$u.route('/pages/competition/orderConfi')" :customStyle='foterStyle'
+					<!-- 	<u-button @click="$u.route('/pages/competition/orderConfi')" :customStyle='foterStyle'
 						color='#EB3D74' style="font-size: 16px;color:#fff;font-weight: bold;"
-						size='large'>去支付</u-button>
+						size='large'>提交报名</u-button> -->
+					<u-button @click="showPage" :customStyle='foterStyle' color='#EB3D74'
+						style="font-size: 16px;color:#fff;font-weight: bold;" size='large'>提交报名</u-button>
 				</view>
 			</view>
 		</view>
 		<u-gap height="50"></u-gap>
+		<u-popup :show="show" @close="close" @open="open" mode="center" round='6'>
+			<view class="u-popup-slot">
+				 <view class="flex cloum  mt20 ml30 mr30">
+					 <view class="ft18 ftw600 text-center mb20 mt10">确认信息</view>
+					 <view class="mt10 mb15">请在<text class="cl-eb">30分钟内</text>完成支付，否则订单自动取消</view>
+					 <view class="cl-eb mb10">由于比赛报名属于竞赛性质，非普通商品，具有
+时效性特征，一旦完成支付，不支持退款</view>
+					 <view class="mb10">缴费之后因个人原因不支持退款</view>
+					 <view class="mb10">我已关注公众号</view>
+					 <view class="flex mt10">
+						 <view class="btn1" @click="show=false">不同意</view>
+						 <view class="btn2" @click="$u.route('/pages/competition/payResult')">我已阅读并同意</view>
+					 </view>
+				 </view>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
@@ -205,10 +219,11 @@
 				src: 'https://cdn.uviewui.com/uview/album/1.jpg',
 				foterStyle: {
 					width: '400rpx',
-					
-				
+
+
 				},
-				value:'',
+				show: false,
+				value: '',
 				checkboxList7: [{
 
 						disabled: false
@@ -225,9 +240,19 @@
 			checkboxChange(n) {
 				console.log('change', n);
 			},
-			   change(e) {
-			          console.log('change', e);
-			        }
+			change(e) {
+				console.log('change', e);
+			},
+			showPage() {
+            this.show = true
+			},
+			open() {
+				// console.log('open');
+			},
+			close() {
+				this.show = false
+				// console.log('close');
+			}
 		}
 	}
 </script>
@@ -268,6 +293,7 @@
 	}
 
 	.footer {
+
 		position: fixed;
 		bottom: 0rpx;
 		background-color: #fff;
@@ -276,7 +302,31 @@
 		border-top-left-radius: 34rpx;
 		border-top-right-radius: 34rpx;
 	}
-
+   .u-popup-slot{
+	   width: 684rpx;
+	   height: 602rpx;
+	   .btn1{
+		   border: 1rpx solid #D6D6D6;
+		   width: 290rpx;
+		   height: 94rpx;
+		   line-height: 94rpx;
+		   text-align: center;
+		   border-radius: 12rpx;
+		   font-weight: 600;
+		   margin-right: 20rpx;
+	   }
+	   .btn2{
+	   		  background: #EB3D74;
+	   		  box-shadow: 0rpx 0rpx 22rpx 2rpx rgba(180,5,60,0.42);
+	   		   width: 290rpx;
+	   		   height: 94rpx;
+	   		   line-height: 94rpx;
+			   color: #fff;
+	   		   text-align: center;
+	   		   border-radius: 12rpx;
+	   		   font-weight: 600;
+	   }
+   }
 	.outTime {
 		margin: 0 3px;
 		display: flex;
