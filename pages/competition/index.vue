@@ -1,5 +1,5 @@
 <template>
-	<view class="container" style="height: 100vh;">
+	<view class="container" >
 		<mescroll-body @init="mescrollInit" @down="downCallback" @up="upCallback" :up='upOption'>
 			<view class="wrapper">
 				<view>
@@ -54,12 +54,12 @@
 				</view>
 
 				<view class="flex">
-					<view class="ztab" :class="isbg ==0?'zbofore':''" @click="isbg=0">
+					<view class="ztab" :class="isbg ==0?'zbofore':''" @click="onTab(0)">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/competition/t1.png" width="12px"
 							height="12px"></u--image>
 					</view>
-					<view class="ztab1" :class="isbg ==1?'zbofore':''" @click="isbg=1">
+					<view class="ztab1" :class="isbg ==1?'zbofore':''" @click="onTab(1)">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/competition/t2.png" width="12px"
 							height="12px"></u--image>
@@ -86,6 +86,7 @@
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/competition/zd.png" width="39px"
 							height="39px" @click='clickZb'></u--image>
+							
 				 </u-back-top>
 			</view>
        
@@ -235,6 +236,13 @@
 					this.filterList = res.data
 				})
 			},
+			onTab(num){
+				this.isbg = num
+				if(num == 0){
+					this.showType = 'imglist'
+				}else{
+					this.showType = 'list'				}
+			},
 			switchSort(index, value) {
 				
 			},
@@ -256,12 +264,7 @@
 					this.mescroll.endByPage(curPageLen, totalPage);
 				})
 			},
-			radioClick(name) {
-				this.radios.map((item, index) => {
-					item.checked = index === name ? true : false
-				})
-				name == 0 ? this.showType = 'imglist' : this.showType = 'list'
-			},
+	
 			itemClick(name) {
 				this.slist.map((item, index) => {
 					item.checked = index === name ? true : false
@@ -270,7 +273,7 @@
 			},
 			onchangeItem(item) {
 				console.log(item)
-				uni.$u.route('/pages/competition/details', {
+				uni.$u.route('/pages/subCompetition/competition/details', {
 					id: item
 				})
 			},
@@ -335,9 +338,11 @@
 		padding: 15rpx;
 		border-top-right-radius: 10rpx;
 		border-bottom-right-radius: 10rpx;
+		
 	}
 
 	.zbofore {
-		background-color: #ccc;
+		background-color: #eee;
 	}
+
 </style>

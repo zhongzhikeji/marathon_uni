@@ -101,7 +101,7 @@
 			},
 			onTime(){
 				if(this.checked.length ==2){
-					this.$u.route(`/pages/competition/details?id=${this.id}&isSign=2`)
+					this.$u.route(`/pages/subCompetition/competition/details?id=${this.id}&isSign=2`)
 				}else{
 					    uni.$u.toast('请确认相关选择')
 				}

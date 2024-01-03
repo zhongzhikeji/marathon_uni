@@ -57,6 +57,9 @@
             "postcss" : false,
             "minified" : true
         },
+		"optimization":{
+		"subPackages":true //是否启用分包优化
+		},
         "usingComponents" : true,
         "lazyCodeLoading" : "requiredComponents"
     },

@@ -1,16 +1,17 @@
 <template>
 	<view class="container">
-		<view class="wrapper">
 			<view>
-				<u-navbar leftIcon=' ' leftText='资讯' :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
-					bgColor="transparent">
-					<view  slot="center" style="width: 290rpx;">
-						<u-search shape='square' bgColor='#F58EB9' placeholderColor='#fff' searchIconColor='#fff' placeholder="关键字搜索"
-							disabled height="30" :show-action="false" @click="handleSearchClick"></u-search>
+		        <u-navbar leftIcon=' ' :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
+						bgColor="transparent">
+						<view slot="left">
+							<view class="search-wrap" @click="handleSearchClick">
+								<u-search inputAlign='center' bgColor='#fff' placeholderColor='#CCCCCC'
+									searchIconColor='#F9A4C3' placeholder="搜索资讯关键词" disabled
+									:show-action="false"></u-search>
 
-					</view>
-
-				</u-navbar>
+							</view>
+						</view>
+					</u-navbar>
 			</view>
 
 			<!--轮播图-->
@@ -49,7 +50,7 @@
 			</view>
 		</view>
 	</view>
-		</view>
+		
 
 		<view>
 			<!-- 优惠券 -->
@@ -197,6 +198,9 @@ import * as AreaApi from '@/api/system/area.js';
 			// this.loadNoticeData()
 		},
 		methods: {
+			handleSearchClick(e) {
+				uni.$u.route('/pages/search/search')
+			},
 			radioClick(name) {
 
 				this.radios.map((item, index) => {
@@ -239,15 +243,7 @@ import * as AreaApi from '@/api/system/area.js';
 </script>
 
 <style lang="scss" scoped>
-	.wrapper {
-		background-image: url('https://marathon.zznet.live/file/uploadPath/img/bg.png');
-		background-size: cover;
-		.tabs{
-			background-color: transparent;
-			// border-top: 1px solid #eee;
-		 //    border-bottom: 1px solid #EAECF0;
-		}
-	}
+
 
 	.search-wrap {
 		background: $custom-bg-color;

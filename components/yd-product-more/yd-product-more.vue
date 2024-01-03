@@ -28,18 +28,10 @@
 					</view>
 					<view style="color: #8F91A1; margin-right: 20rpx;">
 				<u-count-down :time="(item.joinStartTime - isData)" format="DD:HH:mm:ss" autoStart millisecond @change="onChange">
-					   
-					
 						<view class="flex alcenter end">
 							<view>报名倒计时:</view>
 							<text style="color: #EB3D74;">{{ timeData.days }}</text>
 							<text>天</text>
-					
-					
-				
-				
-				
-				
 					</view>
 				</u-count-down>
 					
@@ -159,36 +151,86 @@
 				</view>
 			</view>
 			<view v-if="showType == 'list'">
-				<view class="prod-list" v-for="item in productList" :key="item.id">
-					<view class="prod-item" @click="handleProdItemClick(item.id)">
-
-						<view class="">
-							<view class="info-text">
-								<view class="flex">
-									<view class="bmz">{{statusText(item)}}</view>
-									<u--text :lines="1" size="14px" color="#333333" :bold='true'
-										:text="item.title"></u--text>
+		       <view class="prod-list1" v-for="(item,index) in productList" :key="item.id" :class="{list1: item.categoryColor == 1,
+		       list2: item.categoryColor == 2,
+		       list3: item.categoryColor == 3,
+		       list4: item.categoryColor == 4,
+		       list5: item.categoryColor == 5,
+		       list6: item.categoryColor == 6,
+		       list7: item.categoryColor == 7,
+		       }">
+		       	<view class="flex space alcenter">
+		       		<text class="btitle" :class="{btitle1: item.categoryColor ==1,btitle2: item.categoryColor ==2,btitle3: item.categoryColor ==3,
+		       		btitle4: item.categoryColor ==4,
+		       		btitle5: item.categoryColor ==5,
+		       		btitle6: item.categoryColor ==6,
+		       		btitle7: item.categoryColor ==7,
+		       		}">{{item.categoryName}}</text>
+		       		<view class="mr10" :class="{onflex: index == 0}">
+		       			<view  v-show="index == 0" class="mr5" @click.stop="swapItems(index)">
+		       				<u-icon name="https://marathon.zznet.live/file/uploadPath/image/competition/zhiding.png" color="#CCCCCC" size="13"></u-icon>
+		       			</view>
+		       			
+		       			<u-icon name="close" color="#CCCCCC" size="16"  @click="onDelete(index)"></u-icon>
+		       		</view>
+		       
+		       	</view>
+		       	<view style="color: #8F91A1; margin-right: 20rpx;">
+		       <u-count-down :time="(item.joinStartTime - isData)" format="DD:HH:mm:ss" autoStart millisecond @change="onChange">
+		       		<view class="flex alcenter end">
+		       			<view>报名倒计时:</view>
+		       			<text style="color: #EB3D74;">{{ timeData.days }}</text>
+		       			<text>天</text>
+		       	</view>
+		       </u-count-down>
+		       	
+		       	</view>
+		       	<view class="prod-item1" @click="handleProdItemClick(item.id)">
+		     
+		       		<view class="item-info">
+		       			<view class="info-text">
+							<view class="flex alcenter">
+							<!-- 	<u--text :lines="1" size="14px" color="#333333" :bold='true'
+		       					:text="item.title"></u--text> -->
+								<view class="ft16 ">{{item.title}}</view>
+								<view class="statuse ml10" :class="{status1: item.meetStatus == 0,status2: item.meetStatus == 1,status3: item.meetStatus == 2,status4: item.meetStatus == 3,status5: item.meetStatus == 4,status6: item.meetStatus == 5,status7: item.meetStatus == 6,status8: item.meetStatus == 7}">
+									<text class="test">{{statusText(item)}}</text>
+									
 								</view>
-
-
-								<view class="info_add">
-									<view>{{item.area}}</view>
-									<u-line direction="col" length="10px" color="#dddddd" margin="0 20rpx"></u-line>
-									<view>{{formatDate(item.startTime)}}</view>
-								</view>
-
-
 							</view>
-							<view class="flex mt10">
-								<view class="u-page__tag-item " v-for="item in u_tagList">
-									<u-tag size="mini" :text="item.text" plain type="info"> </u-tag>
-
+		       			
+		       				<view class="flex alcenter mt10">
+								<view class="flex alcenter  ft12 mr20" style="color: #8F91A1;">
+									<view class="tradius tradiusColor"></view>
+									
+									{{formatDate(item.startTime)}}
+								</view>
+								<view class="flex alcenter ml5 ">
+									<view class="tradius tradiusColorb"></view>
+									<u--text class="info-desc" :lines="1" size="12px" color="#8F91A1"
+										:text="item.area"></u--text>
 								</view>
 							</view>
-
-						</view>
-					</view>
-				</view>
+		       			
+		       
+		       				<u-gap height="5px"></u-gap>
+		       			
+		       
+		       			</view>
+		       			<view class="flex mt5 ">
+		       
+		       				<view v-for="(k,index) in item.keyword">
+		       					<view class="tagList" :class="{blueBackground: index === 0,rBackground: index === 1,yBackground: index === 2}">{{k}}</view>
+		       
+		       				</view>
+		       
+		       
+		       
+		       			</view>
+		       
+		       		</view>
+		       	</view>
+		       </view>
 			</view>
 		</view>
 
@@ -419,8 +461,44 @@
 				margin-left: 20rpx;
 
 				.info-text {
-
 					padding-bottom: 10rpx;
+					.statuse {
+					    padding: 5rpx 10rpx;
+						color: #fff;
+						font-size: 24rpx;
+						border-radius: 6rpx;
+						
+					}
+					.status1{
+					background: linear-gradient(267deg, #EB3D74 0%, #F23BBB 100%);
+					}
+					.status2{
+						background: linear-gradient(267deg, #4EBBD7 0%, #4CD1A8 100%);
+					}
+					.status3{
+						background: linear-gradient(267deg, #F2B015 0%, #F5D60D 100%);
+					}
+					.status4{
+					background: linear-gradient(267deg, #2D71FF 0%, #69AEFE 100%);
+					}
+					.status5{
+						background: linear-gradient(267deg, #FF7E37 0%, #FB2D45 100%);
+					}
+					.status6{
+					
+						background: #2F2F46;
+					
+					}
+					.status7{
+					
+						background: linear-gradient(267deg, #FFDB7B 0%, #FD7600 100%);
+					
+					}
+					.status8{
+					
+						background: #CCCCCC;
+					
+					}
 				}
 
 
@@ -524,7 +602,7 @@
 	.tagList {
 		font-size: 24rpx;
 		
-		padding: 10rpx 18rpx;
+		padding: 10rpx 12rpx;
 		margin-right: 10rpx;
 		border-radius: 8rpx;
 	}

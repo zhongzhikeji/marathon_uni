@@ -64,16 +64,15 @@
 							<u--image radius='5' :src="src" width="95px" height="81px"></u--image>
 						</view>
 						<view class="ml10 flex cloum space">
-							<view class="ft14 ftw600">2023 西安日出女子跑-鼓浪岛
-							</view>
+							<view class="ft14 ftw600" v-if="list.meetSku">{{list.meetSku.name}}</view>
 
 							<view class="ft12 cl-ae">参赛人数：
-								<text class="cl-default">
-									{{246}}人
+								<text class="cl-default" v-if="list.memberList">
+									{{list.memberList.length}}人
 								</text>
 							</view>
-							<view class="ft16 flex mt2 ftw600" style="color: #EB3D74;">
-								￥912.00/人
+							<view class="ft16 flex mt2 ftw600" style="color: #EB3D74;" v-if="list.meetSku">
+								￥{{list.meetSku.price}}/人
 							</view>
 						</view>
 
@@ -89,8 +88,8 @@
 							</view>
 							<view class="cl-placeholder mt10 ft14">可用2000点能量值抵扣2块钱</view>
 						</view>
-						<u-checkbox-group v-model="checkboxValue7" @change="checkboxChange" iconPlacement="right">
-							<u-checkbox v-for="(item, index) in checkboxList7" :key="index" :name="item.disabled"
+						<u-checkbox-group v-model="checkboxValue" @change="checkboxChange" iconPlacement="right">
+							<u-checkbox v-for="(item, index) in checkboxList" :key="index" :name="item.disabled"
 								shape='circle' activeColor='#EB3D74'>
 							</u-checkbox>
 						</u-checkbox-group>
@@ -110,7 +109,7 @@
 					<view class="mt20">
 						<view class="flex end">
 							<view>小计：</view>
-							<view class="cl-eb ftw600">￥912.00</view>
+							<view class="cl-eb ftw600">￥{{list.price}}</view>
 						</view>
 
 					</view>
@@ -132,8 +131,8 @@
 									width="19px" height="18px"></u--image>
 								<view class="ml10">微信支付</view>
 							</view>
-							<u-checkbox-group v-model="checkboxValue7" @change="checkboxChange" iconPlacement="right">
-								<u-checkbox v-for="(item, index) in checkboxList7" :key="index" :name="item.disabled"
+							<u-checkbox-group v-model="checkboxValue1" @change="checkboxChange1" iconPlacement="right">
+								<u-checkbox v-for="(item, index) in checkboxList1" :key="index" :name="item.code"
 									shape='circle' activeColor='#EB3D74'>
 								</u-checkbox>
 							</u-checkbox-group>
@@ -178,9 +177,9 @@
 		<view class="footer">
 
 			<view class=" flex alcenter space">
-				<view class="flex ml10">
-					<view class="ft14">总计：</view>
-					<view style="color:#F21A6F">￥200</view>
+				<view class="flex ml10 alcenter">
+					<view class="ft14 ftw600">总计：</view>
+					<view style="color:#F21A6F" class="ft16 ftw600"><text class="ft12">￥</text>{{list.payPrice}}</view>
 				</view>
 
 				<view class="mr10">
@@ -204,7 +203,8 @@
 					 <view class="mb10">我已关注公众号</view>
 					 <view class="flex mt10">
 						 <view class="btn1" @click="show=false">不同意</view>
-						 <view class="btn2" @click="$u.route('/pages/competition/payResult')">我已阅读并同意</view>
+					<!-- 	 <view class="btn2" @click="$u.route('/pages/subCompetition/competition/payResult')">我已阅读并同意</view> -->
+						  <view class="btn2" @click="goPay">我已阅读并同意</view>
 					 </view>
 				 </view>
 			</view>
@@ -213,6 +213,8 @@
 </template>
 
 <script>
+	import * as Api from '@/api/competition/list.js';
+	import * as PayOrderApi from '@/api/pay/order.js';
 	export default {
 		data() {
 			return {
@@ -224,27 +226,152 @@
 				},
 				show: false,
 				value: '',
-				checkboxList7: [{
-
-						disabled: false
+				memberIds:[],
+				channelCode:'',
+				skuId:'',
+				 orderId: 0, // 支付单号
+				 returnUrl: '', // 调回地址
+				list:{},
+				checkboxList: [{
+				isDeduction: true
 					}
 
 				],
-				checkboxValue7: [],
+				checkboxValue: [],
+				checkboxList1: [
+					{
+				    code: 'mock'
+					}
+				
+				],
+				checkboxValue1: [],
 			}
 		},
-		onLoad() {
-
+		onLoad(e) {
+          if(e.memberIds || e.skuId){
+			  
+			  this.memberIds = e.memberIds.split(",")
+			  this.skuId = e.skuId
+		  }
+		  this.createOrder()
 		},
 		methods: {
+			createOrder(){
+				let data = {
+					memberIds:this.memberIds,
+					skuId:this.skuId,
+					pointStatus:false,
+					redeemCode:''  //邀请码
+				}
+				Api.createSettlement(data).then(res=>{
+					this.list = res.data
+				})
+			},
+			goPay(){
+				uni.showLoading({
+					title: '支付中'
+				});
+				PayOrderApi.submitOrder({
+				  id: this.orderId,
+				  channelCode: this.channelCode,
+				  returnUrl: this.getPayReturnUrl(),
+				  channelExtras: { // TODO 芋艿：等登录接入完成，需要改成动态读取
+				    // openid: "ockUAwIZ-0OeMZl9ogcZ4ILrGba0" // wx_pub 微信公众号支付的 openid
+				    openid: "oLefc4g5GjKWHJjLjMSXB3wX0fD0" // wx_lite 微信小程序支付的 openid
+				  }
+					}).then(res => {
+				  this.handleSubmitOrderResult(res.data);
+				}).catch(err => {
+				  uni.hideLoading();
+				  this.$util.Tips({
+				    title: err
+				  })
+				})
+					},
+					handleSubmitOrderResult(data) {
+					  // 1. 如果已支付、或者已关闭，则直接跳转
+					  if (data.status === 10) {
+					    this.goReturnUrl('success');
+					    return;
+					  } else if (data.status === 20) {
+					    this.goReturnUrl('close');
+					    return;
+					  }
+					
+					  // 2. 根据 displayMode 模式，进行对应的处理
+					  const displayMode = data.displayMode;
+					  const displayContent = data.displayContent
+					  // 2.1 如果返回的是 URL，则直接跳转
+					  if (displayMode === 'url') {
+					    window.location = displayContent;
+					    return;
+					  }
+					  // 2.2 如果返回的是 APP，则自定义处理
+					  if (displayMode === 'app') {
+					    if (this.channelCode === 'wx_pub') {
+					      this.handleSubmitOrderResultForWxPub(displayContent)
+					      return;
+					    }
+					    if (this.channelCode === 'wx_lite') {
+					      this.handleSubmitOrderResultForWxLite(displayContent)
+					      return;
+					    }
+					  }
+					},
+			getPayReturnUrl() {
+			
+			  return 'http://localhost:8080/pages/subCompetition/competition/paySuccess?order_id=' + this.orderId ;
+			
+			},
+			/**
+			 * 回到业务的 URL
+			 *
+			 * @param payResult 支付结果
+			 *                  ① success：支付成功
+			 *                  ② cancel：取消支付
+			 *                  ③ close：支付已关闭
+			 */
+			goReturnUrl(payResult) {
+							console.log(payResult,995)
+							console.log(this.returnUrl,996)
+			  uni.reLaunch({
+			    url: this.returnUrl.indexOf('?') >= 0
+			      ? this.returnUrl + '&payResult=' + payResult
+			      : this.returnUrl + '?payResult=' + payResult
+			  })
+			},
 			checkboxChange(n) {
+				console.log('change', n);
+			},
+			checkboxChange1(n) {
+				if(n == 'mock'){
+					this.channelCode = n.join('')
+				}
 				console.log('change', n);
 			},
 			change(e) {
 				console.log('change', e);
 			},
 			showPage() {
-            this.show = true
+				if(this.channelCode == ''){
+					this.$util.Tips({
+					  title: '请选择支付方式'
+					})
+				}else{
+					let data = {
+							memberIds:this.memberIds,
+							skuId:this.skuId,
+							pointStatus:false,
+							redeemCode:''  //邀请码
+						}
+						Api.createOrder(data).then(res=>{
+							this.orderId = res.data.payOrderId
+							this.returnUrl  =`/pages/subCompetition/competition/payResult?order_id=${res.data.id}`
+						
+						})
+					this.show = true
+				}
+			
 			},
 			open() {
 				// console.log('open');

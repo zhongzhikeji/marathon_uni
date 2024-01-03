@@ -312,67 +312,77 @@
 				"navigationStyle": "custom", // 隐藏系统导航栏
 				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 			}
-		},
-		{
-			"path": "pages/competition/payResult",
-			"style": {
-				"navigationStyle": "custom", // 隐藏系统导航栏
-				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-			}
-		},
-		{
-			"path": "pages/competition/details",
-			"style": {
-				"navigationStyle": "custom", // 隐藏系统导航栏
-				"navigationBarTextStyle": "white", // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-				
-				"app-plus": {
-					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
-				},
-				"mp-alipay": {
-					"allowsBounceVertical": "NO"
-				} // 取消支付宝和钉钉小程序的iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
-			}
-		},
-		{
-			"path": "pages/competition/lookout",
-			"style": {
-				"navigationBarTitleText": "注意事项"
-			}
-		},
-		{
-			"path": "pages/competition/regulation",
-		"style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 		}
-		},
-		{
-			"path": "pages/competition/eventsMsg",
-			"style": {
-				"navigationBarTitleText": "活动资讯"
-			}
-		},
-		{
-			"path": "pages/competition/order",
-		"style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-		}
-		},
-		{
-			"path": "pages/competition/orderConfi",
-			"style": {
-				"navigationBarTitleText": "确认订单"
-			}
-		},
-		{
-			"path": "pages/competition/paySuccess",
-			"style": {
-				"navigationBarTitleText": "确认信息"
-			}
-		}
+
+	
+	
+	
+	
+	
+	
+	
 	],
+	 "subPackages":[
+		 {
+			 "root": "pages/subCompetition",
+			 "pages": [
+			 	{
+			 		"path": "competition/details",
+					"style": {
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+					}
+			 	},
+				{
+					"path": "competition/order",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				},
+				{
+					"path": "competition/lookout",
+					"style": {
+						"navigationBarTitleText": "注意事项"
+					}
+				},
+				{
+					"path": "competition/orderConfi",
+					"style": {
+						"navigationBarTitleText": "确认订单"
+					}
+				},
+				{
+				"path": "competition/regulation",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				},
+				{
+					"path": "competition/payResult",
+					"style": {
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+					}
+				},
+				{
+					"path": "competition/paySuccess",
+					"style": {
+						"navigationBarTitleText": "确认信息"
+					}
+				},
+				{
+					"path": "competition/matchOreder",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				}
+				
+			 ]
+		 }
+	 ],
 	"tabBar": {
 		"selectedColor": "#333333",
 		"color": "#bfbfbf",

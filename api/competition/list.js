@@ -25,3 +25,19 @@ export function getDetails(id) {
   });
 }
 
+// 获取赛事订单信息
+export function createSettlement(data) {
+  return request.post('app-api/meet/order/settlement', data);
+}
+
+// 创建订单
+export function createOrder(data) {
+  return request.post('app-api/meet/order/create', data);
+}
+//获取支付订单
+export function getOrderDetail(id) {
+  return request.get("app-api/meet/order/get-detail", {
+    id
+  });
+}
+

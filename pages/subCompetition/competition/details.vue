@@ -253,7 +253,7 @@
 								  </view>
 								  <view class="ft12 mt5" style="color:#7F7F7F">报名方式：抽签</view>
 							  </view>
-							  <view style="color: #EB3D74;margin-right: 20rpx;font-weight: bold;">￥100.00</view>
+							  <view style="color: #EB3D74;margin-right: 20rpx;font-weight: bold;">￥{{keys.price}}</view>
 						  </view>
 					
 						<view class="ft12 mt5 pt5 pb5 pl5 pr5 mr5" style="color:#ED419F;background-color: #FFEEF3;border-radius: 10rpx;" v-html="keys.description"></view>
@@ -524,7 +524,7 @@
 
 			},
 			onhandled() {
-				this.$u.route(`/pages/competition/regulation?spuId=${this.id}`)
+				this.$u.route(`/pages/subCompetition/competition/regulation?spuId=${this.id}`)
 
 			},
 			onDraw() {
@@ -538,9 +538,14 @@
 
 			},
 			onOrder() {
-
+                
+				let memberIds = []
+				this.selected.forEach(item=>{
+					memberIds.push(item.id)
+				})
+				console.log(memberIds)
 				if (this.selected.length > 0) {
-					this.$u.route('/pages/competition/order')
+					this.$u.route(`/pages/subCompetition/competition/order?memberIds=${memberIds}&skuId=${this.infoId}`)
 				} else {
 					uni.$u.toast('请选择参赛人员')
 				}

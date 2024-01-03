@@ -115,6 +115,7 @@
       }
 
       if (options.returnUrl) {
+		  console.log(options.returnUrl)
         this.returnUrl = decodeURIComponent(options.returnUrl)
       }
 			this.getCashierOrder()
@@ -168,7 +169,7 @@
 				uni.showLoading({
 					title: '支付中'
 				});
-				PayOrderApi.submitOrder({
+		PayOrderApi.submitOrder({
           id: this.orderId,
           channelCode: channelCode,
           returnUrl: this.getPayReturnUrl(),

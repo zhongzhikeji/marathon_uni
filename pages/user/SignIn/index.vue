@@ -2,7 +2,7 @@
 	<view>
 		<view class="wrapper">
 			<view>
-				<u-navbar :safeAreaInsetTop="true" :placeholder='true' :fixed="false" bgColor="transparent" title="签到">
+				<u-navbar :auto-back="true" :safeAreaInsetTop="true" :placeholder='true' :fixed="false" bgColor="transparent" title="签到">
 
 				</u-navbar>
 			</view>
