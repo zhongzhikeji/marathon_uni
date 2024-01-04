@@ -96,7 +96,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="tuanbao">
+			<view class="tuanbao" v-show="content.enableGroup">
 				<view class="flex">
 					<view class="bradis">团</view>
 					<view>

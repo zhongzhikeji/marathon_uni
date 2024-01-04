@@ -79,7 +79,7 @@
 					<view class="mt5" style="color: #F6F7FA;">全网赛事</view>
 				</view>
 			</view>
-			<view class="banners bg3" @click="$u.route('/pages/user/vote/details')">
+			<view class="banners bg3" @click="$u.route('/pages/home/vote/index')">
 				<view class="bgItem">
 					<view  class="ft18 ftw600">人气投票</view>
 					<view class="mt5" style="color: #F6F7FA;">人气王</view>

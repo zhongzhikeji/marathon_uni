@@ -24,6 +24,7 @@
 						</view>
 						<view>
 							<u-tabs :list="filterList" lineWidth="20" lineHeight="7"
+							@click="tabItem"
 								:lineColor="`url(${lineBg}) 100% 100%`" :activeStyle="{
 						          color: '#EB3D74',
 						          fontWeight: 'bold',
@@ -189,6 +190,7 @@
 				centenStyle: {
 					top: '40px'
 				},
+				categoryId:'',
 				lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
 				filterList: [],
 				// 如果顶部还有内容，且需要吸顶效果，可以传入needSticky
@@ -196,12 +198,7 @@
 				showType: 'imglist',
 				productList: [],
 				tagList: [
-					// {
-					// 	text: '标签1'
-					// },
-					// {
-					// 	text: '标签2'
-					// }
+			
 				],
 				sortList: [{
 					text: '按照价格排序1',
@@ -230,10 +227,16 @@
 					});
 					
 				},
+				tabItem(item){
+					console.log(item)
+					this.categoryId = item.id
+					this.mescroll.resetUpScroll()
+				},
 			getTabList(){
 				Api.getTabList().then(res=>{
 				
 					this.filterList = res.data
+					this.categoryId = res.data[0].id
 				})
 			},
 			onTab(num){
@@ -252,6 +255,7 @@
 				Api.getList({
 					pageNo: pageNum,
 					pageSize,
+					categoryId:this.categoryId
 
 				}).then(res => {
 

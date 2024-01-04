@@ -41,6 +41,20 @@
 		}
 		},
 		{
+			"path": "pages/home/assistant/serial",
+		    "style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/home/vote/index",
+		    "style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
 			"path": "pages/home/calendar/index",
 			"style": {
 				"navigationBarTitleText": "赛事日历"

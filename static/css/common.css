@@ -18,6 +18,9 @@
 .flex .col3{width: 33.33%;}
 .flex .col4{width: 25%;}
 .flex .col5{width:20%;}
+.flex .flexWrap{
+	flex-flow: wrap
+}
 .flex.flexStart{
 	align-items: flex-start;
 }
@@ -82,7 +85,7 @@
 	color:#A6AEC2;
 }
 .cl-partner{
-	color:#9F4703;
+	color:#8F91A1;
 }
 .cl-red{
 	color: #ff3300;
