@@ -3,6 +3,7 @@
 		class="u-notice"
 		@tap="clickHandler"
 	>
+	<view></view>
 		<slot name="icon">
 			<view
 				class="u-notice__left-icon"
@@ -13,8 +14,10 @@
 					:color="color"
 					size="19"
 				></u-icon>
+				
 			</view>
 		</slot>
+	
 		<swiper
 			:disable-touch="disableTouch"
 			:vertical="step ? false : true"
@@ -29,6 +32,7 @@
 				:key="index"
 				class="u-notice__swiper__item"
 			>
+			
 				<text
 					class="u-notice__swiper__item__text u-line-1"
 					:style="[textStyle]"

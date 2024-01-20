@@ -57,11 +57,16 @@
             "postcss" : false,
             "minified" : true
         },
-		"optimization":{
-		"subPackages":true //是否启用分包优化
-		},
+        "optimization" : {
+            "subPackages" : true //是否启用分包优化
+        },
         "usingComponents" : true,
-        "lazyCodeLoading" : "requiredComponents"
+        "lazyCodeLoading" : "requiredComponents",
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "根据定位获取相关赛事信息"
+            }
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true
@@ -82,13 +87,16 @@
         },
         "sdkConfigs" : {
             "maps" : {
-                "amap" : {
-                    "key" : "bae4ed90904b0c2348f0dce6f4d83116",
-                    "securityJsCode" : "",
-                    "serviceHost" : ""
+                "qqmap" : {
+                    "key" : "DRJBZ-HLVKQ-6WL5R-BANKZ-3VHCK-ECFFD"
                 }
             }
         },
-        "title" : "跑加"
+        "title" : "跑加",
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        }
     }
 }

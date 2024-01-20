@@ -33,26 +33,28 @@
 				"navigationBarTitleText": "通知"
 			}
 		},
-		{
-			"path": "pages/home/assistant/result",
-		    "style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-		}
-		},
-		{
-			"path": "pages/home/assistant/serial",
-		    "style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-		}
-		},
+	
+	
 		{
 			"path": "pages/home/vote/index",
-		    "style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-		}
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/home/vote/voteList",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/home/vote/details",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
 		},
 		{
 			"path": "pages/home/calendar/index",
@@ -196,10 +198,10 @@
 		},
 		{
 			"path": "pages/user/SignIn/index",
-		"style": {
-			"navigationStyle": "custom", // 隐藏系统导航栏
-			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-		}
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
 		},
 		{
 			"path": "pages/user/vote/index",
@@ -328,75 +330,92 @@
 			}
 		}
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	],
-	 "subPackages":[
-		 {
-			 "root": "pages/subCompetition",
-			 "pages": [
-			 	{
-			 		"path": "competition/details",
-					"style": {
-						"navigationStyle": "custom", // 隐藏系统导航栏
-						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-					}
-			 	},
-				{
-					"path": "competition/order",
+	"subPackages": [{
+		"root": "pages/subCompetition",
+		"pages": [{
+				"path": "competition/details",
 				"style": {
 					"navigationStyle": "custom", // 隐藏系统导航栏
 					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 				}
-				},
-				{
-					"path": "competition/lookout",
-					"style": {
-						"navigationBarTitleText": "注意事项"
-					}
-				},
-				{
-					"path": "competition/orderConfi",
-					"style": {
-						"navigationBarTitleText": "确认订单"
-					}
-				},
-				{
+			},
+			{
+				"path": "competition/order",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+			},
+			{
+				"path": "competition/lookout",
+				"style": {
+					"navigationBarTitleText": "注意事项"
+				}
+			},
+			{
+				"path": "competition/orderConfi",
+				"style": {
+					"navigationBarTitleText": "确认订单"
+				}
+			},
+			{
 				"path": "competition/regulation",
 				"style": {
 					"navigationStyle": "custom", // 隐藏系统导航栏
 					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 				}
-				},
-				{
-					"path": "competition/payResult",
-					"style": {
-						"navigationStyle": "custom", // 隐藏系统导航栏
-						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
-					}
-				},
-				{
-					"path": "competition/paySuccess",
-					"style": {
-						"navigationBarTitleText": "确认信息"
-					}
-				},
-				{
-					"path": "competition/matchOreder",
+			},
+			{
+				"path": "competition/payResult",
 				"style": {
 					"navigationStyle": "custom", // 隐藏系统导航栏
 					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 				}
+			},
+			{
+				"path": "competition/paySuccess",
+				"style": {
+					"navigationBarTitleText": "确认信息"
 				}
-				
-			 ]
-		 }
-	 ],
+			},
+			{
+				"path": "competition/matchOreder",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+			},
+			{
+				"path": "competition/query",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+			},
+			{
+				"path": "competition/queryResult",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+			},
+           {
+           	"path": "competition/querySerial",
+           	"style": {
+           		"navigationStyle": "custom", // 隐藏系统导航栏
+           		"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+           	}
+           }
+		]
+	}],
 	"tabBar": {
 		"selectedColor": "#333333",
 		"color": "#bfbfbf",

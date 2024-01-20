@@ -50,7 +50,7 @@
 						</view>
 
 					</view>
-					<view class="cxbg pb10">
+					<view class="cxbg pb10" @click="$u.route('/pages/subCompetition/competition/query')">
 						<view class="pl20 pt10 ">
 							<view>查询</view>
 							<view class="ft12">查询报名状态,比赛号成绩</view>

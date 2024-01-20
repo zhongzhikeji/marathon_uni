@@ -8,7 +8,7 @@
 					disabled :show-action="false" @click="handleSearchClick"></u-search>
 			</view>
 			 <view class="Citem">
-				 <view class="item">
+				 <view class="item" @click="$u.route('/pages/home/vote/voteList')">
 					 <view class="flex alcenter around pt15">
 						 <view>
 					<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote01.png" width="101px" height="26px"></u--image>

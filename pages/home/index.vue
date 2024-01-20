@@ -187,6 +187,7 @@
 			},
 			async getlocation() {
 				const res = await location.reverseGeocoder();
+				console.log(res,99)
 				this.cityName = res.cityName
 			
 			},
