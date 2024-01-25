@@ -271,6 +271,7 @@
 				uni.showLoading({
 					title: '支付中'
 				});
+
 				PayOrderApi.submitOrder({
 				  id: this.orderId,
 				  channelCode: this.channelCode,
@@ -307,17 +308,7 @@
 					    window.location = displayContent;
 					    return;
 					  }
-					  // 2.2 如果返回的是 APP，则自定义处理
-					  if (displayMode === 'app') {
-					    if (this.channelCode === 'wx_pub') {
-					      this.handleSubmitOrderResultForWxPub(displayContent)
-					      return;
-					    }
-					    if (this.channelCode === 'wx_lite') {
-					      this.handleSubmitOrderResultForWxLite(displayContent)
-					      return;
-					    }
-					  }
+             this.handleSubmitOrderResultForWxLite(displayContent)
 					},
 			getPayReturnUrl() {
 
@@ -341,6 +332,42 @@
 			      : this.returnUrl + '?payResult=' + payResult
 			  })
 			},
+      /**
+       * 发起微信小程序支付
+       */
+      handleSubmitOrderResultForWxLite(displayContent) {
+        const payConfig = JSON.parse(displayContent);
+        uni.requestPayment({
+          timeStamp: payConfig.timeStamp,
+          nonceStr: payConfig.nonceStr,
+          package: payConfig.packageValue,
+          signType: payConfig.signType,
+          paySign: payConfig.paySign,
+          success: res => {
+            uni.hideLoading();
+            return this.$util.Tips({
+              title: '支付成功',
+              icon: 'success'
+            }, () => {
+              this.goReturnUrl('success');
+            });
+          },
+          fail: e => {
+            uni.hideLoading();
+            // 关闭支付的情况
+            if (e.errMsg === 'requestPayment:cancel'
+              || e.errMsg === 'requestPayment:fail cancel') {
+              return this.$util.Tips({
+                title: '取消支付'
+              });
+            }
+            return this.$util.Tips({
+              title: e.errMsg,
+              icon: 'error'
+            });
+          }
+        })
+      },
 			checkboxChange(n) {
 				console.log('change', n);
 			},
