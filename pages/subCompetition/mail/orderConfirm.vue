@@ -143,7 +143,7 @@
     <!-- 优惠劵的弹窗选择 -->
     <couponListWindow
       :coupon='coupon'
-      @ChangCouponsClose="ChangCouponsClose"
+      @ChangCouponsClone="ChangCouponsClose"
       :openType='openType'
       @ChangCoupons="ChangCoupons"
       :orderShow="orderShow"
@@ -345,9 +345,9 @@
           ...this.getSettlementReqVO(),
           mark: this.mark,
         }).then(res => {
-        const returnUrl = encodeURIComponent('/pages/order/orderPayStatus?order_id=' + res.data.id);
+        const returnUrl = encodeURIComponent('/pages/subCompetition/mail/orderPayStatus?order_id=' + res.data.id);
       uni.navigateTo({
-        url: `/pages/order/cashier?order_id=${res.data.payOrderId}&returnUrl=${returnUrl}`
+        url: `/pages/subCompetition/mail/cashier?order_id=${res.data.payOrderId}&returnUrl=${returnUrl}`
       });
         }).catch(err => {
           uni.hideLoading();
@@ -453,6 +453,8 @@
        * 关闭 coupon 优惠劵的选择弹窗
        */
       ChangCouponsClose: function() {
+        // console.log(222)
+        // this.coupon.coupon = false;
         this.$set(this.coupon, 'coupon', false);
       },
 
@@ -463,7 +465,7 @@
       onAddress: function() {
         this.address.address = true;
         // TODO 芋艿：callbackUrl
-       this.pagesUrl = '/pages/order/address?';
+       this.pagesUrl = '/pages/subCompetition/mail/address?';
       },
       /**
        * 选择地址后改变事件

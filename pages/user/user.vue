@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="user-header">
-      <view class="user-info" @click="pageRouter('/pages/profile/profile')">
+      <view class="user-info" @click="pageRouter('/page_home/profile/profile')">
         <u-avatar size="60" shape="circle" :src="userInfo.avatar"></u-avatar>
         <view class="info-text">
           <view class="user-nickname">{{ hasLogin ? userInfo.nickname || '会员用户' : '匿名用户' }}</view>
@@ -11,8 +11,8 @@
 		</view>
       </view>
       <view class="user-setting">
-		
-        <u-icon v-if="hasLogin" name="setting" color="#939393" size="22" @click="pageRouter('/pages/setting/setting')"></u-icon>
+
+        <u-icon v-if="hasLogin" name="setting" color="#939393" size="22" @click="pageRouter('/page_home/setting/setting')"></u-icon>
       </view>
     </view>
   <view class="stat-box">
@@ -20,7 +20,7 @@
         <u-grid-item v-for="(item, index) in statList" :key="index">
           <text class="grid-value">{{ item.value }}</text>
           <text class="grid-title">{{ item.title }}</text>
-		  
+
         </u-grid-item>
       </u-grid>
     </view>
@@ -70,7 +70,7 @@
 		 			 <view style="width: 150rpx;">
 		 				 <u-button shape='circle' color='#DA1984' style="color:#fff" @click="$u.route('/pages/user/purse/index')">详情</u-button>
 		 			 </view>
-		 		
+
 		 		 </view>
 		 		 <view class="flex around userInfo">
 					 <view class="flex">
@@ -80,7 +80,7 @@
 			<u-line direction="col" dashed length="40rpx"></u-line>
 					 <view class="flex" @click="$u.route('/pages/order/spread')">
 						<u-icon name="https://marathon.zznet.live/file/uploadPath/img/user1.png"></u-icon>
-						<text class="ml10" style="color: #A9776D;">推广大使</text> 
+						<text class="ml10" style="color: #A9776D;">推广大使</text>
 					 </view>
 				 </view>
 		 </view>
@@ -103,14 +103,14 @@
 		        <text class="grid-title" style="line-height: 100rpx;">{{ item.name }}</text>
 		      </u-grid-item>
 		    </u-grid>
-		  </view> 
+		  </view>
 	   </view>
 
     </view>
 
     <u-gap height="10" bgColor="#f3f3f3"></u-gap>
 
-  
+
 
 <!--    <u-gap height="10" bgColor="#f3f3f3"></u-gap> -->
 
@@ -150,14 +150,14 @@ export default {
       return this.$store.getters.userInfo
     },
     hasLogin() {
-		
+
       return this.$store.getters.isLogin
     },
     orderStatusList() {
       let orderStatusList = []
       for (let status in orderStatus) {
         // if (status !== '40') {
-        
+
         // }
 		  orderStatusList.push({ name: orderStatus[status].name, status: status, icon: orderStatus[status].icon,path:orderStatus[status].path })
       }
@@ -262,7 +262,7 @@ export default {
 .order-status-box {
   padding: 50rpx 0;
   background-color: #fff;
-  
+
 }
 
 .stat-box {
@@ -276,7 +276,7 @@ export default {
 }
 
 .grid-value {
-  
+
   font-size: 36rpx;
   font-weight: 700;
   color: #2b85e4;

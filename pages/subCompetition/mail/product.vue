@@ -101,7 +101,7 @@
 								:style="replyCount==0?'border-bottom-left-radius:14rpx;border-bottom-right-radius:14rpx;':''">
 								<view>商品评价<i>({{replyCount}})</i></view>
 								<navigator class='praise' hover-class='none'
-									:url='"/pages/order/evaluate?productId="+id'>
+									:url='"/pages/subCompetition/mail/evaluate?productId="+id'>
 									<i>查看更多</i>
 									<text class='iconfont icon-jiantou'></text>
 								</navigator>
@@ -149,7 +149,7 @@
 					<view>收藏</view>
 				</view>
 				<navigator open-type='navigate' class="animated item" :class="cartAnimated ? 'bounceIn':''"
-					url='/pages/order/orderAddcart' hover-class="none">
+					url='/pages/subCompetition/mail/orderAddcart' hover-class="none">
 					<view class='iconfont icon-gouwuche1'>
 						<text v-if="cartCount > 0" class='num bg-color'>{{ cartCount }}</text>
 					</view>
@@ -723,7 +723,7 @@
 				// 发起下单
 				let sku = this.attr.productSelect;
 				uni.navigateTo({
-					url: '/pages/order/orderConfirm?skuId=' + sku.id + '&count=' + sku.cart_num
+					url: '/pages/subCompetition/mail/orderConfirm?skuId=' + sku.id + '&count=' + sku.cart_num
 				});
 			},
 			/**

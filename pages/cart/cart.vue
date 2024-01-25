@@ -147,7 +147,7 @@ export default {
       const checkedProduct = this.checkedProduct.map(item => {
         return { productId: item.productId, productCount: item.productCount, sellPrice: item.sellPrice }
       })
-      uni.$u.route('/pages/checkout/checkout', {
+      uni.$u.route('/pages/subCompetition/mail/checkout', {
         checkedProduct: JSON.stringify(checkedProduct)
       })
     }

@@ -64,7 +64,7 @@
     methods: {
       // 点击搜索框
       handleSearchClick(e) {
-        uni.$u.route('/pages/search/search')
+        uni.$u.route('/page_home/search/search')
       },
       // 点击左侧导航栏
       handleCategoryClick(index) {

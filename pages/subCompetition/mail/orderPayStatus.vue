@@ -126,7 +126,7 @@
         })
 	uni.navigateTo({
 				  
-	  url: '/pages/order/orderDetails?order_id=' + this.orderId
+	  url: '/pages/subCompetition/mail/orderDetails?order_id=' + this.orderId
 	});
    //      openOrderSubscribe().then(res => {
    //        uni.hideLoading();

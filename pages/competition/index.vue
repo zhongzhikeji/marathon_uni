@@ -284,7 +284,7 @@
 
 
 			handleSearchClick(e) {
-				uni.$u.route('/pages/search/search')
+				uni.$u.route('/page_home/search/search')
 			},
 
 			open() {

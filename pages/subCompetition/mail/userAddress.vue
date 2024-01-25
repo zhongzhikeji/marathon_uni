@@ -188,7 +188,7 @@
           setTimeout(() => {
             if (this.preOrderNo > 0) {
               uni.redirectTo({
-                url: '/pages/order/orderConfirm?preOrderNo=' + this.preOrderNo + '&addressId=' + (this.id ? this.id : res.data)
+                url: '/pages/subCompetition/mail/orderConfirm?preOrderNo=' + this.preOrderNo + '&addressId=' + (this.id ? this.id : res.data)
               })
             } else {
               // #ifdef H5

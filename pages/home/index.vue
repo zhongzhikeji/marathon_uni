@@ -31,19 +31,19 @@
 							height="18px"></u--image>
 						<view>赚能量</view>
 					</view>
-					<view class="item" @click="$u.route('/pages/home/lottery-draw/lottery-draw')">
+					<view class="item" @click="$u.route('/page_home/lottery-draw/lottery-draw')">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/home/cj.png" width="30px"
 							height="18px"></u--image>
 						<view>抽奖</view>
 					</view>
-					<view class="item" @click="$u.route('/pages/home/coupon/index')">
+					<view class="item" @click="$u.route('/page_home/coupon/index')">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/home/yhj.png" width="30px"
 							height="18px"></u--image>
 						<view>优惠劵</view>
 					</view>
-					<view class="item" @click="$u.route('/pages/home/notification/index')">
+					<view class="item" @click="$u.route('/page_home/notification/index')">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/home/tz.png" width="30px"
 							height="18px"></u--image>
@@ -67,19 +67,19 @@
 
 		<!--宫格菜单按钮-->
 		<view class="home_grid ml10 mr10">
-			<view class="banners bg1" @click="$u.route('/pages/home/assistant/index')">
+			<view class="banners bg1" @click="$u.route('/page_home/assistant/index')">
 				<view class="bgItem">
 					<view class="ft18 ftw600">参赛助手</view>
 					<view class="mt5" style="color: #F6F7FA;">参赛辅助</view>
 				</view>
 			</view>
-			<view class="banners bg2" @click="$u.route('/pages/home/calendar/index')">
+			<view class="banners bg2" @click="$u.route('/page_home/calendar/index')">
 					<view class="bgItem">
 					<view  class="ft18 ftw600">赛事日历</view>
 					<view class="mt5" style="color: #F6F7FA;">全网赛事</view>
 				</view>
 			</view>
-			<view class="banners bg3" @click="$u.route('/pages/home/vote/index')">
+			<view class="banners bg3" @click="$u.route('/page_home/vote/index')">
 				<view class="bgItem">
 					<view  class="ft18 ftw600">人气投票</view>
 					<view class="mt5" style="color: #F6F7FA;">人气王</view>
@@ -99,7 +99,7 @@
 			          fontWeight: 'bold',
 					  fontSize:'16px',
 			          transform: 'scale(1.05)',
-					 
+
 			      }" :inactiveStyle="{
 			          color: '#606266',
 			          transform: 'scale(1)'
@@ -189,7 +189,7 @@
 				const res = await location.reverseGeocoder();
 				console.log(res,99)
 				this.cityName = res.cityName
-			
+
 			},
 			handleSearchClick(e) {
 				// 未登录，需要跳转
@@ -197,7 +197,7 @@
 					toLogin();
 					return;
 				} else {
-					uni.$u.route('/pages/search/search')
+					uni.$u.route('/page_home/search/search')
 				}
 
 			}

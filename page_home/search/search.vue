@@ -201,7 +201,7 @@
 			//搜索回调
 			change(e) {
 				console.log('搜索回调信息：' + e)
-				uni.$u.route('/pages/search/resSearch')
+				uni.$u.route('/page_home/search/resSearch')
 			},
 			click(e){
 				if(e.index ==0){

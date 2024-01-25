@@ -51,7 +51,7 @@
 			},
 			onchangeItem(item) {
 				console.log(item)
-				uni.$u.route('/pages/home/vote/details', {
+				uni.$u.route('/page_home/vote/details', {
 					id: item
 				})
 			}

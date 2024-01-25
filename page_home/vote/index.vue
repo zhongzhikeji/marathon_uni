@@ -8,14 +8,14 @@
 					disabled :show-action="false" @click="handleSearchClick"></u-search>
 			</view>
 			 <view class="Citem">
-				 <view class="item" @click="$u.route('/pages/home/vote/voteList')">
+				 <view class="item" @click="$u.route('/page_home/vote/voteList')">
 					 <view class="flex alcenter around pt15">
 						 <view>
 					<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote01.png" width="101px" height="26px"></u--image>
 						<view class="content_title">快来PICK你心中的最佳马拉松跑手</view>
 						 </view>
 						 <view>
-						<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote02.png" width="77px" height="73px"></u--image> 
+						<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote02.png" width="77px" height="73px"></u--image>
 						 </view>
 					 </view>
 				 </view>
@@ -26,9 +26,9 @@
 				 			<view class="content_title1">快来PICK你心中的最佳马拉松跑手</view>
 				 			 </view>
 				 			 <view>
-				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote04.png" width="77px" height="73px"></u--image> 
+				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote04.png" width="77px" height="73px"></u--image>
 				 			 </view>
-				 		 </view>			 
+				 		 </view>
 				 </view>
 				 <view class="item">
 				 		<view class="flex alcenter around pt15">
@@ -37,9 +37,9 @@
 				 			<view class="content_title2">快来PICK你心中的最佳跑团</view>
 				 			 </view>
 				 			 <view>
-				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote06.png" width="77px" height="73px"></u--image> 
+				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote06.png" width="77px" height="73px"></u--image>
 				 			 </view>
-				 		 </view>			 
+				 		 </view>
 				 </view>
 				 <view class="item">
 				 		<view class="flex alcenter around pt15">
@@ -48,9 +48,9 @@
 				 			<view class="content_title3">快来PICK你心中的最佳马拉松跑手</view>
 				 			 </view>
 				 			 <view>
-				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote08.png" width="77px" height="73px"></u--image> 
+				 			<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote08.png" width="77px" height="73px"></u--image>
 				 			 </view>
-				 		 </view>			 
+				 		 </view>
 				 </view>
 				 <view class="item">
 				 			<view class="flex alcenter around pt15">
@@ -59,14 +59,14 @@
 				 				<view class="content_title4">快来PICK你心中的最佳马拉松跑手</view>
 				 				 </view>
 				 				 <view>
-				 				<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote10.png" width="77px" height="73px"></u--image> 
+				 				<u--image src="https://marathon.zznet.live/file/uploadPath/image/home/vote10.png" width="77px" height="73px"></u--image>
 				 				 </view>
-				 			 </view>		 
+				 			 </view>
 				 </view>
 			 </view>
 		</view>
 
-		
+
 	</view>
 </template>
 
@@ -74,12 +74,12 @@
 	export default{
 		data(){
 			return{
-				
+
 			}
 		},
 		methods:{
 			handleSearchClick(e) {
-			  uni.$u.route('/pages/search/search')
+			  uni.$u.route('/page_home/search/search')
 			}
 		}
 	}
@@ -112,25 +112,25 @@
 				 .content_title1{
 				 					 color: #FEB34E;
 				 					 font-size: 28rpx;
-				 					
+
 				 					 margin-top: 20rpx;
 				 }
 				 .content_title2{
 				 					 color: #1AB995;
 				 					 font-size: 28rpx;
-				 					
+
 				 					 margin-top: 20rpx;
 				 }
 				 .content_title3{
 				 					 color: #FF7948;
 				 					 font-size: 28rpx;
-				 					 
+
 				 					 margin-top: 20rpx;
 				 }
 				 .content_title4{
 				 					 color: #FE623C;
 				 					 font-size: 28rpx;
-				 				
+
 				 					 margin-top: 20rpx;
 				 }
 			 }

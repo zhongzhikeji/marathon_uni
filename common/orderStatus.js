@@ -26,7 +26,7 @@ export default {
 	'50': {
 		name: '收货地址',
 		icon: 'https://marathon.zznet.live/file/uploadPath/img/grid6.png',
-		path:'/pages/order/address'
+		path:'/pages/subCompetition/mail/address'
 	},
 	'60': {
 		name: '关于我们',

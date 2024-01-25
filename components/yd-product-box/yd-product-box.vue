@@ -154,7 +154,7 @@
 			// 	})
 			// },
 			onClickDetails(productId){
-				uni.$u.route('/pages/product/product', {
+				uni.$u.route('/pages/subCompetition/mail/product', {
 					id: productId
 				})
 			},

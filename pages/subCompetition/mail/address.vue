@@ -180,7 +180,7 @@
         this.pinkId = '';
         this.couponId = '';
         uni.navigateTo({
-          url: '/pages/order/addressEdit?id=' + id + '&cartId=' + cartId + '&pinkId=' + pinkId + '&couponId=' +
+          url: '/pages/subCompetition/mail/addressEdit?id=' + id + '&cartId=' + cartId + '&pinkId=' + pinkId + '&couponId=' +
             couponId + '&secKill' + this.secKill + '&combination=' + this.combination + '&bargain=' + this.bargain
         })
       },
@@ -216,7 +216,7 @@
         this.pinkId = '';
         this.couponId = '';
         uni.navigateTo({
-          url: '/pages/order/userAddress?preOrderNo=' + this.preOrderNo
+          url: '/pages/subCompetition/mail/userAddress?preOrderNo=' + this.preOrderNo
         })
       },
 

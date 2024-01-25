@@ -41,21 +41,21 @@
 						<u--text suffixIcon="arrow-down" iconStyle="color:#000" text="热搜" size='14'
 							color='#000'></u--text>
 					</view>
-	
+
 				</view>
 				<view>
 					<yd-competition-tag :tagList='radios' @radioClick='radioClick'></yd-competition-tag>
 				</view>
-	
+
 			</view>
 		</view>
 	</view>
-		
+
 
 		<view>
 			<!-- 优惠券 -->
 			<!-- 商品 -->
-		
+
 			<view class=" ml15 mr15 mt14" style="border-radius: 10px;">
 				<view class="pd15 bg-w mb10" v-for="i in 4" style="border-radius: 20rpx;"
 				@click="onDetails"
@@ -199,7 +199,7 @@ import * as AreaApi from '@/api/system/area.js';
 		},
 		methods: {
 			handleSearchClick(e) {
-				uni.$u.route('/pages/search/search')
+				uni.$u.route('/page_home/search/search')
 			},
 			radioClick(name) {
 
@@ -215,10 +215,10 @@ import * as AreaApi from '@/api/system/area.js';
 			AreaApi.getBanner({
 				position:1
 			}).then(res=>{
-			
+
 				this.bannerList = res.data
-			
-				
+
+
 			})
 			},
 			loadNoticeData() {
@@ -227,7 +227,7 @@ import * as AreaApi from '@/api/system/area.js';
 				})
 			},
 			handleSearchClick(e) {
-				uni.$u.route('/pages/search/search')
+				uni.$u.route('/page_home/search/search')
 			}
 		},
 		computed: {

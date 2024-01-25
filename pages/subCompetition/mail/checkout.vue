@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { checkoutCartProduct } from '../../api/order'
+import { checkoutCartProduct } from '@/api/order'
 
 export default {
   components: {},

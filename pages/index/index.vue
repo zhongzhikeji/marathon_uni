@@ -65,7 +65,7 @@
 	 </view>
 	 <view style="height: 200px;"></view>
      <view class="footerRight">
-		 <view class="flex alcenter bg-w mb10 item" @click="$u.route('/pages/order/orderAddcart')">
+		 <view class="flex alcenter bg-w mb10 item" @click="$u.route('/pages/subCompetition/mail/orderAddcart')">
 			<view class='iconfont icon-gouwuche1'></view>
 			<view class="ml5">购物车</view>
 		 </view>
@@ -143,7 +143,7 @@ export default {
 	   this.getSpuList()
    },
     handleSearchClick(e) {
-      uni.$u.route('/pages/search/search')
+      uni.$u.route('/page_home/search/search')
     },
 	getAllCategory(){
 		CategoryApi.getCategoryList().then(res => {
