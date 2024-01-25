@@ -10,9 +10,9 @@
 			<u-line></u-line>
 		</view>
         <view>
-			
+
 		</view>
-	
+
 
 		<view class="ml15 mr15 mt15 ">
 			<yd-product-more :showType="showType" :product-list="productList" :more-status="moreStatus"
@@ -33,7 +33,7 @@
 					},
 					{
 						checked: false,
-						icon: 'https://marathon.zznet.live/file/uploadPath/img/alist.png'
+						icon: 'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/alist.png'
 					},
 
 				],

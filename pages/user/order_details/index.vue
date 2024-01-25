@@ -6,12 +6,12 @@
 				<view class='picTxt acea-row row-middle'>
           <!-- 状态图 -->
           <view class='pictrue'>
-            <image v-if="orderInfo.status === 0" src="@/static/images/status_0.gif" />
-            <image v-if="orderInfo.status === 10" src="@/static/images/status_10.gif" />
-            <image v-if="orderInfo.status === 20" src="@/static/images/status_20.gif" />
-            <image v-if="orderInfo.status === 30 && !orderInfo.commentStatus" src="@/static/images/status_30a.gif" />
-            <image v-if="orderInfo.status === 30 && orderInfo.commentStatus" src="@/static/images/status_30b.gif" />
-            <image v-if="orderInfo.status === 40" src="@/static/images/status_40.gif" />
+            <image v-if="orderInfo.status === 0" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_0.gif" />
+            <image v-if="orderInfo.status === 10" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_10.gif" />
+            <image v-if="orderInfo.status === 20" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_20.gif" />
+            <image v-if="orderInfo.status === 30 && !orderInfo.commentStatus" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_30a.gif" />
+            <image v-if="orderInfo.status === 30 && orderInfo.commentStatus" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_30b.gif" />
+            <image v-if="orderInfo.status === 40" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/status_40.gif" />
           </view>
 					<view class='data'>
             <!-- 状态提示 -->
@@ -77,7 +77,7 @@
 						</view>
 					</view>
 					<view class="gear">
-						<image src="@/static/images/writeOff.jpg"></image>
+						<image src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/writeOff.jpg"></image>
 					</view>
 					<view class="num">{{ orderInfo.verifyCode }}</view>
 					<view class="rules" v-if='system_store.id'>
@@ -256,7 +256,7 @@
 			</view>
 		</view>
 		<home></home>
-		
+
 	</view>
 </template>
 <script>

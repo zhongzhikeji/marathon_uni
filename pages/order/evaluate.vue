@@ -28,7 +28,7 @@
 		</view>
 		<view class='noCommodity' v-if="replyData.count === 0 && page > 1">
 			<view class='pictrue'>
-				<image src='../../static/images/noEvaluate.png' />
+				<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noEvaluate.png' />
 			</view>
 		</view>
 	</view>

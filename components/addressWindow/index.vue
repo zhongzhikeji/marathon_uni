@@ -18,7 +18,7 @@
 			</view>
 			<!-- 无地址 -->
 			<view class='pictrue' v-if="!is_loading && !addressList.length">
-				<image src='../../static/images/noAddress.png'></image>
+				<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noAddress.png'></image>
 			</view>
 			<view class='addressBnt bg-color' @tap='goAddressPages'>选择其地址</view>
 		</view>

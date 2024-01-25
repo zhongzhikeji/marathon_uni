@@ -422,32 +422,32 @@
 		"list": [{
 				"pagePath": "pages/home/index",
 				"text": "首页",
-				"iconPath": "/static/images/tabbar/index.png",
-				"selectedIconPath": "/static/images/tabbar/index-active.png"
+				"iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/index.png",
+				"selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/index-active.png"
 			},
 			{
 				"pagePath": "pages/competition/index",
 				"text": "赛事",
-				"iconPath": "/static/images/tabbar/category.png",
-				"selectedIconPath": "/static/images/tabbar/category-active.png"
+				"iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category.png",
+				"selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category-active.png"
 			},
 			{
 				"pagePath": "pages/index/index",
 				"text": "商城",
-				"iconPath": "/static/images/tabbar/cart.png",
-				"selectedIconPath": "/static/images/tabbar/cart-active.png"
+				"iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/cart.png",
+				"selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/cart-active.png"
 			},
 			{
 				"pagePath": "pages/message/index",
 				"text": "资讯",
-				"iconPath": "/static/images/tabbar/category.png",
-				"selectedIconPath": "/static/images/tabbar/category-active.png"
+				"iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category.png",
+				"selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category-active.png"
 			},
 			{
 				"pagePath": "pages/user/user",
 				"text": "我的",
-				"iconPath": "/static/images/tabbar/user.png",
-				"selectedIconPath": "/static/images/tabbar/user-active.png"
+				"iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user.png",
+				"selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user-active.png"
 			}
 		]
 	},

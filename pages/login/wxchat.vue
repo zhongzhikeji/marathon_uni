@@ -14,7 +14,7 @@
 		<!-- #endif -->
 		<view class="wechat_login">
 			<view class="img">
-				<image src="../../static/images/wechat_login.png" mode="widthFix"></image>
+				<image src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/wechat_login.png" mode="widthFix"></image>
 			</view>
 			<view class="btn-wrapper">
 				<!-- #ifdef H5 -->
@@ -22,7 +22,7 @@
 				<!-- #endif -->
 				<!-- #ifdef MP -->
 				<button @getphonenumber="getPhoneNumber" class="bg-green btn1"  open-type="getPhoneNumber">微信登录</button>
-				
+
 				<!-- #endif -->
 				<!-- <button hover-class="none" @click="isUp = true" class="btn2">手机号登录</button> -->
 			</view>
@@ -107,17 +107,17 @@
 				}
 			},
    getUserInfo(data) {
-	     
+
      this.$store.commit("SETUID", data.userId);
      this.$store.commit("OPENID", data.openid);
      UserApi.getUserInfo().then(res => {
-	
+
        this.$store.commit("UPDATE_USERINFO", res.data);
 
        // 调回登录前页面
-	
+
        let backUrl = this.$Cache.get(BACK_URL) || "/pages/home/index";
-	
+
        if (backUrl.indexOf('/') !== 0) {
          backUrl = '/' + backUrl;
        }
@@ -136,7 +136,7 @@
 		  }
 		},
 			async getPhoneNumber(e) {
-			
+
 			  // 情况一：拒绝授权手机号码
 			  const phoneCode = e.detail.code
 			  if (!e.detail.code) {
@@ -157,8 +157,8 @@
 			    this.$store.commit("LOGIN", {
 			      'token':  data.accessToken
 			    });
-				
-			
+
+
 			    this.getUserInfo(data);
 			     this.bindBrokerUser();
 			  }).catch(e => {

@@ -33,7 +33,7 @@
 										<u-tag size="mini" :text="item.text" plain type="info"> </u-tag>
 
 									</view>
-                  <image v-if="spu.vipPrice && spu.vipPrice > 0" src="../../static/images/vip.png" />
+                  <image v-if="spu.vipPrice && spu.vipPrice > 0" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/vip.png" />
 								</view>
 								<view class='iconfont icon-fenxiang' @click="listenerActionSheet"></view>
 							</view>
@@ -115,9 +115,9 @@
 				</view>
 				<view class='product-intro' id="past3">
 					<view class='title'>
-						<image src="../../static/images/xzuo.png"></image>
+						<image src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/xzuo.png"></image>
 						<span class="sp">产品详情</span>
-						<image src="../../static/images/xyou.png"></image>
+						<image src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/xyou.png"></image>
 					</view>
 					<view class='conter'>
 						<jyf-parser :html="spu.description" ref="article" :tag-style="tagStyle"></jyf-parser>
@@ -225,7 +225,7 @@
 		<view class="mask" v-if="canvasStatus"></view>
 		<!-- 海报展示【操作】 -->
 		<view class='poster-pop' v-if="canvasStatus">
-			<image src='../../static/images/poster-close.png' class='close' @click="posterImageClose"></image>
+			<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/poster-close.png' class='close' @click="posterImageClose"></image>
 			<image :src='imagePath'></image>
 			<!-- #ifndef H5  -->
 			<view class='save-poster' @click="savePosterPath">保存到手机</view>

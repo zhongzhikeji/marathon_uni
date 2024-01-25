@@ -15,7 +15,7 @@
 						<image class="image" :src="imgUrls[0]"></image>
 					</view>
 					<view class="stop" v-show="controls" @tap="bindPause">
-						<image class="image" src="../../static/images/stop.png"></image>
+						<image class="image" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/stop.png"></image>
 					</view>
 				</view>
 			</swiper-item>

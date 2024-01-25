@@ -18,10 +18,10 @@
 				<image v-for="(ite,ind) in item.value"
 					:style="{transform: ind==1? 'rotate(180deg)':'',width:size+'rpx',height:size+'rpx'}"
 					v-if="sortType=='one'?(sortIndex==index?ind==sortArrIndex:ind==sortDefArrIndex):true"
-					:src="sortIndex==index&&ind==sortArrIndex?'../../static/images/triangle-light.png':'../../static/images/triangle.png'"
+					:src="sortIndex==index&&ind==sortArrIndex?'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/triangle-light.png':'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/triangle.png'"
 					mode=""></image>
 				<!-- #endif -->
-			
+
 			</view>
 		    <view class="ml30" style="color: #DFDFDF;">|</view>
 		</view>
@@ -39,7 +39,7 @@
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=14392
 	 * @property {Number|String} sortDefIndex 默认选择的条件列表下标
 	 * @property {Array} sortList 条件列表，举例：[{text: '按照价格排序',value: ['acs', 'desc'],}, {text: '按照编号排序',value: ['acs', 'desc'],}]      value设置单项选择后的输出结果
-	 * @@param {type}  = [value] 
+	 * @@param {type}  = [value]
 	 * @property {Number|String} sortDefArrIndex 默认排序类型：0 升序，1降序
 	 * @property {String} sortType 样式选择：默认两个箭头样式，'one'显示一个箭头
 	 * @property {Array} sortStyle 箭头颜色：[0]高亮色 「仅H5支持」

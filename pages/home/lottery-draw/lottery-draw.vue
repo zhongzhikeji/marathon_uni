@@ -28,18 +28,18 @@
 		data() {
 			return {
 				prizeList:[
-					{name:'iPhone13',value:'iPhone',img:'/static/images/lottery/1.png'},
-					{name:'airPods3',value:'airPods',img:'/static/images/lottery/2.png'},
-					{name:'行李箱',value:'luggage',img:'/static/images/lottery/3.png'},
-					{name:'风筒',value:'dryer',img:'/static/images/lottery/4.png'},
-					{name:'平行车',value:'balanceCar',img:'/static/images/lottery/5.png'},
-					{name:'iPad5',value:'iPad',img:'/static/images/lottery/6.png'}
+					{name:'iPhone13',value:'iPhone',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/1.png'},
+					{name:'airPods3',value:'airPods',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/2.png'},
+					{name:'行李箱',value:'luggage',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/3.png'},
+					{name:'风筒',value:'dryer',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/4.png'},
+					{name:'平行车',value:'balanceCar',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/5.png'},
+					{name:'iPad5',value:'iPad',img:'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/6.png'}
 				],
 				 text1: '恭喜 嘻嘻**哈哈 抽中活动大奖IPhone 14 一部'
 			}
 		},
 		onLoad() {
-			
+
 		},
 		onReady() {
 			// init(options)初始化抽奖组件
@@ -64,7 +64,7 @@
 				this.$refs.HMslotMachine.roll({
 					results:this.getResults(),
 					success:(e)=>{
-						
+
 						console.log("success e: ",e);
 					}
 				})
@@ -83,7 +83,7 @@
 	}
 </script>
 
-<style lang="scss"> 
+<style lang="scss">
 page{
 	background-image: linear-gradient(to top,#8F1E70, #51279A);
 	min-height: calc(100vh - var(--window-bottom) - var(--window-top));
@@ -116,5 +116,5 @@ page{
 		}
 	}
 
-	
+
 </style>

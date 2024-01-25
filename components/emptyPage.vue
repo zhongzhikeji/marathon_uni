@@ -1,6 +1,6 @@
 <template>
 	<view class="empty-box">
-		<image src="../static/images/empty-box.png"></image>
+		<image src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/empty-box.png"></image>
 		<view class="txt">{{title}}</view>
 	</view>
 </template>
@@ -14,7 +14,7 @@
 			},
 		},
 	}
-	
+
 </script>
 
 <style lang="scss">

@@ -161,7 +161,7 @@
 
 					{
 						checked: false,
-						icon: 'https://marathon.zznet.live/file/uploadPath/img/alist.png'
+						icon: 'https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/alist.png'
 					},
 
 				],

@@ -17,7 +17,7 @@
 						</view>
 					</view>
 				</view>
-			
+
 				<view v-if="cartList.valid.length > 0 || cartList.invalid.length > 0" class="pad30">
           <!-- 有效的购物车 -->
           <view class='list'>
@@ -102,7 +102,7 @@
         <!-- 热门推荐 -->
 				<view class='noCart' v-if="cartList.valid.length === 0 && cartList.invalid.length === 0 && canShow">
 					<view class='pictrue'>
-						<image src='../../static/images/noCart.png' />
+						<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noCart.png' />
 					</view>
 					<!-- <recommend :hostProduct='hostProduct'></recommend> -->
 				</view>
@@ -830,7 +830,7 @@
 
 	.shoppingCart .list {
 		width: 100%;
-	
+
 		overflow: hidden;
 		border-bottom-left-radius: 14rpx;
 		border-bottom-right-radius: 14rpx;

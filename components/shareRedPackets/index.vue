@@ -3,7 +3,7 @@
 	   <view class='iconfont icon-guanbi' @click="closeShare"></view>
 	   <view class='line'></view>
 	   <view class='sharing-con' @click='goShare'>
-	      <image src='../../static/images/red-packets.png'></image>
+	      <image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/red-packets.png'></image>
 	      <view class='text font-color'>
 	        <view>会员分享返</view>
 	        <view class='money' v-if="sharePacket.brokerageMinPrice && sharePacket.brokerageMaxPrice">

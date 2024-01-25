@@ -8,7 +8,7 @@
 						<view class='name'>订单信息</view>
 					</view>
 					<view class='pictrue'>
-						<image src='../../../static/images/orderTime.png'></image>
+						<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/orderTime.png'></image>
 					</view>
 				</view>
 			</view>

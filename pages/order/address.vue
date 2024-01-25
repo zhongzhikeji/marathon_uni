@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class='line'>
-			<image src='../../static/images/line.jpg' v-if="addressList.length"></image>
+			<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/line.jpg' v-if="addressList.length"></image>
 		</view>
 		<view class='address-management' :class='addressList.length === 0 ? "fff":""'>
 			<radio-group class="radio-group" @change="radioChange" v-if="addressList.length">
@@ -39,7 +39,7 @@
 			</view>
 			<view class='noCommodity' v-if="addressList.length < 1">
 				<view class='pictrue'>
-					<image src='../../static/images/noAddress.png'></image>
+					<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noAddress.png'></image>
 				</view>
 			</view>
 			<view style='height:120rpx;'></view>

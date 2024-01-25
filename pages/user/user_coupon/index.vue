@@ -38,7 +38,7 @@
     </view>
 		<view class='noCommodity' v-if="!couponsList.length">
 			<view class='pictrue'>
-				<image src='../../../static/images/noCoupon.png' />
+				<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noCoupon.png' />
 			</view>
 		</view>
 		<home></home>

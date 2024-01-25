@@ -42,7 +42,7 @@
 					</block>
 				</view>
 				<view class='line'>
-					<image src='/static/images/line.jpg'></image>
+					<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/line.jpg'></image>
 				</view>
 			</view>
 			<view class="pad30">

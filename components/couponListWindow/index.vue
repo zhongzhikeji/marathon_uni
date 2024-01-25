@@ -41,7 +41,7 @@
 				</block>
 				<!-- 无优惠券 -->
 				<view class='pictrue' v-else>
-					<image src='../../static/images/noCoupon.png'></image>
+					<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noCoupon.png'></image>
 				</view>
 			</view>
 		</view>
