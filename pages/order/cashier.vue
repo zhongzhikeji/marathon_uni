@@ -175,7 +175,8 @@
           returnUrl: this.getPayReturnUrl(),
           channelExtras: { // TODO 芋艿：等登录接入完成，需要改成动态读取
             // openid: "ockUAwIZ-0OeMZl9ogcZ4ILrGba0" // wx_pub 微信公众号支付的 openid
-            openid: "oQRKU4rVW4jipQNiMjkP-sz6hxZ4" // wx_lite 微信小程序支付的 openid
+            // openid: "oQRKU4rVW4jipQNiMjkP-sz6hxZ4" // wx_lite 微信小程序支付的 openid
+            openid: this.$Cache.get('OPENID')
           }
 				}).then(res => {
           this.handleSubmitOrderResult(res.data);

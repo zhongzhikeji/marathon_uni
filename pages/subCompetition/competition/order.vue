@@ -240,16 +240,16 @@
 				checkboxValue: [],
 				checkboxList1: [
 					{
-				    code: 'mock'
+				    code: 'wx_lite'
 					}
-				
+
 				],
 				checkboxValue1: [],
 			}
 		},
 		onLoad(e) {
           if(e.memberIds || e.skuId){
-			  
+
 			  this.memberIds = e.memberIds.split(",")
 			  this.skuId = e.skuId
 		  }
@@ -277,7 +277,8 @@
 				  returnUrl: this.getPayReturnUrl(),
 				  channelExtras: { // TODO 芋艿：等登录接入完成，需要改成动态读取
 				    // openid: "ockUAwIZ-0OeMZl9ogcZ4ILrGba0" // wx_pub 微信公众号支付的 openid
-				    openid: "oLefc4g5GjKWHJjLjMSXB3wX0fD0" // wx_lite 微信小程序支付的 openid
+				    // openid: "oLefc4g5GjKWHJjLjMSXB3wX0fD0" // wx_lite 微信小程序支付的 openid
+            openid: this.$Cache.get('OPENID')
 				  }
 					}).then(res => {
 				  this.handleSubmitOrderResult(res.data);
@@ -297,7 +298,7 @@
 					    this.goReturnUrl('close');
 					    return;
 					  }
-					
+
 					  // 2. 根据 displayMode 模式，进行对应的处理
 					  const displayMode = data.displayMode;
 					  const displayContent = data.displayContent
@@ -319,9 +320,9 @@
 					  }
 					},
 			getPayReturnUrl() {
-			
+
 			  return 'http://localhost:8080/pages/subCompetition/competition/paySuccess?order_id=' + this.orderId ;
-			
+
 			},
 			/**
 			 * 回到业务的 URL
@@ -344,9 +345,7 @@
 				console.log('change', n);
 			},
 			checkboxChange1(n) {
-				if(n == 'mock'){
-					this.channelCode = n.join('')
-				}
+				this.channelCode = n.join('')
 				console.log('change', n);
 			},
 			change(e) {
@@ -367,11 +366,11 @@
 						Api.createOrder(data).then(res=>{
 							this.orderId = res.data.payOrderId
 							this.returnUrl  =`/pages/subCompetition/competition/payResult?order_id=${res.data.id}`
-						
+
 						})
 					this.show = true
 				}
-			
+
 			},
 			open() {
 				// console.log('open');
