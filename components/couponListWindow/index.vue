@@ -14,8 +14,7 @@
             <!-- 金额 -->
 						<view class='money acea-row row-column row-center-wrapper' :class='item.takeStatus?"moneyGray":""'>
 							<view>￥
-                <text v-if="item.discountType === 1" class='num'>{{ fen2yuan(item.discountPrice) }}</text>
-                <text v-else class='num'>{{ (item.discountPercent / 10.0).toFixed(1) }} 折</text>
+                <text class='num'>{{ fen2yuan(item.discountPrice) }}</text>
               </view>
 							<view class="pic-num">满 {{ fen2yuan(item.usePrice) }} 元可用</view>
 						</view>
@@ -30,8 +29,8 @@
 							</view>
               <!-- 领取类型 -->
 							<view class='data acea-row row-between-wrapper'>
-								<view v-if="item.validityType > 1">领取后 {{ item.fixedEndTerm }} 天内可用</view>
-								<view v-else>
+
+								<view>
 									{{ formatDate(item.validStartTime) + " - " + formatDate(item.validEndTime) }}
 								</view>
 								<view class='bnt gray' v-if="item.takeStatus">{{item.use_title || '已领取'}}</view>

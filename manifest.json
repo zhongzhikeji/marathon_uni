@@ -98,5 +98,7 @@
                 "enable" : true
             }
         }
-    }
+    },
+    "fallbackLocale" : "en",
+    "locale" : "zh-Hans"
 }

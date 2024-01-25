@@ -13,7 +13,7 @@
 				<u-search inputAlign='center'  bgColor='#fff' placeholderColor='#F9A4C3' searchIconColor='#F9A4C3' placeholder="厦门马拉松"
 					disabled :show-action="false" @click="handleSearchClick"></u-search>
 			</view>
-			
+
 			</view>
 
 
@@ -34,7 +34,7 @@
 				   <view class="tag">积分抵扣</view>
 				    <view class="ftw600">￥59.9</view>
 			   </view>
-			
+
 		   </view>
 	  </view>
 
@@ -52,7 +52,7 @@
 		            fontWeight: 'bold',
 		            transform: 'scale(1.05)'
 		        }"
-					@click="tabItem"	
+					@click="tabItem"
 		        :inactiveStyle="{
 		            color: '#606266',
 		            transform: 'scale(1)'
@@ -60,7 +60,7 @@
 		        itemStyle="padding-left: 20px; padding-right: 20px; height: 34px;"
 		    >
 		    </u-tabs>
-			 <yd-product-box :product-list="productList"  show-type="mail" :tagList='tagList'></yd-product-box>
+			 <yd-product-box :product-list="productList"  show-type="mail"></yd-product-box>
 	</view>
 	 </view>
 	 <view style="height: 200px;"></view>
@@ -89,16 +89,9 @@ export default {
   data() {
     return {
 		lineBg:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAOCAYAAABdC15GAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFxSURBVHgBzZNRTsJAEIb/WTW+lpiY+FZPIDew3ABP4GJ8hxsI9zBpOYHeQDwBPQI+mRiRvpLojtPdYhCorQqF/6GdbGd2vvwzBXZcNAt4oj1ANeUoAT5iqkUjbEFLHNmhD1YPEvpZ3ghkGlVDCkc94/BmHMq998I5ONiY1ZBfpKAyuOtgAc5yOEDmYEWNh32BHF91sGHZHmwW4azciN9aQwnz3SJEgOmte+R2tdLprTYoa50mvuomlLpD4Y3oQZnov6D2RzCqI93bWOHaEmAGqQUyRBlZR1WfarcD/EJ2z8DtzDGvsMCwpm8XOCfDUsVOCYhiqRxI/CTQo4UOvjzO7Pow18vfywneuUHHUUxLn55lLw5JFpZ8bEUcY8oXdOLWiHLTxvoGpLqoUmy6dBT15o/ox3znpoycAmxUsiJTbs1cmxeVKp+0zmFIS7bGWiVghC7Vwse8jFKAX9eljh4ggKLLv7uaQvG9/F59Oo2SouxPu7OTCxN/s8wAAAAASUVORK5CYII=',
-		tagList:[
-			{
-				text:'标签1'
-			},
-			{
-				text:'标签2'
-			}
-		],
+
 		 list4: [],
-      bannerList: [	
+      bannerList: [
         // {
         //   id: 1,
         //   title: '山不在高，有仙则名',
@@ -121,9 +114,9 @@ export default {
         { icon: 'thumb-up', title: '点赞投币' },
         { icon: 'heart', title: '感谢支持' }
       ],
-     
+
       productList: [
-   
+
       ],
 	  params: { // 精品推荐分页
 	  	page: 1,
@@ -137,7 +130,7 @@ export default {
     }
   },
   onLoad() {
-	
+
 	this.getBannerList()
 	this.getAllCategory()
 	this.getSpuList()
@@ -156,7 +149,7 @@ export default {
 		CategoryApi.getCategoryList().then(res => {
 			this.list4 = res.data
 		   this.list4.unshift(this.spuObj)
-		
+
 				})
 	},
 	getSpuList(){
@@ -164,21 +157,21 @@ export default {
 			pageNo: this.params.page,
 			pageSize: this.params.limit,
 			categoryId:this.spuObj.id,
-			
+
 		}).then(res=>{
 			this.productList = res.data.list
-			
+
 		})
 	},
 	getBannerList(){
-		
+
 		AreaApi.getBanner({
 			position:1
 		}).then(res=>{
-		
+
 			this.bannerList = res.data
-		
-	
+
+
 		})
 	}
 
@@ -217,7 +210,7 @@ export default {
 		border-radius: 10px;
 		width: 100%;
 		height: 180rpx;
-		
+
 	}
 }
 .footerRight{

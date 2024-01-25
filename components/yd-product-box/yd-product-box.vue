@@ -7,7 +7,7 @@
 					<view class="flex alcenter">
 						<text class="front-title">{{title}}</text>
 						<text style="margin: 0 20rpx;">|</text>
-					    
+
 					</view>
 					<text class="see-more">查看更多 &gt;</text>
 
@@ -106,9 +106,8 @@
 						<view class="info-text">
 							<u--text :lines="2" size="14px" color="#333333" :text="item.name"></u--text>
 						     <view class="flex mt10">
-						     	<view class="u-page__tag-item " v-for="item in tagList" >
-						     		<u-tag size="mini" :text="item.text" plain type="info"> </u-tag>
-						     
+						     	<view class="u-page__tag-item " v-for="tag in item.tags" >
+						     		<u-tag size="mini" :text="tag" plain type="info"> </u-tag>
 						     	</view>
 						     </view>
 						</view>
@@ -146,10 +145,6 @@
 				type: Array,
 				default: () => []
 			},
-			tagList: {
-				type: Array,
-				default: () => []
-			}
 		},
 		computed: {},
 		methods: {
@@ -216,7 +211,7 @@
 	.price_card {
 	margin: 20rpx 10rpx;
     box-shadow: 0px 4px 3px 2px #E5E5E5;
-	
+
 		border-radius: 15rpx;
 
 		.item-info {
@@ -227,7 +222,7 @@
 		.prod_image {
 			width: 300rpx;
 			height: 300rpx;
-       
+
 		}
 
 		.price-and-cart {
@@ -299,6 +294,6 @@
 	}
 	.u-page__tag-item {
 		margin-right: 20rpx;
-	
+
 	}
 </style>

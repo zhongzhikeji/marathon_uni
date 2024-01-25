@@ -33,18 +33,22 @@
 										<u-tag size="mini" :text="item.text" plain type="info"> </u-tag>
 
 									</view>
-
-									<image v-if="spu.vipPrice && spu.vipPrice > 0" src="../../static/images/vip.png" />
+                  <image v-if="spu.vipPrice && spu.vipPrice > 0" src="../../static/images/vip.png" />
 								</view>
 								<view class='iconfont icon-fenxiang' @click="listenerActionSheet"></view>
 							</view>
 							<view class='mt5'>
 								<view class="flex alcenter">
+                  <!-- 销售价格 -->
 									<text class='ft16 ftw600'>￥{{ fen2yuan(spu.price) }}</text>
-									<text class='ft16 ftw600'
-										v-if="spu.vipPrice && spu.vipPrice > 0">￥{{ fen2yuan(spu.price - spu.vipPrice) }}</text>
-									<text class="ml10 ft16 ftw600" style="color:red">￥{{spu.vipPrice}}VIP</text>
+                  <!-- 会员价 -->
+                  <view>
+                    <text class="ml10 ft16 ftw600" style="color:red" v-if="spu.vipPrice">￥{{fen2yuan(spu.vipPrice)}}VIP</text>
+
+                  </view>
+
 								</view>
+                <!-- 市场价 -->
 								<view class="text-line-through ft14">￥{{ fen2yuan(spu.marketPrice) }}</view>
 								<!-- 	<view>库存:{{ spu.stock }} {{ spu.unitName}}</view>
 								<view>
@@ -70,8 +74,7 @@
 							<view class="line1"> 优惠劵：
 								<text class='atterTxt'>
 									满{{ fen2yuan(coupon.list[0].usePrice) }}
-									<text v-if="coupon.list[0].discountType === 1"> 减 {{ fen2yuan(coupon.list[0].discountPrice) }} 元</text>
-									<text v-else>打 {{ (coupon.list[0].discountPercent / 10.0).toFixed(1) }} 折</text>
+									<text> 减 {{ fen2yuan(coupon.list[0].discountPrice) }} 元</text>
 								</text>
 							</view>
 							<view class='iconfont icon-jiantou'></view>
@@ -1249,8 +1252,8 @@
 			// 				 this.$set(this, 'topArr', topArr);
 			// 				 this.$set(this, 'heightArr', heightArr);
 			// 			 }
-					
-					
+
+
 			// 		});
 			// 	}
 			// },

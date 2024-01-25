@@ -19,7 +19,7 @@
 			<view class="item acea-row row-between-wrapper" v-for="(item,index) in channels" :key="index" @click="payType(item.code)">
 				<view class="left acea-row row-between-wrapper">
 					<view class="iconfont" :class="item.icon"></view>
-					
+
 					<view class="text">
 						<view class=name>{{item.name}}</view>
 						<view class="info" v-if="item.code === 'wallet'">
@@ -77,7 +77,7 @@
   //         icon: "icon-zhifubao",
   //         title: '使用支付宝支付',
   //         code: "alipay_wap"
-  //       }, 
+  //       },
 		{
           name: '余额支付',
           icon: "icon-yuezhifu",
@@ -109,7 +109,7 @@
       }
 		},
 		onLoad(options) {
-		
+
 			if (options.order_id) {
         this.orderId = options.order_id
       }
@@ -175,7 +175,7 @@
           returnUrl: this.getPayReturnUrl(),
           channelExtras: { // TODO 芋艿：等登录接入完成，需要改成动态读取
             // openid: "ockUAwIZ-0OeMZl9ogcZ4ILrGba0" // wx_pub 微信公众号支付的 openid
-            openid: "oLefc4g5GjKWHJjLjMSXB3wX0fD0" // wx_lite 微信小程序支付的 openid
+            openid: "oQRKU4rVW4jipQNiMjkP-sz6hxZ4" // wx_lite 微信小程序支付的 openid
           }
 				}).then(res => {
           this.handleSubmitOrderResult(res.data);
@@ -368,7 +368,7 @@
 
 <style lang="scss" scoped>
 	.page {
-		
+
 		.pay-price {
 			display: flex;
 			justify-content: center;

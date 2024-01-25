@@ -33,20 +33,20 @@ function baseRequest(url, method, data, {
 		// 显示加载中 效果
 		// uni.showLoading({
 		// 	title: "加载中",
-		   
+
 		// });
 	let Url = HTTP_REQUEST_URL,header = HEADER
 	if (params != undefined) {
 		header = HEADERPARAMS;
 	}
-		
+
 	// if (!noAuth) {
-		
+
 	// 	//登录过期自动登录
-		
+
 	// 	if (!store.state.app.token && !checkLogin()) {
 	// 		 uni.hideLoading();
-			 
+
 	// 		toLogin();
 	// 		return Promise.reject({
 	// 			msg: '未登录'
@@ -55,14 +55,14 @@ function baseRequest(url, method, data, {
 	// }
 
   deleteUndefinedProperties(data)
- 
+
   // TODO 补个 header 多租户
   if (url.indexOf('app-api') >= 0) {
     header = {
       ...header
     }
     header['tenant-id'] = 0
-	
+
   }
 
     	// 终端
@@ -75,8 +75,8 @@ function baseRequest(url, method, data, {
 		uni.request({
 			// url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
       url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
-         :'https://app.runplus.cc/' + url, // TODO 芋艿：搞个 url 的配置
-        //: 'http://192.168.2.109:48080/' + url, // TODO 芋艿：搞个 url 的配置
+         // :'https://app.runplus.cc/' + url, // TODO 芋艿：搞个 url 的配置
+        : 'http://192.168.2.102:48080/' + url, // TODO 芋艿：搞个 url 的配置
          //: 'https://marathon.zznet.live/' + url, // TODO 芋艿：搞个 url 的配置
       method: method || 'GET',
 			header: header,
@@ -84,7 +84,7 @@ function baseRequest(url, method, data, {
 			success: (res) => {
 				 // uni.hideLoading();
 				if (noVerify)
-				
+
 					reslove(res.data, res);
 				else if (res.data.code === 200 || res.data.code === 0)
 					reslove(res.data, res);
@@ -95,7 +95,7 @@ function baseRequest(url, method, data, {
 					reject(res.data.msg || res.data.message || '系统错误');
 			},
 			fail: (msg) => {
-				
+
 				reject('请求失败');
 			}
 		})
