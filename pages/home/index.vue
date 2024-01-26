@@ -25,7 +25,7 @@
 				</view>
 
 				<view class="right">
-					<view class="item" @click="$u.route('/pages/user/SignIn/index')">
+					<view class="item" @click="$u.route('/page_home/user/SignIn/index')">
 						<u--image :showLoading="true"
 							src="https://marathon.zznet.live/file/uploadPath/image/home/nl.png" width="30px"
 							height="18px"></u--image>

@@ -253,7 +253,7 @@
 								  </view>
 								  <view class="ft12 mt5" style="color:#7F7F7F">报名方式：抽签</view>
 							  </view>
-							  <view style="color: #EB3D74;margin-right: 20rpx;font-weight: bold;">￥{{keys.price}}</view>
+							  <view style="color: #EB3D74;margin-right: 20rpx;font-weight: bold;">￥{{fen2yuan(keys.price)}}</view>
 						  </view>
 					
 						<view class="ft12 mt5 pt5 pb5 pl5 pr5 mr5" style="color:#ED419F;background-color: #FFEEF3;border-radius: 10rpx;" v-html="keys.description"></view>
@@ -270,7 +270,7 @@
 						</view>
 					</view>
 					<view class="mt25">
-						<u-button @click="onDraw()" color='#F9A4C3'
+						<u-button @click="onDraw()" color='#EB3D74'
 							style="font-size: 18px;color:#000;font-weight: bold;" size='large'>下一步</u-button>
 					</view>
 				</view>
@@ -309,7 +309,7 @@
 									
 									
 									 <u-button text="上传" color="#D2D2D7"  v-if='content.skuList[currentIndex].minAge >= item.age || content.skuList[currentIndex].maxAge <=item.age'></u-button>
-									<u-button text="上传" color="#EB3D74" @click="$u.route(`/pages/user/entrant/addInfo?id=${item.id}&skuId=${infoId}`)" v-else></u-button>
+									<u-button text="上传" color="#EB3D74" @click="$u.route(`/page_home/user/entrant/addInfo?id=${item.id}&skuId=${infoId}`)" v-else></u-button>
 								 </view>
 								</view>
 							
@@ -317,7 +317,7 @@
 						</mescroll-uni>
 
 					</view>
-					<view class="flex center" @click="$u.route('/pages/user/entrant/index')">
+					<view class="flex center" @click="$u.route('/page_home/user/entrant/index')">
 							<view class="text-center addinfo">+新增参赛人</view>
 					</view>
 				
@@ -337,11 +337,12 @@
 								<view class="ft14 ml10" style="color: #D2D2D7;">已选{{selected.length}}人</view>
 								
 							</view>
+							{{selected.length}}
 							<u-button  :customStyle='foterStyle' color='#D2D2D7'
-							   v-show="selected.length == 0"
+							   v-if="selected.length == 0"
 								style="font-size: 18px;color:#fff;font-weight: bold;" size='large'>下一步</u-button>
 							<u-button @click="onOrder" :customStyle='foterStyle' color='#EB3D74'
-							   v-show="selected.length >= 1"
+							   v-if="selected.length >= 1"
 								style="font-size: 18px;color:#fff;font-weight: bold;" size='large'>下一步</u-button>
 						</view>
 
@@ -425,6 +426,7 @@
 <script>
 	import * as Api from '@/api/competition/list.js';
 	import * as AddressApi from '@/api/member/address.js';
+	import * as Util from '@/utils/util.js';
 	import dayjs from '@/plugin/dayjs/dayjs.min.js';
 	import MescrollMixin from "@/uni_modules/mescroll-uni/components/mescroll-uni/mescroll-mixins.js";
 	export default {
@@ -522,6 +524,9 @@
 			//后去参赛人员
 			getInfoList() {
 
+			},
+			fen2yuan(price) {
+				return Util.fen2yuan(price)
 			},
 			onhandled() {
 				this.$u.route(`/pages/subCompetition/competition/regulation?spuId=${this.id}`)
@@ -883,9 +888,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 40rpx 20rpx;
+		padding: 35rpx 20rpx;
 		margin: 20rpx 0;
-
+        
 		.bradis {
 			width: 84rpx;
 			height: 84rpx;
@@ -902,6 +907,7 @@
 		.btn {
 			width: 148rpx;
 			height: 70rpx;
+			line-height: 70rpx;
 			background: #EB3D74;
 			box-shadow: 0rpx 0rpx 22rpx 2rpx rgba(180, 5, 60, 0.42);
 			border-radius: 12rpx;

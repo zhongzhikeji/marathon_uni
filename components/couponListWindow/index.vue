@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class='coupon-list-window' :class='coupon.coupon === true?"on":""'>
-			<u-icon name="close" color="" size="22" style="display: flex;flex-flow: row-reverse;margin-right: 20rpx;" @click="close"></u-icon>
+			<!-- <u-icon name="close" color="" size="22" style="display: flex;flex-flow: row-reverse;margin-right: 20rpx;" @click="close"></u-icon> -->
 			<view v-if="!orderShow"  class="nav acea-row row-around">
 				<view :class="['acea-row', 'row-middle', type === 1 ? 'on' : '']" @click="setType(1)">通用券</view>
 				<view :class="['acea-row', 'row-middle', type === 2 ? 'on' : '']" @click="setType(2)">商品券</view>

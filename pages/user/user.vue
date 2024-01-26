@@ -45,7 +45,7 @@
 			</view>
 		<!-- 	 <u--image width="80rpx" height="80rpx" src="https://cdn.uviewui.com/uview/album/1.jpg"></u--image> -->
 		</view>
-	<view class="flex alcenter ml10 mr10" @click="$u.route('/pages/user/order_list/index')">
+	<view class="flex alcenter ml10 mr10" @click="$u.route('/page_home/user/order_list/index')">
 		<view>
 			<view>商城订单</view>
 			<view>查询您的商城订单</view>
@@ -68,7 +68,7 @@
 						  <text class="ft16 ftw600" v-show="!eyes">****</text>
 		 			 </view>
 		 			 <view style="width: 150rpx;">
-		 				 <u-button shape='circle' color='#DA1984' style="color:#fff" @click="$u.route('/pages/user/purse/index')">详情</u-button>
+		 				 <u-button shape='circle' color='#DA1984' style="color:#fff" @click="$u.route('/page_home/user/purse/index')">详情</u-button>
 		 			 </view>
 
 		 		 </view>
@@ -180,11 +180,12 @@ export default {
     },
 		onchangeCollect(name){
 			if(name == 0){
-			this.$u.route('/pages/user/collect/index')
+				
+			this.$u.route('/page_home/user/collect/index')
 			}else if(name == 1){
 				console.log('评价')
 			}else{
-				this.$u.route('/pages/user/energy/index')
+				this.$u.route('/pagg_home/user/energy/index')
 			}
 		},
     logout() {

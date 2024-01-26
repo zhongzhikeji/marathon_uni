@@ -239,7 +239,7 @@
 				openOrderSubscribe().then(() => {
 					uni.hideLoading();
 					uni.navigateTo({
-						url: '/pages/user/order_details/index?order_id=' + order_id
+						url: '/page_home/user/order_details/index?order_id=' + order_id
 					})
 				}).catch(() => {
 					uni.hideLoading();
@@ -247,7 +247,7 @@
 				// #endif
 				// #ifndef MP
 				uni.navigateTo({
-					url: '/pages/user/order_details/index?order_id=' + order_id
+					url: '/page_home/user/order_details/index?order_id=' + order_id
 				})
 				// #endif
 			},

@@ -69,7 +69,7 @@
 			<view class='iconfont icon-gouwuche1'></view>
 			<view class="ml5">购物车</view>
 		 </view>
-		 <view class="flex alcenter bg-w item" @click="$u.route('/pages/user/order_list/index')">
+		 <view class="flex alcenter bg-w item" @click="$u.route('/page_home/user/order_list/index')">
 			<u-icon name="bag"></u-icon>
 			<view>订单</view>
 		 </view>

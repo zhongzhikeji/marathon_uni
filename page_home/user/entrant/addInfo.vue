@@ -575,7 +575,7 @@
 					setTimeout(() => {
 						if (this.preOrderNo > 0) {
 							uni.redirectTo({
-								url: '/pages/user/entrant/index'  
+								url: '/pages_home/entrant/index'  
 							})
 						} else {
 							// #ifdef H5

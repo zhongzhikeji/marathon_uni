@@ -51,7 +51,7 @@
 						src="https://marathon.zznet.live/file/uploadPath/image/competition/bannner.png" width="14px"
 						height="21px"></u--image>
 					<view class="ft18 ftw600 ml10">赛事列表<text
-							style="color: #AEAEAE;font-size: 14px;font-weight: 400;">(12场)</text></view>
+							style="color: #AEAEAE;font-size: 14px;font-weight: 400;">({{productList.length}}场)</text></view>
 				</view>
 
 				<view class="flex">

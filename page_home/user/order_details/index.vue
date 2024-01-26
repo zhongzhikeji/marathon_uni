@@ -239,7 +239,7 @@
           <!-- TODO 芋艿：拼团 -->
           <view class='bnt bg-color' v-if="orderInfo.combinationId > 0" @tap='goJoinPink'>查看拼团</view>
           <navigator class='bnt cancel' v-if="orderInfo.logisticsId > 0"
-                     hover-class='none' :url="'/pages/user/goods_logistics/index?orderId='+ orderInfo.orderId">
+                     hover-class='none' :url="'/page_home/user/goods_logistics/index?orderId='+ orderInfo.orderId">
             查看物流
 					</navigator>
 					<view class='bnt bg-color' v-if="orderInfo.status === 20" @tap='confirmOrder'>

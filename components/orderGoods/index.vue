@@ -90,13 +90,13 @@
       afterSaleTap(item) {
         if (item.afterSaleStatus === 0) {
           uni.navigateTo({
-            url: "/pages/user/goods_return/index?orderId=" + item.orderId + '&orderItemId=' + item.id
+            url: "/page_home/user/goods_return/index?orderId=" + item.orderId + '&orderItemId=' + item.id
           })
           return;
         }
-        uni.navigateTo({
-          url: "/pages/users/user_return_detail/index?id=" + item.afterSaleId
-        })
+        // uni.navigateTo({
+        //   url: "/pages/users/user_return_detail/index?id=" + item.afterSaleId
+        // })
       },
 			jumpCon: function(id) {
 				let type = this.productType === 0 ?'normal':'video'

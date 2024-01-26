@@ -72,7 +72,7 @@
 								</text>
 							</view>
 							<view class="ft16 flex mt2 ftw600" style="color: #EB3D74;" v-if="list.meetSku">
-								￥{{list.meetSku.price}}/人
+								￥{{fen2yuan(list.meetSku.price)}}/人
 							</view>
 						</view>
 
@@ -109,7 +109,7 @@
 					<view class="mt20">
 						<view class="flex end">
 							<view>小计：</view>
-							<view class="cl-eb ftw600">￥{{list.price}}</view>
+							<view class="cl-eb ftw600">￥{{fen2yuan(list.price)}}</view>
 						</view>
 
 					</view>
@@ -179,7 +179,7 @@
 			<view class=" flex alcenter space">
 				<view class="flex ml10 alcenter">
 					<view class="ft14 ftw600">总计：</view>
-					<view style="color:#F21A6F" class="ft16 ftw600"><text class="ft12">￥</text>{{list.payPrice}}</view>
+					<view style="color:#F21A6F" class="ft16 ftw600"><text class="ft12">￥</text>{{fen2yuan(list.payPrice)}}</view>
 				</view>
 
 				<view class="mr10">
@@ -215,6 +215,7 @@
 <script>
 	import * as Api from '@/api/competition/list.js';
 	import * as PayOrderApi from '@/api/pay/order.js';
+	import * as Util from '@/utils/util.js';
 	export default {
 		data() {
 			return {
@@ -266,6 +267,9 @@
 				Api.createSettlement(data).then(res=>{
 					this.list = res.data
 				})
+			},
+			fen2yuan(price) {
+				return Util.fen2yuan(price)
 			},
 			goPay(){
 				uni.showLoading({

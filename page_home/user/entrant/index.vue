@@ -171,7 +171,7 @@
         this.pinkId = '';
         this.couponId = '';
         uni.navigateTo({
-          url: '/pages/user/entrant/addInfo?id=' + id 
+          url: '/page_home/user/entrant/addInfo?id=' + id 
         })
       },
       /**
@@ -206,7 +206,7 @@
         this.pinkId = '';
         this.couponId = '';
         uni.navigateTo({
-          url: '/pages/user/entrant/addInfo?preOrderNo=' + this.preOrderNo
+          url: '/page_home/user/entrant/addInfo?preOrderNo=' + this.preOrderNo
         })
       },
 

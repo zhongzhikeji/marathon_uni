@@ -7,12 +7,12 @@ export default {
 	'10': {
 		name: '参赛选手',
 		icon: 'https://marathon.zznet.live/file/uploadPath/img/grid2.png',
-		path:'/pages/user/entrant/index'
+		path:'/page_home/user/entrant/index'
 	},
 	'20': {
 		name: '我的团队',
 		icon: 'https://marathon.zznet.live/file/uploadPath/img/grid3.png',
-		path:'/pages/user/tram/index'
+		path:'/page_home/user/tram/index'
 	},
 	'30': {
 		name: '激励活动',
@@ -21,7 +21,7 @@ export default {
 	'40': {
 		name: '优惠劵',
 		icon: 'https://marathon.zznet.live/file/uploadPath/img/grid5.png',
-		path:'/pages/user/user_coupon/index'
+		path:'/page_home/user/user_coupon/index'
 	},
 	'50': {
 		name: '收货地址',
