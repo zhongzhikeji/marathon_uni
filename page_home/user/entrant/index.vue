@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<view class='line'>
+
 			<!-- <image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/line.jpg' v-if="addressList.length"></image> -->
 		</view>
 		<view class='address-management' :class='addressList.length === 0 ? "fff":""'>
@@ -8,7 +9,7 @@
 				<view class='item borRadius14' v-for="(item,index) in addressList" :key="index">
 					<view class='address' @click='goOrder(item.id)'>
 						<view class='consignee'>姓名：{{ item.name }}
-            
+
             </view>
 						<view>身份证： {{item.idCard}}</view>
 					</view>
@@ -46,14 +47,14 @@
 		</view>
 		<view class='footer acea-row row-between-wrapper'>
 
-	
-			<view class='addressBnt bg-color' :class="this.$wechat.isWeixin()?'':'on'" @click='addAddress'>
+
+			<view class='addressBnt bg-color on'  @click='addAddress'>
         <text class='iconfont icon-tianjiadizhi' />新增参赛人
       </view>
 
-	
+
 		</view>
-		<home></home> 
+		<home></home>
 	</view>
 </template>
 <script>
@@ -109,14 +110,16 @@
        * 获取地址列表
        */
       getAddressList: function() {
+        console.log(this.loading)
         if (this.loading) {
           return;
         }
         this.loading = true;
         this.loadTitle = '';
         AddressApi.getcomList(1,10).then(res => {
-			
-          this.$set(this, 'addressList', res.data.list);
+          console.log(res.data.list)
+        this.addressList = res.data.list
+          // this.$set(this, 'addressList', res.data.list);
           this.loadTitle = '我也是有底线的';
           this.loading = false;
         }).catch(err => {
@@ -171,7 +174,7 @@
         this.pinkId = '';
         this.couponId = '';
         uni.navigateTo({
-          url: '/page_home/user/entrant/addInfo?id=' + id 
+          url: '/page_home/user/entrant/addInfo?id=' + id
         })
       },
       /**
@@ -214,68 +217,7 @@
 			/**
 			 * 导入微信地址（小程序）
 			 */
-			getWxAddress: function() {
-				let that = this;
-				uni.authorize({
-					scope: 'scope.address',
-					success: function(res) {
-						uni.chooseAddress({
-							success: function(res) {
-								let addressP = {};
-								addressP.province = res.provinceName;
-								addressP.city = res.cityName;
-								addressP.district = res.countyName;
-								addressP.cityId = 0;
-								editAddress({
-									address: addressP,
-									defaultStatus: true,
-									realName: res.userName,
-									postCode: res.postalCode,
-									phone: res.telNumber,
-									detail: res.detailInfo,
-									id: 0
-									//type: 1//区别城市id（导入微信地址无城市id需要后台自己查找）;
-								}).then(res => {
-									that.$util.Tips({
-										title: "添加成功",
-										icon: 'success'
-									}, function() {
-										that.getAddressList(true);
-									});
-								}).catch(err => {
-									return that.$util.Tips({
-										title: err
-									});
-								});
-							},
-							fail: function(res) {
-								if (res.errMsg == 'chooseAddress:cancel') return that.$util.Tips({
-									title: '取消选择'
-								});
-							},
-						})
-					},
-					fail: function(res) {
-						uni.showModal({
-							title: '您已拒绝导入微信地址权限',
-							content: '是否进入权限管理，调整授权？',
-							success(res) {
-								if (res.confirm) {
-									uni.openSetting({
-										success: function(res) {
-											console.log(res.authSetting)
-										}
-									});
-								} else if (res.cancel) {
-									return that.$util.Tips({
-										title: '已取消！'
-									});
-								}
-							}
-						})
-					}
-				})
-			},
+
       // TODO 芋艿：微信导入；
       /**
 			 * 导入微信地址（公众号）

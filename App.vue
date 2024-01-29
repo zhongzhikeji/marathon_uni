@@ -21,12 +21,17 @@
 		const res2 = await getDicts('meet_id_type')
 		const res3 = await getDicts('member_gender_type')
 		const res4 = await getDicts('member_country')
-	   
-		localStorage.setItem('meet_clothing_size',JSON.stringify(res.data))
-		localStorage.setItem('member_blood_type',JSON.stringify(res1.data))
-		localStorage.setItem('meet_id_type',JSON.stringify(res2.data))
-		localStorage.setItem('member_gender_type',JSON.stringify(res3.data))
-		localStorage.setItem('member_country',JSON.stringify(res4.data))
+
+     this.$Cache.set('meet_clothing_size',JSON.stringify(res.data))
+     this.$Cache.set('member_blood_type',JSON.stringify(res1.data))
+      this.$Cache.set('meet_id_type',JSON.stringify(res2.data))
+       this.$Cache.set('member_gender_type',JSON.stringify(res3.data))
+        this.$Cache.set('member_country',JSON.stringify(res4.data))
+		// localStorage.setItem('meet_clothing_size',JSON.stringify(res.data))
+		// localStorage.setItem('member_blood_type',JSON.stringify(res1.data))
+		// localStorage.setItem('meet_id_type',JSON.stringify(res2.data))
+		// localStorage.setItem('member_gender_type',JSON.stringify(res3.data))
+		// localStorage.setItem('member_country',JSON.stringify(res4.data))
       // TODO 芋艿: 分销
 			if (option.query.hasOwnProperty('scene')) {
 				switch(option.scene){
@@ -55,15 +60,15 @@
 					break;
 				}
 			}
-			
-		
-      
-		
+
+
+
+
 }
 	}
 </script>
 <style>
-	
+
 </style>
 <style lang="scss">
 /** 引入全局基本样式 */

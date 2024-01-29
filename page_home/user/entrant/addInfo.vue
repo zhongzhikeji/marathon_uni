@@ -66,7 +66,7 @@
 					</view>
 					<view class='item acea-row row-between-wrapper relative' style="border-bottom: 1rpx solid #eee;"
 						@click="show3 = true">
-						<view class='name'>出身日期</view>
+						<view class='name'>出生日期</view>
 						<view class="address flex alcenter">
 							<input disabled="" type='text' placeholder='请选择' placeholder-style="color:#ccc;"
 								name='birthday' :value="datasub.birthday" placeholder-class='placeholder' />
@@ -124,41 +124,46 @@
 						<view class='name'>紧急联系人姓名</view>
 						<input type='text' placeholder='请输入紧急联系人' placeholder-style="color:#ccc;"
 							name="emergencyContactName" :value='datasub.emergencyContactName'
-							placeholder-class='placeholder' maxlength="11" style="width: 230px;" />
+							placeholder-class='placeholder' maxlength="11" style="flex:1" />
 					</view>
 					<view class='item acea-row row-between-wrapper'>
 						<view class='name'>紧急联系人电话</view>
 						<input type='number' placeholder='请输入紧急联系电话' placeholder-style="color:#ccc;"
 							name="emergencyContactPhone" :value='datasub.emergencyContactPhone'
-							placeholder-class='placeholder' maxlength="11" style="width: 230px;" />
+							placeholder-class='placeholder' maxlength="11" style="flex:1;" />
 					</view>
 				</view>
-				<view class="mt15 mb15">选填项</view>
-				<view class='list borRadius14'>
-					<view v-for="(item,index) in datasub.extraInfos">
 
-						<view class='item acea-row row-between-wrapper' v-show="item.fieldType == 'string'">
-							<view class='name'>{{item.fieldName}}</view>
+        <view >
 
-							<input type='text' placeholder-style="color:#ccc;"
-								v-model="item.value" placeholder-class='placeholder' />
-						</view>
+          <view class="mt15 mb15">选填项</view>
+          	<view class='list borRadius14'>
+          		<view v-for="(item,index) in datasub.extraInfos">
 
-						<view v-show="item.fieldType == 'image'" class="pt10 pb10">
-							<text>{{item.fieldName}}</text>
+          			<view class='item acea-row row-between-wrapper' v-show="item.fieldType == 'string'">
+          				<view class='name'>{{item.fieldName}}</view>
 
-							<view class="mt10">
-								<u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1"
-									multiple :maxCount="3"  :previewFullImage="true">
-								
-									</u-upload>
-							</view>
+          				<input type='text' placeholder-style="color:#ccc;"
+          					v-model="item.value" placeholder-class='placeholder' />
+          			</view>
 
-						</view>
+          			<view v-show="item.fieldType == 'image'" class="pt10 pb10">
+          				<text>{{item.fieldName}}</text>
 
-					</view>
+          				<view class="mt10">
+          					<u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1"
+          						multiple :maxCount="3"  :previewFullImage="true">
 
-				</view>
+          						</u-upload>
+          				</view>
+
+          			</view>
+
+          		</view>
+
+          	</view>
+        </view>
+
 				<!-- 	<view class='default acea-row row-middle borRadius14'>
 					<checkbox-group @change='ChangeIsDefault'>
 						<checkbox :checked="userAddress.defaultStatus" />设置为默认地址
@@ -284,12 +289,12 @@
 			if (options.skuId) {
 				this.skuId = options.skuId
 			}
-			this.columns.push(JSON.parse(localStorage.getItem('meet_id_type')))
-			this.columns1.push(JSON.parse(localStorage.getItem('member_country')))
+			this.columns.push(JSON.parse(this.$Cache.get('meet_id_type')))
+			this.columns1.push(JSON.parse(this.$Cache.get('member_country')))
 
-			this.columns2.push(JSON.parse(localStorage.getItem('member_gender_type')))
-			this.columns3.push(JSON.parse(localStorage.getItem('meet_clothing_size')))
-			this.columns4.push(JSON.parse(localStorage.getItem('member_blood_type')))
+			this.columns2.push(JSON.parse(this.$Cache.get('member_gender_type')))
+			this.columns3.push(JSON.parse(this.$Cache.get('meet_clothing_size')))
+			this.columns4.push(JSON.parse(this.$Cache.get('member_blood_type')))
 			this.preOrderNo = options.preOrderNo || 0;
 			this.id = options.id || 0;
 			uni.setNavigationBarTitle({
@@ -328,7 +333,7 @@
 				for (let i = 0; i < lists.length; i++) {
 					const result = await this.uploadFilePromise(lists[i].url,lists[i].name)
 					const resultUrl = JSON.parse(result).data
-			
+
 					let item = this[`fileList${event.name}`][fileListLen]
 					this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
 						status: 'success',
@@ -337,7 +342,7 @@
 					}))
 					fileListLen++
 				}
-			     
+
 			},
 			uploadFilePromise(url,pathName) {
 				return new Promise((resolve, reject) => {
@@ -386,7 +391,7 @@
 					this.show2 = false
 				} else if (num == 4) {
 					console.log(e.value)
-					// this.datasub.birthday = Number(e.value) 
+					// this.datasub.birthday = Number(e.value)
 
 					this.datasub.birthday = this.formatDate(e.value)
 					this.show3 = false
@@ -433,18 +438,19 @@
 					if(res.data.extraInfos){
 						res.data.extraInfos.forEach(item=>{
 							if(item.fieldType == 'image' && item.value != null){
-								
+
 								this.fileList1 = item.value
 							}
 						})
 					}
-				
-					
+
+
 					this.datasub = res.data
 					this.$set(this, 'userAddress', res.data);
 					this.$set(this, 'region', res.data.areaName.split(' '));
+
 					this.city_id = res.data.areaId
-				
+
 					console.log(res, 778)
 				});
 			},
@@ -452,10 +458,11 @@
 			 * 提交用户添加地址
 			 */
 			formSubmit: function(e) {
-				console.log(e, 789)
-           console.log(this.fileList1)
 
-				// 	// 参数校验
+				// console.log(e, 789)
+    //        console.log(this.fileList1)
+
+				// // 	// 参数校验
 				const value = e.detail.value;
 				if(this.datasub.extraInfos){
 					this.datasub.extraInfos.forEach(item=>{
@@ -465,12 +472,13 @@
 						}
 					})
 				}
-		
+
 				value.extraInfos = this.datasub.extraInfos
 				value.gender = value.gender == '男' ? 1 : 2
 				value.id = this.id;
 				value.skuId = this.skuId
-				value.areaId = this.city_id;
+				value.areaId = this.cityId;
+
 				value.defaultStatus = this.userAddress.defaultStatus;
 				if (!value.idType) {
 					return this.$util.Tips({
@@ -574,9 +582,8 @@
 					}
 					setTimeout(() => {
 						if (this.preOrderNo > 0) {
-							uni.redirectTo({
-								url: '/pages_home/entrant/index'  
-							})
+             this.$u.route('/page_home/user/entrant/index')
+
 						} else {
 							// #ifdef H5
 							return history.back();
@@ -657,6 +664,7 @@
 				};
 				this.region = [multiArray[0][value[0]], multiArray[1][value[1]], multiArray[2][value[2]]]
 				this.cityId = area.id
+        console.log(this.cityId)
 			},
 			/**
 			 * 选择省市区的滚动

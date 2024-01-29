@@ -26,7 +26,7 @@
 					</view>
 					<view class="ml15 cl-w ftw600">
 						<view class="ft18 ">支付成功</view>
-						<view>实付￥{{order_pay_info.payPrice}}元</view>
+						<view>实付￥{{fen2yuan(order_pay_info.payPrice)}}元</view>
 						<view>支付之后因个人原因不支持退款</view>
 					</view>
 				</view>
@@ -143,6 +143,7 @@
 
 <script>
 	import * as OrderApi from '@/api/competition/list.js';
+  import * as Util from '@/utils/util.js';
 	import {
 		openOrderSubscribe
 	} from '@/utils/SubscribeMessage.js';
@@ -153,7 +154,6 @@
 		mapGetters
 	} from "vuex";
 	import dayjs from '@/plugin/dayjs/dayjs.min.js';
-	import * as Util from '@/utils/util.js';
 	export default {
 		data() {
 			return {
@@ -201,7 +201,7 @@
 					title: '正在加载中'
 				});
 				console.log(this.orderId)
-				
+
 				OrderApi.getOrderDetail(this.orderId).then(res => {
 					uni.hideLoading();
 					this.$set(this, 'order_pay_info', res.data);
@@ -212,6 +212,9 @@
 					uni.hideLoading();
 				});
 			},
+      fen2yuan(price) {
+              return Util.fen2yuan(price)
+            },
 			formatDate: function(date) {
 			  return dayjs(date).format("YYYY-MM-DD");
 			},
