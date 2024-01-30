@@ -21,7 +21,7 @@
 							<view  v-show="index == 0" class="mr5" @click.stop="swapItems(index)">
 								<u-icon name="https://marathon.zznet.live/file/uploadPath/image/competition/zhiding.png" color="#CCCCCC" size="13"></u-icon>
 							</view>
-							
+
 							<u-icon name="close" color="#CCCCCC" size="16"  @click="onDelete(index)"></u-icon>
 						</view>
 
@@ -34,14 +34,14 @@
 							<text>天</text>
 					</view>
 				</u-count-down>
-					
+
 					</view>
 					<view class="prod-item1" @click="handleProdItemClick(item.id)">
 						<view class="prod-tion flex">
 							<image :src="item.picUrl" class="prod-img"></image>
 							<view class="statuse" :class="{status1: item.meetStatus == 0,status2: item.meetStatus == 1,status3: item.meetStatus == 2,status4: item.meetStatus == 3,status5: item.meetStatus == 4,status6: item.meetStatus == 5,status7: item.meetStatus == 6,status8: item.meetStatus == 7}">
 								<text class="test">{{statusText(item)}}</text>
-								
+
 							</view>
 
 						</view>
@@ -52,7 +52,7 @@
 								<u-gap height="5px"></u-gap>
 								<view class="flex alcenter ml5 mb5" style="color: #8F91A1;">
 									<view class="tradius tradiusColor"></view>
-									
+
 									{{formatDate(item.startTime)}}
 								</view>
 								<view class="flex alcenter ml5 ">
@@ -62,7 +62,7 @@
 								</view>
 
 								<u-gap height="5px"></u-gap>
-							
+
 
 							</view>
 							<view class="flex mt5 ">
@@ -170,12 +170,13 @@
 		       			<view  v-show="index == 0" class="mr5" @click.stop="swapItems(index)">
 		       				<u-icon name="https://marathon.zznet.live/file/uploadPath/image/competition/zhiding.png" color="#CCCCCC" size="13"></u-icon>
 		       			</view>
-		       			
+
 		       			<u-icon name="close" color="#CCCCCC" size="16"  @click="onDelete(index)"></u-icon>
 		       		</view>
-		       
+
 		       	</view>
 		       	<view style="color: #8F91A1; margin-right: 20rpx;">
+
 		       <u-count-down :time="(item.joinStartTime - isData)" format="DD:HH:mm:ss" autoStart millisecond @change="onChange">
 		       		<view class="flex alcenter end">
 		       			<view>报名倒计时:</view>
@@ -183,10 +184,10 @@
 		       			<text>天</text>
 		       	</view>
 		       </u-count-down>
-		       	
+
 		       	</view>
 		       	<view class="prod-item1" @click="handleProdItemClick(item.id)">
-		     
+
 		       		<view class="item-info">
 		       			<view class="info-text">
 							<view class="flex alcenter">
@@ -195,14 +196,14 @@
 								<view class="ft16 ">{{item.title}}</view>
 								<view class="statuse ml10" :class="{status1: item.meetStatus == 0,status2: item.meetStatus == 1,status3: item.meetStatus == 2,status4: item.meetStatus == 3,status5: item.meetStatus == 4,status6: item.meetStatus == 5,status7: item.meetStatus == 6,status8: item.meetStatus == 7}">
 									<text class="test">{{statusText(item)}}</text>
-									
+
 								</view>
 							</view>
-		       			
+
 		       				<view class="flex alcenter mt10">
 								<view class="flex alcenter  ft12 mr20" style="color: #8F91A1;">
 									<view class="tradius tradiusColor"></view>
-									
+
 									{{formatDate(item.startTime)}}
 								</view>
 								<view class="flex alcenter ml5 ">
@@ -211,23 +212,23 @@
 										:text="item.area"></u--text>
 								</view>
 							</view>
-		       			
-		       
+
+
 		       				<u-gap height="5px"></u-gap>
-		       			
-		       
+
+
 		       			</view>
 		       			<view class="flex mt5 ">
-		       
+
 		       				<view v-for="(k,index) in item.keyword">
 		       					<view class="tagList" :class="{blueBackground: index === 0,rBackground: index === 1,yBackground: index === 2}">{{k}}</view>
-		       
+
 		       				</view>
-		       
-		       
-		       
+
+
+
 		       			</view>
-		       
+
 		       		</view>
 		       	</view>
 		       </view>
@@ -325,7 +326,7 @@
 				this.productList.splice(index,1)
 			},
 			onChange(e) {
-			
+
 				this.timeData = e
 			},
 			swapItems(index){
@@ -333,7 +334,7 @@
 					   const currentObject = this.productList[index];
 					      this.productList.splice(index, 1);
 					           this.productList.splice(index + 1, 0, currentObject);
-						 
+
 				}
 			}
 		},
@@ -399,15 +400,15 @@
 	.prod-list1 {
 		background: #ffffff;
 		border-radius: 15rpx;
-		
+
 
 		.btitle {
 			display: inline-block;
 			padding: 10rpx 20rpx;
-		
+
 			border-top-left-radius: 15rpx;
 			border-bottom-right-radius: 30rpx;
-		
+
 			font-weight: bold;
 		}
        .btitle1{
@@ -467,7 +468,7 @@
 						color: #fff;
 						font-size: 24rpx;
 						border-radius: 6rpx;
-						
+
 					}
 					.status1{
 					background: linear-gradient(267deg, #EB3D74 0%, #F23BBB 100%);
@@ -485,19 +486,19 @@
 						background: linear-gradient(267deg, #FF7E37 0%, #FB2D45 100%);
 					}
 					.status6{
-					
+
 						background: #2F2F46;
-					
+
 					}
 					.status7{
-					
+
 						background: linear-gradient(267deg, #FFDB7B 0%, #FD7600 100%);
-					
+
 					}
 					.status8{
-					
+
 						background: #CCCCCC;
-					
+
 					}
 				}
 
@@ -541,7 +542,7 @@
 			color: #fff;
 			font-size: 24rpx;
 			background-size: contain;
-			
+
 			.test{
 				display: inline-block;
 				width: 100%;
@@ -549,7 +550,7 @@
 				margin-left: 5%;
 				margin-top: 5%;
 			}
-			
+
 		}
 		.status1{
 			background-image: url('https://marathon.zznet.live/file/uploadPath/image/competition/z1.png');
@@ -569,17 +570,17 @@
 		.status6{
 			width: 120rpx;
 			background-image: url('https://marathon.zznet.live/file/uploadPath/image/competition/z6.png');
-		
+
 		}
 		.status7{
 			width: 120rpx;
 			background-image: url('https://marathon.zznet.live/file/uploadPath/image/competition/z7.png');
-		
+
 		}
 		.status8{
 			width: 120rpx;
 			background-image: url('https://marathon.zznet.live/file/uploadPath/image/competition/z8.png');
-		
+
 		}
 	}
 
@@ -601,7 +602,7 @@
 
 	.tagList {
 		font-size: 24rpx;
-		
+
 		padding: 10rpx 12rpx;
 		margin-right: 10rpx;
 		border-radius: 8rpx;
