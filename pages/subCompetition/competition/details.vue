@@ -298,7 +298,7 @@
 
 
                   <view class="mr20" style="color: #EB3D74;">
-                    <view v-show="content.skuList[currentIndex].gender != item.gender">性别不符合报名条件</view>
+                    <view v-show="content.skuList[currentIndex].gender != item.gender && content.skuList[currentIndex].gender<3">性别不符合报名条件</view>
                     <view
                       v-show="content.skuList[currentIndex].minAge >= item.age || content.skuList[currentIndex].maxAge <=item.age">
                       年龄不符合报名条件</view>
@@ -612,9 +612,14 @@
           .maxAge <= item.age) {
           uni.$u.toast('年龄不符合报名条件')
         }
-        else if(this.content.skuList[this.currentIndex].gender != item.gender){
-          uni.$u.toast('性别不符合报名条件')
+        // 如果不是不限制性别 或者 性别非情侣 的比赛
+        else if(this.content.skuList[this.currentIndex].gender<3){
+          if(this.content.skuList[this.currentIndex].gender != item.gender ){
+            console.log('系统性别要求:'+this.content.skuList[this.currentIndex].gender+'参赛选手性别:'+item.gender)
+            uni.$u.toast('性别不符合报名条件')
+          }
         }
+
         else {
 
           if (index === -1) {
