@@ -6,18 +6,34 @@
           <view class='pictrue'>
             <image :src='orderItem.picUrl' />
           </view>
-          <view class='text acea-row row-between'>
-            <view class='name line2'>{{ orderItem.spuName }}</view>
-            <view class='money'>
-              <view>￥{{(parseFloat(orderItem.price) / 100.0).toFixed(2)}}</view>
-              <view class='num'>x{{ orderItem.count}}</view>
+          <view class='text '>
+            <view class='name line2 mb5'>{{ orderItem.spuName }}</view>
+						<text class="cl-ae" v-for="(property, propertyIndex) in orderItem.properties" :key="propertyIndex" style="padding-right: 10rpx;">
+						  {{ property.valueName }}　
+						</text>
+            <view class='flex alcenter ft12 mt5'>
+            
+              <view class='num'>共{{ orderItem.count}}件商品,实付金额:</view>
+			    <view class="cl-eb">￥{{(parseFloat(orderItem.price) / 100.0).toFixed(2)}}</view>
             </view>
           </view>
         </view>
 		    <view class='list borRadius14'>
-          <view class='item acea-row row-between-wrapper'>
+				<view class='item acea-row row-between-wrapper'>
+				  <view>退款原因</view>
+				  <picker class='num' @change="bindPickerChange" :value="reasonIndex" :range="reasons">
+				    <view class="picker acea-row row-between-wrapper">
+				      <view class='reason'>{{ reasons[reasonIndex] }}</view>
+				      <text class='iconfont icon-jiantou'></text>
+				    </view>
+				  </picker>
+				</view>
+				<view class='item acea-row row-between-wrapper'>
+				  <view>退款金额</view>
+				  <view class='num'>￥{{ (parseFloat(orderItem.payPrice) / 100.0).toFixed(2) }}</view>
+				</view>
+       <!--   <view class='item acea-row row-between-wrapper'>
             <view>售后方式</view>
-            <!-- 如果未发货，则只能退款 -->
             <view class="" v-if="order.status === 10">仅退款</view>
             <picker v-else class='num' @change="wayChange"
                     :value="wayIndex" :range="ways">
@@ -26,28 +42,17 @@
                 <text class='iconfont icon-jiantou'></text>
               </view>
             </picker>
-          </view>
+          </view> -->
           <!-- TODO 芋艿：按照有赞的做法；未发货，不输入件数；已发货，可调整 -->
-          <view class='item acea-row row-between-wrapper'>
+      <!--    <view class='item acea-row row-between-wrapper'>
             <view>退货件数</view>
             <view class='num'>{{ orderItem.count }}</view>
-          </view>
+          </view> -->
           <!-- TODO 芋艿：后端改成可以填写金额 -->
-          <view class='item acea-row row-between-wrapper'>
-            <view>退款金额</view>
-            <view class='num'>￥{{ (parseFloat(orderItem.payPrice) / 100.0).toFixed(2) }}</view>
-          </view>
-          <view class='item acea-row row-between-wrapper'>
-            <view>退款原因</view>
-            <picker class='num' @change="bindPickerChange" :value="reasonIndex" :range="reasons">
-              <view class="picker acea-row row-between-wrapper">
-                <view class='reason'>{{ reasons[reasonIndex] }}</view>
-                <text class='iconfont icon-jiantou'></text>
-              </view>
-            </picker>
-          </view>
+      
+     
           <view class='item textarea acea-row row-between'>
-            <view>备注说明</view>
+            <view>退款说明</view>
             <textarea placeholder='填写备注信息，100字以内' class='num' name="applyDescription"
                       placeholder-class='填写备注信息，100字以内' />
           </view>
@@ -68,7 +73,7 @@
               </view>
             </view>
           </view>
-				  <button class='returnBnt bg-color' form-type="submit">提交</button>
+				  <button class='returnBnt bg-eb' form-type="submit">提交退款</button>
 		    </view>
 		  </view>
 		</form>
@@ -209,7 +214,7 @@
             icon: 'success'
           }, {
             tab: 5,
-            url: '/pages/users/user_return_detail/index?id=' + res.data
+            url: '/page_home/user/user_return_detail/index?id=' + res.data
           });
         }).catch(err=>{
           return this.$util.Tips({
@@ -241,5 +246,5 @@
 	.apply-return .list .item .upload .pictrue .icon-guanbi1{position:absolute;font-size:45rpx;top:-10rpx;right:-10rpx;}
 	.apply-return .list .item .upload .pictrue .icon-icon25201{color:#bfbfbf;font-size:50rpx;}
 	.apply-return .list .item .upload .pictrue:nth-last-child(1){border:1rpx solid #ddd;box-sizing:border-box;}
-	.apply-return .returnBnt{font-size:32rpx;color:#fff;width:100%;height:86rpx;border-radius:50rpx;text-align:center;line-height:86rpx;margin:43rpx auto;}
+	.apply-return .returnBnt{font-size:32rpx;color:#fff;width:100%;height:86rpx;border-radius:15rpx;text-align:center;line-height:86rpx;margin:43rpx auto;}
 </style>

@@ -1,99 +1,182 @@
 <template>
 	<view>
-		<view class="bg-w pt20">
-			<view class="flex center">
-				<u-tabs :list="list" @click="click"
-					itemStyle="padding-left: 30px; padding-right: 30px; height:44px"></u-tabs>
+     <u-navbar bgColor='transparent' title="我的收藏" :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
+     	:autoBack="true">
+     		</u-navbar>
+			<view class="bg-w ml10 mr10 radis">
+				<u-tabs :list="list4" lineWidth="20" lineHeight="7" :lineColor="`url(${lineBg}) 100% 100%`" :activeStyle="{
+				          color: '#EB3D74',
+				          fontWeight: 'bold',
+						  fontSize:'16px',
+				          transform: 'scale(1.05)',
+				
+				      }" :inactiveStyle="{
+				          color: '#606266',
+				          transform: 'scale(1)'
+				      }" itemStyle="padding-left: 10px; padding-right: 10px; height: 50px;" @click="onTabClick" :scrollable='false'>
+				</u-tabs>
 			</view>
-		</view>
-		<view class="ml10 mr10 mt20" v-show="isshow ==0">
-		<yd-product-more :showType="showType" :product-list="productList" :more-status="moreStatus"
-			:u_tagList='tagList' @handleProdItemClick='onchangeItem'></yd-product-more>
-		</view>
-		<view class="ml10 mr10 mt20" v-show="isshow ==1">
-	<yd-product-more :showType="showType" :product-list="productList" :more-status="moreStatus"
-		:u_tagList='tagList' @handleProdItemClick='onchangeItem'></yd-product-more>
-		</view>
+			<mescroll-body @init="mescrollInit" @down="downCallback" @up="upCallback">
+				<view v-show="'imglist' == showType" class="ml10 mr10 mt20">
+					<yd-product-more :showType="showType" :product-list="productList"
+							 @handleProdItemClick='onchangeItem' :isIcon='false' @setCollect='setCollect'></yd-product-more>
+				</view>
+			   <view v-show="showType == 'mail'">
+				 <view class="ml10 mr10 mt20" v-for="item in orderData" :key='item.id'>
+				 	<view class=" orderBorder">
+				 		<view class="flex pt10 pb10 pl10 pr10">
+				 			<view class="mr10">
+				 				<u--image :showLoading="true"
+				 					:src="item.picUrl" width="202rpx"
+				 					height="202rpx"></u--image>
+				 			</view>
+				 			<view  style="flex:1">
+				 				<u--text :lines="1" size="16px" color="#333333" :text="item.spuName"></u--text>
+				 				
+				 				<view class="flex mt15 mb10">
+				 					<view v-for="(tag,index) in item.tags">
+				 							<view :class="index ==0?'tagsColor':'tagsColorY'" class="mr5">{{tag}}</view>
+				 					</view>
+				 				</view>
+				 				<view class="flex space alcenter">
+									<view class="cl-eb">￥{{fen2yuan(item.price)}}</view>
+									   	<view class='iconfont icon-shoucang1' @click.stop="setCollect(item)"></view>
+								</view>
+				 				
+				 			</view>
+				 		</view>
+				 	
+				 	</view>
+				 
+				 </view>
+			   </view>
+					</mescroll-body>
+
 	</view>
 </template>
 
 <script>
+	import * as Api from '@/api/competition/list.js'
+	  import * as Util from '@/utils/util.js';
+	import MescrollMixin from "@/uni_modules/mescroll-uni/components/mescroll-uni/mescroll-mixins.js";
+	import * as ProductFavoriteApi from '@/api/product/favorite.js';
 	export default{
+		mixins: [MescrollMixin],
 		data(){
 			return{
-			list: [{
-					name: '赛事'
-				},
-				{
-					name: '商品'
-				}
-			],
-			isshow:0,
+		lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
+		list4: [{
+				name: '赛事'
+			},
+			{
+				name: '商品'
+			},
 			
-			showType:'collctList',
-			productList: [{
-					id: 1,
-					image: 'https://cdn.uviewui.com/uview/album/1.jpg',
-					title: '山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。',
-					desc: '2022-02-21 14:00',
-					price: '厦门环岛'
-				},
-				{
-					id: 2,
-					image: 'https://cdn.uviewui.com/uview/album/2.jpg',
-					title: '商品222',
-					desc: '山不在于高，有了神仙就会有名气。水不在于深',
-					price: '23.00'
-				},
-				{
-					id: 3,
-					image: 'https://cdn.uviewui.com/uview/album/3.jpg',
-					title: '商品333',
-					desc: '商品描述信息2',
-					price: '33.00'
-				},
-				{
-					id: 4,
-					image: 'https://cdn.uviewui.com/uview/album/4.jpg',
-					title: '商品444',
-					desc: '商品描述信息4',
-					price: '43.00'
-				},
-				{
-					id: 5,
-					image: 'https://cdn.uviewui.com/uview/album/5.jpg',
-					title: '商品555',
-					desc: '商品描述信息5',
-					price: '53.00'
-				}
-			],
-			moreStatus: 'nomore',
-			tagList: [{
-					text: '标签1'
-				},
-				{
-					text: '标签2'
-				}
-			],
+		],
+		productList:[],
+		orderData:[],
+			showType:'imglist',
+			
 			}
 		},
 		methods:{
-			onchangeItem(item){
+		upCallback(page) {
+		
+			let pageNum = page.num;
+			let pageSize = page.size;
+			if(this.showType == 'imglist'){
+				Api.getMeetFavoritePage({
+					pageNo: pageNum,
+					pageSize,
+					favType:'FOLLOW'
+				}).then(res => {
+					console.log(res.data.list)
+					let curPageData = res.data.list
+					let curPageLen = curPageData.length;
+					let totalPage = res.data.total
+					if (page.num == 1) this.productList = [];
+					this.productList = this.productList.concat(curPageData);
+					this.mescroll.endByPage(curPageLen, totalPage);
+				})
+			}else{
+				Api.getFavoritePage({
+					pageNo: pageNum,
+					pageSize,
+				
+				}).then(res => {
+					console.log(res.data.list)
+					let curPageData = res.data.list
+					let curPageLen = curPageData.length;
+					let totalPage = res.data.total
+					if (page.num == 1) this.orderData = [];
+					this.orderData = this.orderData.concat(curPageData);
+					this.mescroll.endByPage(curPageLen, totalPage);
+				})
+			}
+		
+		},
+		setCollect(item){
+			if(this.showType == 'imglist'){
+				Api.deleteFavorite(item.spuId).then(res=>{
+				uni.$u.toast('取消收藏')
+				this.mescroll.resetUpScroll()
+				})
+			}else{
+			ProductFavoriteApi.deleteFavorite(item.spuId).then(res => {
+			uni.$u.toast('取消收藏')
+			this.mescroll.resetUpScroll()
+			})
+			}
+		
+		},
+			onchangeItem(item) {
 				console.log(item)
-			
+				uni.$u.route('/pages/subCompetition/competition/details', {
+					id: item
+				})
 			},
-			click(item){
+			fen2yuan(price) {
+			  return Util.fen2yuan(price)
+			},
+			onTabClick(item){
 				if(item.index ==0){
-					this.isshow =0
-					this.showType = 'collctList'
+					
+					this.showType = 'imglist'
+						this.mescroll.resetUpScroll()
 				}else{
-					this.isshow = 1
-					this.showType = 'priceList'
+					
+					this.showType = 'mail'
+						this.mescroll.resetUpScroll()
 				}
 			}
 		}
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+	.orderBorder{
+		border: 1px solid #eee;
+		margin: 10rpx 0;
+		background-color: #fff;
+		border-radius: 20rpx;
+	}
+	.tagsColor{
+		font-size: 24rpx;
+		background: #FFF2F6;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #EB3D74;
+		color: #EB3D74;
+	}
+	.tagsColorY{
+		font-size: 24rpx;
+	background: #FFF1E2;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #F5881A;
+		color: #F5881A;
+	}
+	.icon-shoucang1{
+			color: #EB4278;
+	}
 </style>

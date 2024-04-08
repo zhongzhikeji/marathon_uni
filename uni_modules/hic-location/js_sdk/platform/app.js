@@ -13,7 +13,7 @@ import toast from '@/uni_modules/hic-plugin/js_sdk/message/toast.js';
  */
 export async function getLocation (loading = false, noHideLoading = false) {
 	if (loading) {
-		uni.showLoading({ title: '获取信息中' });
+		uni.showLoading({ title: '获取当前地址中' });
 	}
 	try {
 		// 定位 获取经纬度

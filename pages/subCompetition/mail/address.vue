@@ -1,8 +1,7 @@
 <template>
 	<view>
-		<view class='line'>
-			<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/line.jpg' v-if="addressList.length"></image>
-		</view>
+		<u-navbar bgColor='transparent' title="地址管理" :safeAreaInsetTop="true" :placeholder='true' :fixed="false" :autoBack="true">
+		</u-navbar>
 		<view class='address-management' :class='addressList.length === 0 ? "fff":""'>
 			<radio-group class="radio-group" @change="radioChange" v-if="addressList.length">
 				<view class='item borRadius14' v-for="(item,index) in addressList" :key="index">
@@ -49,16 +48,16 @@
 	<!-- 		<view class='addressBnt bg-color' @click='addAddress'>
         <text class='iconfont icon-tianjiadizhi' />添加新地址12
       </view> -->
-	  <view class='addressBnt bg-color on'  @click='addAddress'>
-	    <text class='iconfont icon-tianjiadizhi' />添加新地址
+	  <view class='addressBnt bg-eb on'  @click='addAddress'>
+	    <text class='iconfont icon-tianjiadizhi' />新增地址
 	  </view>
 	<!-- 		<view class='addressBnt wxbnt' @click='getWxAddress'>
         <text class='iconfont icon-weixin2' />导入微信地址
       </view> -->
 			<!-- #endif -->
 			<!-- #ifdef H5-->
-			<view class='addressBnt bg-color' :class="this.$wechat.isWeixin()?'':'on'" @click='addAddress'>
-        <text class='iconfont icon-tianjiadizhi' />添加新地址
+			<view class='addressBnt bg-eb' :class="this.$wechat.isWeixin()?'':'on'" @click='addAddress'>
+        <text class='iconfont icon-tianjiadizhi' />新增地址
       </view>
 	<!-- 		<view v-if="this.$wechat.isWeixin()" class='addressBnt wxbnt' @click='getAddress'>
         <text class='iconfont icon-weixin2' />导入微信地址
@@ -403,15 +402,17 @@
 		width: 100%;
 		background-color: #fff;
 		bottom: 0;
-		height: 106rpx;
+		height: 140rpx;
 		padding: 0 30rpx;
 		box-sizing: border-box;
+		box-shadow: 0rpx -6rpx 40rpx 2rpx rgba(0,0,0,0.1);
+		border-radius: 34rpx 34rpx 0rpx 0rpx;
 	}
 
     .footer .addressBnt {
 		width: 330rpx;
 		height: 76rpx;
-		border-radius: 50rpx;
+		border-radius: 15rpx;
 		text-align: center;
 		line-height: 76rpx;
 		font-size: 30rpx;

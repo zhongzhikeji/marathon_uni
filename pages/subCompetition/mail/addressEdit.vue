@@ -38,13 +38,8 @@
 					</checkbox-group>
 				</view>
 
-				<button class='keepBnt bg-color' form-type="submit">立即保存</button>
-				<!-- #ifdef MP -->
-				<view class="wechatAddress" v-if="!id" @click="getWxAddress">导入微信地址</view>
-				<!-- #endif -->
-				<!-- #ifdef H5 -->
-				<view class="wechatAddress" v-if="this.$wechat.isWeixin() && !id" @click="getAddress">导入微信地址</view>
-				<!-- #endif -->
+				<button class='keepBnt bg-eb' form-type="submit">立即保存</button>
+			
 			</view>
 		</form>
 	</view>

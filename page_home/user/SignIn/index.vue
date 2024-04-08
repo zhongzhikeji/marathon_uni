@@ -11,11 +11,11 @@
 					<view class="flex alcenter">
 						<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/nl.png"
 							width="22px" height="28"></u--image>
-						<text class="cl-eb ft28 ftw600 ml5">8544</text>
+						<text class="cl-eb ft28 ftw600 ml5">{{info.totalPoint}}</text>
 					</view>
 					<view class="flex">
 						<view class="boxBtn mr20">兑换奖励</view>
-						<view class="boxBtn">去抽奖</view>
+						<view class="boxBtn" @click="$u.route('/page_home/lottery-draw/lottery-draw')">去抽奖</view>
 					</view>
 
 				</view>
@@ -35,7 +35,7 @@
 							<view>
 								<view class="flex">
 									<view class="cl-placeholder">已签到：</view>
-									<view>4天</view>
+									<view>{{info.continuousDay}}天</view>
 								</view>
 								<view class="mt5">连续签到30天能量翻倍奖励</view>
 							</view>
@@ -46,66 +46,30 @@
 										activeColor="#31D0C8"></u-switch>
 								</view>
 							</view>
-							<view class="btn" @click="onsignln">签到</view>
+							<view class="btn" @click="onsignln" v-show="!info.todaySignIn">签到</view>
+							<view class="btn1" v-show="info.todaySignIn">已签到</view>
 						</view>
 						<view class="flex mt20">
-							<view class="flex cloum ">
+							<view class="flex cloum " v-for='(i,index) in 6'>
 								<view class="flex alcenter">
-									<!-- <u--image :showLoading="true"
-										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
-										width="36px" height="36px"></u--image> -->
 									<u--image :showLoading="true"
+									 v-if="index + 1 <= info.continuousDay"
 										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao2.png"
 										width="36px" height="36px"></u--image>
-									<view class="nborder"></view>
-								</view>
-								<view class="ml5 mt10 cl-eb ">1天</view>
-							</view>
-							<view class="flex cloum ">
-								<view class="flex alcenter">
 									<u--image :showLoading="true"
+									 v-else
 										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
 										width="36px" height="36px"></u--image>
+							
 									<view class="nborder"></view>
 								</view>
-								<view class="ml5 mt10">2天</view>
+								<view class="ml5 mt10" :class="{ 'cl-eb': index + 1 <= info.continuousDay }">{{index+1}}天</view>
 							</view>
-							<view class="flex cloum ">
-								<view class="flex alcenter">
-									<u--image :showLoading="true"
-										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
-										width="36px" height="36px"></u--image>
-									<view class="nborder"></view>
-								</view>
-								<view class="ml5 mt10">3天</view>
-							</view>
-							<view class="flex cloum ">
-								<view class="flex alcenter">
-									<u--image :showLoading="true"
-										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
-										width="36px" height="36px"></u--image>
-									<view class="nborder"></view>
-								</view>
-								<view class="ml5 mt10">4天</view>
-							</view>
-							<view class="flex cloum ">
-								<view class="flex alcenter">
-									<u--image :showLoading="true"
-										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
-										width="36px" height="36px"></u--image>
-									<view class="nborder"></view>
-								</view>
-								<view class="ml5 mt10">5天</view>
-							</view>
-							<view class="flex cloum ">
-								<view class="flex alcenter">
-									<u--image :showLoading="true"
-										src="https://marathon.zznet.live/file/uploadPath/image/home/qiandao1.png"
-										width="36px" height="36px"></u--image>
-
-								</view>
-								<view class="ml5 mt10">6天</view>
-							</view>
+						
+						
+						
+					
+						
 						</view>
 
 					</view>
@@ -225,6 +189,7 @@
 </template>
 
 <script>
+	import * as Api from '@/api/member/signin.js';
 	export default {
 		data() {
 			return {
@@ -232,15 +197,29 @@
 				show: false,
 				list: [{
 					url: ''
-				}]
+				}],
+				info:{}
 			}
+		},
+		onLoad() {
+			this.getUserSignln()
 		},
 		methods: {
 			change(e) {
 				console.log('change', e);
 			},
 			onsignln() {
+				Api.createSignInRecord().then(res=>{
+					if(res.data.todaySignIn){
+						this.getUserSignln()
+					}
+				})
 				this.show = true
+			},
+			getUserSignln(){
+				Api.getSignInRecordSummary().then(res=>{
+					this.info = res.data
+				})
 			},
 			open() {
 				console.log('open');
@@ -311,6 +290,13 @@
 				padding: 12rpx 30rpx;
 				background: linear-gradient(180deg, #EB3D74 0%, #F23BBB 100%);
 				box-shadow: 0rpx 0rpx 12rpx 2rpx rgba(238, 60, 144, 0.31);
+				border-radius: 36rpx 36rpx 36rpx 36rpx;
+			}
+			.btn1 {
+				color: #fff;
+				padding: 12rpx 30rpx;
+				background: #eee;
+				box-shadow: 0rpx 0rpx 12rpx 2rpx ;
 				border-radius: 36rpx 36rpx 36rpx 36rpx;
 			}
 		}

@@ -80,7 +80,7 @@
 <style scoped lang="scss">
 	.product-bg {
 		width: 100%;
-		height: 750rpx;
+		height: 430rpx;
 		position: relative;
 	}
 

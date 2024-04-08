@@ -5,7 +5,7 @@
 				<view class="flex alcenter">
 					<u-icon name="arrow-left" color="#000" size="18" @click="onCompetition"></u-icon>
 					<!-- <view class="ft18 cl-w ml5">{{order_pay_info.spuName}}</view> -->
-					<view class="ft18 ml5">标题</view>
+					<view class="ft18 ml5">{{info.spuName}}</view>
 				</view>
 
 			</view>
@@ -40,19 +40,19 @@
 				<view class="ml15 mr15 pt10 pb10">
 					<view class="ft12 mb10 cl-partner">活动信息</view>
 					<u-line></u-line>
-					<view class="ft16 ftw600 mt5 mb5">2023摇滚马拉松洛阳站</view>
+					<view class="ft16 ftw600 mt5 mb5">{{info.spuName}}</view>
 					<view class="flex alcenter">
 						<u-icon name="clock" color="#EB3D74" size="12"></u-icon>
-						<view class="ml5">2022-02-21 14:00</view>
+						<view class="ml5">{{formatDate(info.meetStartTime)}}</view>
 					</view>
 					<view class="flex alcenter mt5 mb10">
 						<u-icon name="map" color="#2D71FF" size="12"></u-icon>
-						<view class="ml5">福建省厦门市环岛</view>
+						<view class="ml5">{{info.areaName}}</view>
 					</view>
 					<u-line></u-line>
 					<view class="flex space alcenter mt10 mb10 ml5 mr20">
 						<view class="ft14 ftw600">报名组别</view>
-						<view class="ft14 cl-partner">半程马拉松</view>
+						<view class="ft14 cl-partner">{{info.skuName}}</view>
 					</view>
 					<u-line></u-line>
 					<view class="flex mt10">
@@ -81,8 +81,11 @@
 				<view class="ml15 mr15 pt10 pb10 ft12 cl-partner">
 					<view class="ft12  mb10">报名信息</view>
 					<u-line></u-line>
-					<view class="mt10 mb5">姓名：许仙</view>
-					<view>性别：男</view>
+					<view v-for="item in info.participatorItems">
+						<view class="mt10 mb5">姓名：{{item.name}}</view>
+						<view>性别：{{item.gender == 1?'男':'女'}}</view>
+					</view>
+				
 					<view class="mt5 mb10">报名组别：半程马拉松</view>
 					<u-line></u-line>
 					<view class="flex space mt10 mb10">
@@ -138,7 +141,7 @@
 						</view>
 					</view>
 					<view class="flex cloum alcenter">
-						<view class="pdbtn">去抽奖</view>
+						<view class="pdbtn" @click="$u.route('/page_home/lottery-draw/lottery-draw')">去抽奖</view>
 						<view class="cl-placeholder ft12 mt5">获得能量值可抽奖</view>
 					</view>
 				</view>
@@ -208,14 +211,34 @@
 </template>
 
 <script>
+	  import dayjs from '@/plugin/dayjs/dayjs.min.js';
+	    import * as Util from '@/utils/util.js';
+	import * as Api from '@/api/competition/list.js'
 	export default {
 		data() {
 			return {
 				text1: '添加客服微信联系方式，及时获取一手赛事信息',
-				show: false
+				show: false,
+				id:'',
+				info:''
+			}
+		},
+		onLoad(e) {
+			if(e.order_id){
+			 this.getOprderList(e.order_id)
 			}
 		},
 		methods: {
+			onCompetition(){
+				 uni.navigateBack({ 
+				        delta: 1 
+				      }); 	
+			},
+			getOprderList(id){
+				Api.getOrderDetails(id).then(res=>{
+					this.info = res.data
+				})
+			},
 			refund() {
 				this.show = true
 			},
@@ -225,6 +248,12 @@
 			close() {
 				this.show = false
 				// console.log('close');
+			},
+		formatDate(date) {
+			return dayjs(date).format("YYYY-MM-DD");
+		},
+			fen2yuan(price) {
+			  return Util.fen2yuan(price)
 			}
 		}
 	}

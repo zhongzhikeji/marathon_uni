@@ -10,7 +10,7 @@
 					<view class="line1">
 						{{ attr.productSelect.spuName }}
 					</view>
-					<view class="money font-color">
+					<view class="money cl-eb">
 						￥<text class="num">{{ fen2yuan(attr.productSelect.price) }}</text>
 						<text class="stock" v-if='isShow'>库存: {{ attr.productSelect.stock }}</text>
 						<text class='stock' v-if="attr.productSelect.limitCount > 0">限购: {{ attr.productSelect.limitCount }}</text>
@@ -261,9 +261,9 @@
 	}
 
 	.product-window .productWinList .item .listn .itemn.on {
-		color: $theme-color;
+		color: #EB3D74;
 		background: rgba(255, 244, 243, 1);
-		border-color: $theme-color;
+		border-color: #EB3D74;
 	}
 
 	.product-window .productWinList .item .listn .itemn.limit {

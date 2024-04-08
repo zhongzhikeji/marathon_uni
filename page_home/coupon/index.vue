@@ -1,84 +1,144 @@
 <template>
-	<view>
-		<view class="ft24 text-center mt20 mb30 ftw600">多张礼卷一起领</view>
-		<view class="coupon">
-			<view class="ft24">￥5</view>
-			<view>
-				<view>满6元使用</view>
-				<view>有效期至 2023-03-32 12:23</view>
-			</view>
-			<view>
-					<u-button type="error"  style="height: 60rpx;">领取</u-button>
-			</view>
-		</view>
-		<view class="coupon">
-			<view class="ft24">￥5</view>
-			<view>
-				<view>满6元使用</view>
-				<view>有效期至 2023-03-32 12:23</view>
-			</view>
-			<view>
-					<u-button type="error"  style="height: 60rpx;">领取</u-button>
-			</view>
-		</view>
-		<view class="title">
-			<u-divider text="会员专属"></u-divider>
-		</view>
-		<view class="coupon_mem">
-			<view class="ft14">会员专属</view>
-			<view class="flex space alcenter">
-				<view>
-					<view class="ft24">￥5</view>
+	<view class="coupon">
+		<u-navbar bgColor='transparent' title="领卷中心" :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
+			:autoBack="true">
+				</u-navbar>
+			<view class="item">
+				<view class="bg-w ml10 mr10 radis pb15">
+					<u-tabs :list="list4" lineWidth="20" lineHeight="7" :lineColor="`url(${lineBg}) 100% 100%`" :activeStyle="{
+					          color: '#EB3D74',
+					          fontWeight: 'bold',
+							  fontSize:'16px',
+					          transform: 'scale(1.05)',
+					
+					      }" :inactiveStyle="{
+					          color: '#606266',
+					          transform: 'scale(1)'
+					      }" itemStyle="padding-left: 10px; padding-right: 10px; height: 50px;" @click="onTabClick" :scrollable='false'>
+					</u-tabs>
+					<view class="pl10 pr10 mt10">
+						<view class="bg_b mb10">
+							<view class="flex alcenter h-full space cl-8bf " style="width: 60%;">
+								<view class="ml20 ftw600">￥ <text class="ft28">25</text></view>
+								<view>
+									<view class="ftw600">满45元使用</view>
+									<view class="ft12">有效期至: 2023-03-10</view>
+									<view>使用须知：</view>
+								</view>
+							</view>
+						</view>
+					<view class="bg_y">
+						<view class="flex alcenter h-full space cl-8d3 " style="width: 60%;">
+							<view class="ml20 ftw600">￥ <text class="ft28">25</text></view>
+							<view>
+								<view class="ftw600">满45元使用</view>
+								<view class="ft12">有效期至: 2023-03-10</view>
+								<view>使用须知：</view>
+							</view>
+						</view>
+					</view>
+					</view>
+					
 				</view>
-				
-				<view>
-					<view>满6元使用</view>
-					<view>有效期至 2023-03-32 12:23</view>
-				</view>
-				<view>
-						<u-button type="error"  style="height: 60rpx;">领取</u-button>
-				</view>
-			</view>
-		
-		</view>
-		<view class="coupon_mem">
-			<view class="ft14">会员专属</view>
-			<view class="flex space alcenter">
-				<view>
-					<view class="ft24">￥5</view>
-				</view>
-				
-				<view>
-					<view>满6元使用</view>
-					<view>有效期至 2023-03-32 12:23</view>
-				</view>
-				<view>
-						<u-button type="error"  style="height: 60rpx;">领取</u-button>
+				<view class="bg-w ml10 mr10 radis pb15 mt20">
+						<view class="pl10 pr10 pt10">
+							<view class="flex alcenter mb10">
+								<view class="title_shu mr5"></view>
+								<view class="ftw600 ft16">会员专属</view>
+							</view>
+							<view class="bg_r">
+								<view class="flex alcenter h-full space cl-eb " style="width: 60%;">
+									<view class="ml20 ftw600">￥ <text class="ft28">25</text></view>
+									<view>
+										<view class="ftw600">满45元使用</view>
+										<view class="ft12">有效期至: 2023-03-10</view>
+										<view>使用须知：</view>
+									</view>
+								</view>
+							</view>
+						</view>
 				</view>
 			</view>
-		
-		</view>
+	
+	     <view class="footer">
+			 <view class="items" @click="$u.route('/page_home/coupon/myCouon')">我的优惠劵</view>
+		 </view>
 	</view>
 </template>
 
 <script>
+	export default{
+		data(){
+			return{
+				lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
+				list4: [{
+						name: '全部'
+					},
+					{
+						name: '商品优惠劵'
+					},
+					{
+						name: '赛事优惠劵'
+					}
+				]
+			}
+		},
+		methods:{
+			onTabClick(){}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
 	.coupon{
-		margin: 40rpx;
-		background-color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 30rpx 20rpx;
+	  background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/coupon_bg.png');
+	  background-size: 100% 100%;
+	  height: 400rpx;
+	  position: relative;
+	  .item{
+		  position: absolute;
+		  top:300rpx;
+		  width: 100%;
+	  }
+	  .bg_b{
+		  background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/coupon_b.png');
+		  background-size: 100% 100%;
+		  height: 204rpx;
+		  
+	  }
+	  .bg_y{
+	  		  background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/coupon_y.png');
+	  		  background-size: 100% 100%;
+	  		  height: 204rpx;
+	  		  
+	  }
+	  .bg_r{
+	  		  background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/coupon_r.png');
+	  		  background-size: 100% 100%;
+	  		  height: 204rpx;
+	  		  
+	  }
 	}
-	.title{
-		margin: 40rpx 15%;
+.title_shu{
+	width: 10rpx;
+	height: 30rpx;
+	background: #EB3D74;
+}
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	 padding: 40rpx 20rpx;
+	background: #FFFFFF;
+	box-shadow: 0rpx -6rpx 40rpx 2rpx rgba(0,0,0,0.1);
+	border-radius: 34rpx 34rpx 0rpx 0rpx;
+	.items{
+		 background: #EB3D74;
+		 box-shadow: 0rpx 0rpx 22rpx 2rpx rgba(180,5,60,0.42);
+		 border-radius: 12rpx;
+		 padding: 20rpx;
+		 text-align: center;
+		 color: #fff;
 	}
-	.coupon_mem{
-		margin: 20rpx 40rpx;
-		background-color: #fff;
-		padding: 20rpx 20rpx 40rpx 20rpx;
-	}
+}
 </style>

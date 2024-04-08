@@ -16,7 +16,7 @@
 			      }"  :inactiveStyle="{
 			          color: '#8F91A1',
 			          transform: 'scale(1)'
-			      }" itemStyle="padding-left: 20px; padding-right: 20px; height: 50px;" :scrollable='false' @click="click">
+			      }" itemStyle="padding-left: 10px; padding-right: 10px; height: 50px;" :scrollable='false' @click="click">
 			</u-tabs>
 			</view>
 
@@ -227,6 +227,9 @@
 	}
 </style>
 <style lang="scss" scoped>
+	.container{
+	margin: 20rpx;	
+	}
 	.wrapper {
 		height: 100%;
 		background-color: #fff;

@@ -1,37 +1,52 @@
 <template>
-	<view>
-		<view class="header">
-			<view class="flex alcenter center cloum pt30 pb20">
-				<u-icon label="883" labelSize='25' labelColor='#000' color='#000' size="30" name="heart-fill"></u-icon>
-				<view class="mt10 ft16 ftw600">我的能量</view>
-				<view class="ft12 mt5">抵扣现金,换直通名额,抽奖福利</view>
-			</view>
-		</view>
-		<view class="flex bg-default alcenter space pt15 pb15 pl10 pr10">
-			<view>本月</view>
-			<view>获得 248 扣除230</view>
-		</view>
-		<view class="bg-w pl10 pr10 pt10 pb10">
-			<view class="flex space alcenter">
-				<view class="ft16 ftw600">每日签到</view>
-				<view class="ft16 ftw600">+2</view>
-			</view>
-			<view class="ft14 mt5">2022-12-12 12:12:12</view>
-		</view>
-		<view class="bg-w pl10 pr10 pt10 pb10">
-			<view class="flex space alcenter">
-				<view class="ft16 ftw600">购买商品</view>
-				<view class="ft16 ftw600">+2</view>
-			</view>
-			<view class="ft14 mt5">2022-12-12 12:12:12</view>
-		</view>
-		<view class="bg-w pl10 pr10 pt10 pb10">
-			<view class="flex space alcenter">
-				<view class="ft16 ftw600">邀请好友注册</view>
-				<view class="ft16 ftw600">+2</view>
-			</view>
-			<view class="ft14 mt5">2022-12-12 12:12:12</view>
-		</view>
+	<view class="energy">
+		<u-navbar bgColor='transparent' title="我的能量" :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
+			:autoBack="true">
+				</u-navbar>
+				<view class="bg-w mt10">
+					<view class="pt10 pl10 pr10 pb10">
+						<view class="bg">
+							<view class="flex cloum  h-full alcenter cl-w">
+								<view class="flex alcenter mt10">
+									<u--image :showLoading="true"
+									src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/shandian.png" width="30rpx"
+										height="38rpx"></u--image>
+										<view class="ft36 ftw600 ml5">8544</view>
+								</view>
+								<view>我的能量值</view>
+								<view class="mt10">抵扣现金，换直通名额，抽奖福利</view>
+							</view>
+						</view>
+						<view class="bg-f8 mt20 pt10 pb10">
+							<view class="ml10 mr10 flex space alcenter">
+								<view>本月</view>
+								<view class="flex alcenter">
+									<view class="mr10">
+										获得：
+										<text class="cl-eb">248</text>
+									</view>
+									<view>
+										扣除：
+										<text class="cl-eb">2300</text>
+									</view>
+								</view>
+							</view>
+						
+						</view>
+						<view class="mt20">
+							<view v-for="i in 4">
+								<view class="flex space alcenter mb10">
+									<view>
+									<view class="ftw600">每日签到</view>
+									<view class="cl-partner">2023-06-28 12:17:49</view>
+									</view>
+									<view class="cl-eb">+2</view>
+								</view>
+							</view>
+						
+						</view>
+					</view>
+				</view>
 	</view>
 </template>
 
@@ -39,9 +54,11 @@
 </script>
 
 <style lang="scss" scoped>
-	.header{
-		margin: 30rpx 20rpx;
-		 background-color: #fff;
-		 border-radius: 15rpx;
+.energy{
+	.bg{
+		background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/nengliangBg.png');
+		background-size: 100% 100%;
+		height: 256rpx;
 	}
+}
 </style>

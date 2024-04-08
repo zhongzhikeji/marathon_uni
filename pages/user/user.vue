@@ -1,299 +1,397 @@
 <template>
-  <view class="container">
-    <view class="user-header">
-      <view class="user-info" @click="pageRouter('/page_home/profile/profile')">
-        <u-avatar size="60" shape="circle" :src="userInfo.avatar"></u-avatar>
-        <view class="info-text">
-          <view class="user-nickname">{{ hasLogin ? userInfo.nickname || '会员用户' : '匿名用户' }}</view>
-          <view class="user-mobile">{{ hasLogin ? userInfo.mobile || ' ' : '登录/注册' }}</view>
-        </view>
-		<view>
-		</view>
-      </view>
-      <view class="user-setting">
+	<view class="container">
+		<view class="wrapper">
+			<u-navbar :safeAreaInsetTop="true" :placeholder='true' :fixed="false" bgColor="transparent">
+				<view class="flex" slot="left">
 
-        <u-icon v-if="hasLogin" name="setting" color="#939393" size="22" @click="pageRouter('/page_home/setting/setting')"></u-icon>
-      </view>
-    </view>
-  <view class="stat-box">
-      <u-grid :border="true" col="3" @click="onchangeCollect">
-        <u-grid-item v-for="(item, index) in statList" :key="index">
-          <text class="grid-value">{{ item.value }}</text>
-          <text class="grid-title">{{ item.title }}</text>
+					<view class="ft18 ftw600">我的</view>
 
-        </u-grid-item>
-      </u-grid>
-    </view>
-	  <view class="ml20 mr20" @click="$u.route('/pages/user/vip')">
-		  <view class="flex alcenter pt10 pb10 space">
-			  <u--image width="127rpx" height="118rpx" src="https://marathon.zznet.live/file/uploadPath/img/vip.png"></u--image>
-			  <view class="mr10">
-				  <view class="ft18 ftw600" style="color:#651807">马拉松 <text class="ft14">·</text>超级VIP</view>
-				  <view class="ft12 mt5" style="color:#B1775E">享积分 报名 优惠券等众多特权</view>
-			  </view>
-			  <view style="width:80px">
-				  <u-button shape='circle' color='#3E3E3E' style="color:#FFCFB4">去开通</u-button>
-			  </view>
-		  </view>
-	  </view>
-    <u-gap height="10" bgColor="#f3f3f3"></u-gap>
-	<view class="flex alcenter space ml10 mr10 pt15 pb15">
-		<view class="flex alcenter ml10 mr10 ">
-			<view>
-				<view class="ft16 ftw600">赛事订单</view>
-				<view>查询您的报名赛事</view>
+				</view>
+			</u-navbar>
+			<view class="user-header">
+				<view class="user-info" @click="pageRouter('/page_home/profile/profile')">
+					<u-avatar size="60" shape="circle" :src="userInfo.avatar"></u-avatar>
+					<view class="info-text">
+						<view class="user-nickname">{{ hasLogin ? userInfo.nickname || '马拉松选手' : '匿名用户' }}</view>
+						<view class="user-mobile">{{ hasLogin ? userInfo.mobile || ' ' : '登录/注册' }}</view>
+					</view>
+					<view>
+					</view>
+				</view>
+				<view class="user-setting flex">
+					<div class="mr20 flex cloum alcenter" v-if="hasLogin">
+						<u-icon 
+							name="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/userSetting.png" size="25"
+							@click="pageRouter('/page_home/setting/setting')"></u-icon>
+						<view class="ft12 mt5">设置</view>
+					</div>
+					<div class="flex cloum alcenter"  v-if="hasLogin">
+						<u-icon
+							name="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_Lottery.png" size="25"
+							@click="$u.route('/page_home/lottery-draw/lottery-draw')"></u-icon>
+						<view class="ft12 mt5">抽奖</view>
+					</div>
+				</view>
 			</view>
-		<!-- 	 <u--image width="80rpx" height="80rpx" src="https://cdn.uviewui.com/uview/album/1.jpg"></u--image> -->
+			<view class="stat-box">
+				<u-grid :border="true" col="4" @click="onchangeCollect">
+					<u-grid-item v-for="(item, index) in statList" :key="index">
+						<text class="grid-value">{{ item.value }}</text>
+						<text class="grid-title">{{ item.title }}</text>
+
+					</u-grid-item>
+				</u-grid>
+			</view>
+			<view class="ml20 mr20 userVip" @click="$u.route('/pages/user/vip')">
+				<view class="flex alcenter pt10 pb10 space ml10 mr10">
+					<u--image width="86rpx" height="86rpx"
+						src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/vipLogo.png"></u--image>
+					<view class="mr10">
+						<view class="ft16 ftw600" style="color:#FFF5B7">VIP会员</view>
+						<view class="ft12 mt5" style="color:#E7D2B6">99元开通年度VIP，享受更多精彩赛事服务</view>
+					</view>
+					<view class="flex cloum alcenter mr10" style="color: #E7D2B6;">
+						<text>立即</text>
+						<text>开通</text>
+					</view>
+				</view>
+			</view>
 		</view>
-	<view class="flex alcenter ml10 mr10" @click="$u.route('/page_home/user/order_list/index')">
+
+		<view class="ml10 mr10 mt10">
+			<u-notice-bar :text="text1" bgColor='#FFEEF3' color='#EB3D74' style="border-radius: 20px;"></u-notice-bar>
+		</view>
+		<view class="flex alcenter space ml10 mr10 pt15 pb15">
+			<view class="user_Com" @click="$u.route('/page_home/user/matchOrder/index')">
+				<view class="flex center alcenter h-full">
+					<u--image width="75rpx" height="65rpx"
+						src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_Com.png"></u--image>
+					<view class="ft14 ml5 cl-w">赛事订单</view>
+
+				</view>
+
+			</view>
+			<view class="user_sp" @click="$u.route('/page_home/user/order_list/index')">
+				<view class="flex center alcenter h-full">
+					<u--image width="75rpx" height="65rpx"
+						src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_sp.png"></u--image>
+					<view class="ft14 ml5 cl-w">商品订单</view>
+
+				</view>
+			</view>
+		</view>
+		<u-gap height="10" bgColor="#f3f3f3"></u-gap>
+		<view class="bg-w ml10 mr10 radis">
+			<view class="ml10 mr10 pt15 pb15">
+				<view class="flex alcenter space">
+					<view class="flex alcenter">
+						<view class="lines"></view>
+						<view class="ft16 ml5">我的钱包</view>
+					</view>
+					<text class="cl-placeholder">账户信息></text>
+
+				</view>
+				<view class="flex alcenter space mt10">
+				     <view class="cl-eb">
+					
+						 <view>￥<text class="ft24 ftw600">{{fen2yuan(wallet.balance)}}</text></view>
+						 <view class="mt10" v-show="wallet.price != null"><text class="cl-placeholder">新增佣金:</text>￥{{wallet.price}}</view>
+					 </view>
+					<view style="width: 140rpx;">
+						<u-button shape='circle' color='#FFEEF3' style="color:#EB3D74"
+							@click="$u.route('/page_home/user/purse/index')" >详情</u-button>
+					</view>
+
+				</view>
+				<view class="flex around userInfo">
+					<view class="flex" @click="$u.route('/page_home/user/tram/index')">
+						<u-icon name="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_wdtd.png"></u-icon>
+						<text class="ml10" style="color: #2F2F46;">我的团队</text>
+					</view>
+					<u-line direction="col" dashed length="40rpx"></u-line>
+					<view class="flex" @click="$u.route('/pages/order/spread')">
+						<u-icon name="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_tgds.png"></u-icon>
+						<text class="ml10" style="color: #2F2F46;">推广大使</text>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<u-gap height="10" bgColor="#f3f3f3"></u-gap>
 		<view>
-			<view>商城订单</view>
-			<view>查询您的商城订单</view>
+			<view class="ml10 mr10">
+				<view class="order-status-box">
+					<u-grid :border="false" col="4">
+						<u-grid-item v-for="(item, index) in orderStatusList" :key="index"
+							@click="pageRouter(item.path, item.status)">
+							<u-icon :name="item.icon" :size="25"></u-icon>
+							<text class="grid-title" style="line-height: 100rpx;">{{ item.name }}</text>
+						</u-grid-item>
+					</u-grid>
+				</view>
+			</view>
+
 		</view>
-		<!-- <u--image width="80rpx" height="80rpx" src="https://cdn.uviewui.com/uview/album/1.jpg"></u--image> -->
-	</view>
-	</view>
-     <u-gap height="10" bgColor="#f3f3f3"></u-gap>
-	 <view class="bg-w ml10 mr10">
-		 <view class="ml10 mr10 pt15 pb15">
-		 		 <view class="flex">
-		 			<text class="mr15 ft16">钱包余额 (元)</text>
-		 			<u-icon :name="eyes?'eye':'eye-off'" size="20" @click="eyes= !eyes"></u-icon>
-					<!-- <u-icon name="eye-off" size="20"></u-icon> -->
-		 		 </view>
-		 		 <view class="flex alcenter space">
-		 			 <view class="flex alcenter">
-		 				 <text class="ft12" v-show="eyes">￥</text>
-		 				  <text class="ft22 ftw600" v-show="eyes">59.9</text>
-						  <text class="ft16 ftw600" v-show="!eyes">****</text>
-		 			 </view>
-		 			 <view style="width: 150rpx;">
-		 				 <u-button shape='circle' color='#DA1984' style="color:#fff" @click="$u.route('/page_home/user/purse/index')">详情</u-button>
-		 			 </view>
 
-		 		 </view>
-		 		 <view class="flex around userInfo">
-					 <view class="flex">
-						 <u-icon name="https://marathon.zznet.live/file/uploadPath/img/info.png"></u-icon>
-						 <text class="ml10" style="color: #A9776D;">账户信息</text>
-					 </view>
-			<u-line direction="col" dashed length="40rpx"></u-line>
-					 <view class="flex" @click="$u.route('/pages/order/spread')">
-						<u-icon name="https://marathon.zznet.live/file/uploadPath/img/user1.png"></u-icon>
-						<text class="ml10" style="color: #A9776D;">推广大使</text>
-					 </view>
-				 </view>
-		 </view>
-	 </view>
-
-	     <u-gap height="10" bgColor="#f3f3f3"></u-gap>
-    <view>
-   <!--   <view class="order-header">
-        <text class="order-title">我的订单</text>
-        <view class="see-all" @click="pageRouter(orderPage, -1)">
-          <text>查看全部</text>
-          <u-icon name="arrow-right"></u-icon>
-        </view>
-      </view> -->
-       <view class="ml10 mr10">
-		  <view class="order-status-box">
-		    <u-grid :border="false" col="4">
-		      <u-grid-item v-for="(item, index) in orderStatusList" :key="index" @click="pageRouter(item.path, item.status)">
-		        <u-icon :name="item.icon" :size="25"></u-icon>
-		        <text class="grid-title" style="line-height: 100rpx;">{{ item.name }}</text>
-		      </u-grid-item>
-		    </u-grid>
-		  </view>
-	   </view>
-
-    </view>
-
-    <u-gap height="10" bgColor="#f3f3f3"></u-gap>
+		<u-gap height="10" bgColor="#f3f3f3"></u-gap>
 
 
 
-<!--    <u-gap height="10" bgColor="#f3f3f3"></u-gap> -->
+		<!--    <u-gap height="10" bgColor="#f3f3f3"></u-gap> -->
 
-<!--    <u-cell-group class="fun-list">
+		<!--    <u-cell-group class="fun-list">
       <u-cell class="fun-item" :border="false" icon="gift" title="分销中心" isLink></u-cell>
       <u-cell class="fun-item" :border="false" icon="tags" title="领券中心" isLink></u-cell>
       <u-cell class="fun-item" :border="false" icon="coupon" title="我的优惠券" isLink></u-cell>
       <u-cell class="fun-item" :border="false" icon="map" title="收货地址" @click="pageRouter('/pages/address/list')" isLink></u-cell>
     </u-cell-group> -->
-  </view>
+	</view>
 </template>
 
 <script>
-import orderStatus from '@/common/orderStatus'
-	import { toLogin } from '@/libs/login.js';
+	import orderStatus from '@/common/orderStatus'
+	import * as authApi from '@/api/member/auth.js'
+	import {
+		toLogin
+	} from '@/libs/login.js';
 	import Cache from '@/utils/cache';
-	import { BACK_URL } from '@/config/cache';
-export default {
-  data() {
-    return {
-      orderPage: '/pages/order/list',
-	  eyes:false,
-      statList: [
-        { value: '0', title: '收藏' },
-        { value: '2', title: '评价' },
-        { value: '883', title: '能量' }
-      ]
-    }
-  },
-  onLoad() {
-    if (this.hasLogin) {
-      this.$store.dispatch('ObtainUserInfo')
-    }
-  },
-  computed: {
-    userInfo() {
-      return this.$store.getters.userInfo
-    },
-    hasLogin() {
-
-      return this.$store.getters.isLogin
-    },
-    orderStatusList() {
-      let orderStatusList = []
-      for (let status in orderStatus) {
-        // if (status !== '40') {
-
-        // }
-		  orderStatusList.push({ name: orderStatus[status].name, status: status, icon: orderStatus[status].icon,path:orderStatus[status].path })
-      }
-      return orderStatusList
-    }
-  },
-  methods: {
-    pageRouter(pageUrl, param) {
-			console.log(Cache)
-      if (!this.hasLogin) {
-    Cache.set(BACK_URL, '')
-    toLogin();
-      } else if (pageUrl) {
-        uni.$u.route(pageUrl, {
-          status: param
-        })
-      } else {
-        uni.$u.route(pageUrl)
-      }
-    },
-		onchangeCollect(name){
-			if(name == 0){
-				
-			this.$u.route('/page_home/user/collect/index')
-			}else if(name == 1){
-				console.log('评价')
-			}else{
-				this.$u.route('/pagg_home/user/energy/index')
+	  import * as Util from '@/utils/util.js';
+	import {
+		BACK_URL
+	} from '@/config/cache';
+	export default {
+		data() {
+			return {
+				orderPage: '/pages/order/list',
+				eyes: false,
+				text1: '江西上饶半马赛事推荐田协认证 2023铅山..',
+				statList: [
+				],
+				wallet:{}
 			}
 		},
-    logout() {
-      uni.showModal({
-        title: '提示',
-        content: '您确定要退出登录吗',
-        success: res => {
-          if (res.confirm) {
-            this.$store.dispatch('Logout')
-          } else if (res.cancel) {
-            //console.log('用户点击取消')
-          }
-        }
-      })
-    }
-  }
-}
+		onLoad() {
+			// if (this.hasLogin) {
+			// 	this.$store.dispatch('ObtainUserInfo')
+			// }
+			this.getUserInfos()
+		},
+		computed: {
+			userInfo() {
+				return this.$store.getters.userInfo
+			},
+			hasLogin() {
+
+				return this.$store.getters.isLogin
+			},
+		
+			orderStatusList() {
+				let orderStatusList = []
+				for (let status in orderStatus) {
+					// if (status !== '40') {
+
+					// }
+					orderStatusList.push({
+						name: orderStatus[status].name,
+						status: status,
+						icon: orderStatus[status].icon,
+						path: orderStatus[status].path
+					})
+				}
+				return orderStatusList
+			}
+		},
+		methods: {
+			pageRouter(pageUrl, param) {
+				console.log(Cache)
+				if (!this.hasLogin) {
+					Cache.set(BACK_URL, '')
+					toLogin();
+				} else if (pageUrl) {
+					uni.$u.route(pageUrl, {
+						status: param
+					})
+				} else {
+					uni.$u.route(pageUrl)
+				}
+			},
+			getUserInfos(){
+				authApi.getUserInfo().then(res=>{
+					this.statList = [
+						{
+						 value:res.data.favoriteNum,
+						 title:'收藏'
+						},
+						{
+						 value:res.data.couponNum,
+						 title:'优惠劵'
+						},
+						{
+						 value:res.data.commentNum,
+						 title:'评价'
+						},
+						{
+						 value:res.data.point,
+						 title:'能量'
+						},
+					]
+					this.wallet = res.data.wallet
+					console.log(res.data.wallet)
+				})
+			},
+			onchangeCollect(name) {
+				console.log(name)
+				if (name == 0) {
+
+					this.$u.route('/page_home/user/collect/index')
+				} else if (name == 1) {
+				this.$u.route('/page_home/coupon/myCouon')
+				} else if(name == 3) {
+					console.log(name)
+					this.$u.route('/page_home/user/energy/index')
+				}
+			},
+			fen2yuan(price) {
+			  return Util.fen2yuan(price)
+			},
+			logout() {
+				uni.showModal({
+					title: '提示',
+					content: '您确定要退出登录吗',
+					success: res => {
+						if (res.confirm) {
+							this.$store.dispatch('Logout')
+						} else if (res.cancel) {
+							//console.log('用户点击取消')
+						}
+					}
+				})
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
-	.u-border-right{
+	.u-border-right {
 		height: 25px;
 	}
-.user-header {
-  // background-color: #fff;
-  @include flex-space-between;
-  padding: 30rpx;
-  height: 200rpx;
 
-  .user-info {
-    @include flex-left;
-    align-items: center;
+	.wrapper {
+		background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/user_bg.png');
+		background-size: 100% 100%;
+	}
 
-    .info-text {
-      margin-left: 20rpx;
+	.userVip {
+		background-image: url('https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/userVip.png');
+		background-size: 100% 100%;
+	}
 
-      .user-nickname {
-        font-size: 30rpx;
-        font-weight: 700;
-        line-height: 50rpx;
-      }
+	.user-header {
+		// background-color: #fff;
+		@include flex-space-between;
+		padding: 30rpx;
+		height: 200rpx;
 
-      .user-mobile {
-        font-size: 24rpx;
-        font-weight: 700;
-        color: #939393;
-        line-height: 50rpx;
-      }
-    }
-  }
+		.user-info {
+			@include flex-left;
+			align-items: center;
 
-  .user-setting {
-    margin-right: 5rpx;
-  }
-}
+			.info-text {
+				margin-left: 20rpx;
 
-.order-header {
-  @include flex-space-between;
-  padding: 20rpx 30rpx;
-  border-bottom: $custom-border-style;
+				.user-nickname {
+					font-size: 30rpx;
+					font-weight: 700;
+					line-height: 50rpx;
+				}
 
-  .order-title {
-    color: #333333;
-    font-size: 34rpx;
-  }
+				.user-mobile {
+					font-size: 24rpx;
+					font-weight: 700;
+					color: #939393;
+					line-height: 50rpx;
+				}
+			}
+		}
 
-  .see-all {
-    height: 40rpx;
-    @include flex-right;
-    color: #666666;
-    font-size: 26rpx;
-  }
-}
+		.user-setting {
+			margin-right: 5rpx;
+		}
+	}
 
-.order-status-box {
-  padding: 50rpx 0;
-  background-color: #fff;
+	.order-header {
+		@include flex-space-between;
+		padding: 20rpx 30rpx;
+		border-bottom: $custom-border-style;
 
-}
+		.order-title {
+			color: #333333;
+			font-size: 34rpx;
+		}
 
-.stat-box {
-  padding: 20rpx 0;
-}
+		.see-all {
+			height: 40rpx;
+			@include flex-right;
+			color: #666666;
+			font-size: 26rpx;
+		}
+	}
 
-.grid-title {
-  line-height: 50rpx;
-  font-size: 26rpx;
+	.order-status-box {
+		padding: 50rpx 0;
+		background-color: #fff;
 
-}
+	}
 
-.grid-value {
+	.stat-box {
+		padding: 20rpx 0;
+	}
 
-  font-size: 36rpx;
-  font-weight: 700;
-  color: #2b85e4;
-}
+	.grid-title {
+		line-height: 50rpx;
+		font-size: 26rpx;
+         color: #9CA1B2;
+	}
 
-.fun-list {
-  .fun-item {
-    padding-top: 10rpx;
-    padding-bottom: 10rpx;
-    border-bottom: $custom-border-style;
-  }
-}
-.userInfo{
-	margin-top: 20rpx;
-	background-color: #FFF7F7;
-	padding: 25rpx 0;
-	border-radius: 20rpx;
-}
+	.grid-value {
+
+		font-size: 36rpx;
+		font-weight: 700;
+		
+	}
+
+	.fun-list {
+		.fun-item {
+			padding-top: 10rpx;
+			padding-bottom: 10rpx;
+			border-bottom: $custom-border-style;
+		}
+	}
+
+	.userInfo {
+		margin-top: 20rpx;
+		background-color: #f5f5f5;
+		padding: 25rpx 0;
+		border-radius: 20rpx;
+	}
+
+	.user_Com {
+		width: 340rpx;
+		height: 134rpx;
+		background: linear-gradient(271deg, #EB3D74 0%, #F23BBB 100%);
+		border-radius: 12rpx 12rpx 12rpx 12rpx;
+	}
+
+	.user_sp {
+		width: 340rpx;
+		height: 134rpx;
+		background: linear-gradient(272deg, #2D71FF 0%, #69AEFE 100%);
+		border-radius: 12rpx 12rpx 12rpx 12rpx;
+	}
+
+	.lines {
+		width: 10rpx;
+		height: 30rpx;
+		background: #EB3D74;
+	}
 </style>

@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<u-navbar bgColor='transparent' title="参赛选手" :safeAreaInsetTop="true" :placeholder='true' :fixed="false" :autoBack="true">
+		</u-navbar>
 		<view class='line'>
 
 			<!-- <image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/line.jpg' v-if="addressList.length"></image> -->
@@ -8,10 +10,18 @@
 			<radio-group class="radio-group" @change="radioChange" v-if="addressList.length">
 				<view class='item borRadius14' v-for="(item,index) in addressList" :key="index">
 					<view class='address' @click='goOrder(item.id)'>
-						<view class='consignee'>姓名：{{ item.name }}
 
-            </view>
-						<view>身份证： {{item.idCard}}</view>
+
+						<view class="flex alcenter">
+							<view class='consignee mr10'>姓名：{{ item.name }}
+
+							</view>
+							<u--image width="19rpx" height="26rpx"
+								src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/nan.png" v-show="item.gender==1"></u--image>
+								<u--image width="21rpx" height="22rpx"
+									src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/lv.png" v-show="item.gender==2"></u--image>
+						</view>
+						<view class="cl-ae">身份证： {{item.idCard}}</view>
 					</view>
 					<view class='operation acea-row row-between-wrapper'>
 						<!-- #ifndef MP -->
@@ -26,11 +36,11 @@
 						<!-- #endif -->
 						<view class='acea-row row-middle'>
 							<view @click='editAddress(item.id)'>
-                <text class='iconfont icon-bianji' />编辑
-              </view>
+								<text class='iconfont icon-bianji' />编辑
+							</view>
 							<view @click='delAddress(index)'>
-                <text class='iconfont icon-shanchu' />删除
-              </view>
+								<text class='iconfont icon-shanchu' />删除
+							</view>
 						</view>
 					</view>
 				</view>
@@ -40,7 +50,7 @@
 			</view>
 			<view class='noCommodity' v-if="addressList.length < 1">
 				<view class='pictrue'>
-				<!-- 	<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noAddress.png'></image> -->
+					<!-- 	<image src='https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/noAddress.png'></image> -->
 				</view>
 			</view>
 			<view style='height:120rpx;'></view>
@@ -48,9 +58,9 @@
 		<view class='footer acea-row row-between-wrapper'>
 
 
-			<view class='addressBnt bg-color on'  @click='addAddress'>
-        <text class='iconfont icon-tianjiadizhi' />新增参赛人
-      </view>
+			<view class='addressBnt bg-eb on' @click='addAddress'>
+				<text class='iconfont icon-tianjiadizhi' />新增参赛人
+			</view>
 
 
 		</view>
@@ -58,12 +68,18 @@
 	</view>
 </template>
 <script>
-	import { editAddress } from '@/api/user.js';
-	import { toLogin } from '@/libs/login.js';
-	import { mapGetters } from "vuex";
+	import {
+		editAddress
+	} from '@/api/user.js';
+	import {
+		toLogin
+	} from '@/libs/login.js';
+	import {
+		mapGetters
+	} from "vuex";
 	import home from '@/components/home';
-  import * as AddressApi from '@/api/member/address.js';
-  export default {
+	import * as AddressApi from '@/api/member/address.js';
+	export default {
 		components: {
 			home
 		},
@@ -73,153 +89,157 @@
 				loading: false,
 				loadTitle: '加载更多',
 
-        // TODO 芋艿：看看后面咋搞回来
-        preOrderNo: '',
-        cartId: '',
-        pinkId: 0,
-        couponId: 0,
+				// TODO 芋艿：看看后面咋搞回来
+				preOrderNo: '',
+				cartId: '',
+				pinkId: 0,
+				couponId: 0,
 				bargain: false, // 是否是砍价
 				combination: false, // 是否是拼团
 				secKill: false, // 是否是秒杀
 			};
 		},
 		computed: mapGetters(['isLogin']),
-		watch:{
-			isLogin:{
+		watch: {
+			isLogin: {
 				handler: function(newV, oldV) {
 					if (newV) {
 						this.getUserAddress(true);
 					}
 				},
-				deep:true
+				deep: true
 			}
 		},
 		onLoad(options) {
-      if (!this.isLogin) {
-        toLogin();
-        return;
-      }
-      this.preOrderNo = options.preOrderNo || 0;
-      this.getAddressList();
+			if (!this.isLogin) {
+				toLogin();
+				return;
+			}
+			this.preOrderNo = options.preOrderNo || 0;
+			this.getAddressList();
 		},
 		onShow: function() {
 			this.getAddressList();
 		},
 		methods: {
-      /**
-       * 获取地址列表
-       */
-      getAddressList: function() {
-        console.log(this.loading)
-        if (this.loading) {
-          return;
-        }
-        this.loading = true;
-        this.loadTitle = '';
-        AddressApi.getcomList(1,10).then(res => {
-          console.log(res.data.list)
-        this.addressList = res.data.list
-          // this.$set(this, 'addressList', res.data.list);
-          this.loadTitle = '我也是有底线的';
-          this.loading = false;
-        }).catch(err => {
-          this.loading = false;
-          this.loadTitle = '加载更多';
-        });
-      },
-      /**
-       * 设置默认地址
-       */
-      radioChange: function(e) {
-        const index = parseInt(e.detail.value);
-        const address = this.addressList[index];
-        if (address === undefined) {
-          return this.$util.Tips({
-            title: '您设置的默认地址不存在!'
-          });
-        }
-		console.log(address)
-		const {id,defaultStatus} = address
-        AddressApi.updateInfo({
-          id,defaultStatus,
-          defaultStatus: true
-        }).then(res => {
-          for (let i = 0, len = this.addressList.length; i < len; i++) {
-            if (i === index) {
-              this.addressList[i].defaultStatus = true;
-            } else {
-              this.addressList[i].defaultStatus = false;
-            }
-          }
-          this.$util.Tips({
-            title: '设置成功',
-            icon: 'success'
-          }, () => {
-            this.$set(this, 'addressList', this.addressList);
-          });
-        }).catch(err => {
-          return this.$util.Tips({
-            title: err
-          });
-        });
-      },
-      /**
-       * 编辑地址
-       */
-      editAddress: function(id) {
-        let cartId = this.cartId,
-          pinkId = this.pinkId,
-          couponId = this.couponId;
-        this.cartId = '';
-        this.pinkId = '';
-        this.couponId = '';
-        uni.navigateTo({
-          url: '/page_home/user/entrant/addInfo?id=' + id
-        })
-      },
-      /**
-       * 删除地址
-       */
-      delAddress: function(index) {
-        const address = this.addressList[index];
-        if (address === undefined) {
-          return this.$util.Tips({
-            title: '您删除的地址不存在!'
-          });
-        }
-        AddressApi.deleteInfo(address.id).then(res => {
-          this.$util.Tips({
-            title: '删除成功',
-            icon: 'success'
-          }, () => {
-            this.addressList.splice(index, 1);
-            this.$set(this, 'addressList', this.addressList);
-          });
-        }).catch(err => {
-          return this.$util.Tips({
-            title: err
-          });
-        });
-      },
-      /**
-       * 新增地址
-       */
-      addAddress: function() {
-        this.cartId = '';
-        this.pinkId = '';
-        this.couponId = '';
-        uni.navigateTo({
-          url: '/page_home/user/entrant/addInfo?preOrderNo=' + this.preOrderNo
-        })
-      },
+			/**
+			 * 获取地址列表
+			 */
+			getAddressList: function() {
+				console.log(this.loading)
+				if (this.loading) {
+					return;
+				}
+				this.loading = true;
+				this.loadTitle = '';
+				AddressApi.getcomList(1, 10).then(res => {
+					console.log(res.data.list)
+					this.addressList = res.data.list
+					// this.$set(this, 'addressList', res.data.list);
+					this.loadTitle = '我也是有底线的';
+					this.loading = false;
+				}).catch(err => {
+					this.loading = false;
+					this.loadTitle = '加载更多';
+				});
+			},
+			/**
+			 * 设置默认地址
+			 */
+			radioChange: function(e) {
+				const index = parseInt(e.detail.value);
+				const address = this.addressList[index];
+				if (address === undefined) {
+					return this.$util.Tips({
+						title: '您设置的默认地址不存在!'
+					});
+				}
+				console.log(address)
+				const {
+					id,
+					defaultStatus
+				} = address
+				AddressApi.updateDefault({
+					id,
+					defaultStatus,
+					defaultStatus: true
+				}).then(res => {
+					for (let i = 0, len = this.addressList.length; i < len; i++) {
+						if (i === index) {
+							this.addressList[i].defaultStatus = true;
+						} else {
+							this.addressList[i].defaultStatus = false;
+						}
+					}
+					this.$util.Tips({
+						title: '设置成功',
+						icon: 'success'
+					}, () => {
+						this.$set(this, 'addressList', this.addressList);
+					});
+				}).catch(err => {
+					return this.$util.Tips({
+						title: err
+					});
+				});
+			},
+			/**
+			 * 编辑地址
+			 */
+			editAddress: function(id) {
+				let cartId = this.cartId,
+					pinkId = this.pinkId,
+					couponId = this.couponId;
+				this.cartId = '';
+				this.pinkId = '';
+				this.couponId = '';
+				uni.navigateTo({
+					url: '/page_home/user/entrant/addInfo?id=' + id
+				})
+			},
+			/**
+			 * 删除地址
+			 */
+			delAddress: function(index) {
+				const address = this.addressList[index];
+				if (address === undefined) {
+					return this.$util.Tips({
+						title: '您删除的地址不存在!'
+					});
+				}
+				AddressApi.deleteInfo(address.id).then(res => {
+					this.$util.Tips({
+						title: '删除成功',
+						icon: 'success'
+					}, () => {
+						this.addressList.splice(index, 1);
+						this.$set(this, 'addressList', this.addressList);
+					});
+				}).catch(err => {
+					return this.$util.Tips({
+						title: err
+					});
+				});
+			},
+			/**
+			 * 新增地址
+			 */
+			addAddress: function() {
+				this.cartId = '';
+				this.pinkId = '';
+				this.couponId = '';
+				uni.navigateTo({
+					url: '/page_home/user/entrant/addInfo?preOrderNo=' + this.preOrderNo
+				})
+			},
 
-      // TODO 芋艿：微信导入；
+			// TODO 芋艿：微信导入；
 			/**
 			 * 导入微信地址（小程序）
 			 */
 
-      // TODO 芋艿：微信导入；
-      /**
+			// TODO 芋艿：微信导入；
+			/**
 			 * 导入微信地址（公众号）
 			 */
 			getAddress() {
@@ -257,9 +277,10 @@
 				});
 			},
 			goOrder: function(id) {
-				if(this.preOrderNo){
+				if (this.preOrderNo) {
 					uni.redirectTo({
-						url: '/pages/users/order_confirm/index?is_address=1&preOrderNo=' + this.preOrderNo + '&addressId=' +  id
+						url: '/pages/users/order_confirm/index?is_address=1&preOrderNo=' + this.preOrderNo +
+							'&addressId=' + id
 					})
 				}
 			}
@@ -268,9 +289,10 @@
 </script>
 
 <style lang="scss" scoped>
-	.address-management{
+	.address-management {
 		padding: 20rpx 30rpx;
 	}
+
 	.address-management.fff {
 		background-color: #fff;
 		height: 1300rpx
@@ -279,16 +301,19 @@
 	.line {
 		width: 100%;
 		height: 3rpx;
+
 		image {
 			width: 100%;
 			height: 100%;
 			display: block;
 		}
 	}
+
 	.address-management .item {
 		background-color: #fff;
 		padding: 0 20rpx;
 		margin-bottom: 20rpx;
+		box-shadow: 0rpx 0rpx 16rpx 2rpx rgba(3,3,3,0.13);
 	}
 
 	.address-management .item .address {
@@ -330,7 +355,7 @@
 		font-size: 38rpx;
 	}
 
-	 .footer {
+	.footer {
 		position: fixed;
 		width: 100%;
 		background-color: #fff;
@@ -338,30 +363,32 @@
 		height: 150rpx;
 		padding: 0 30rpx;
 		box-sizing: border-box;
+		box-shadow: 0rpx -6rpx 40rpx 2rpx rgba(0,0,0,0.1);
+		border-radius: 34rpx 34rpx 0rpx 0rpx;
 	}
 
-    .footer .addressBnt {
+	.footer .addressBnt {
 		width: 330rpx;
 		height: 76rpx;
-		border-radius: 50rpx;
+		border-radius: 15rpx;
 		text-align: center;
 		line-height: 76rpx;
 		font-size: 30rpx;
 		color: #fff;
 	}
 
-	 .footer .addressBnt.on {
+	.footer .addressBnt.on {
 		width: 690rpx;
 		margin: 0 auto;
 	}
 
-	 .footer .addressBnt .iconfont {
+	.footer .addressBnt .iconfont {
 		font-size: 35rpx;
 		margin-right: 8rpx;
 		vertical-align: -1rpx;
 	}
 
-	 .footer .addressBnt.wxbnt {
+	.footer .addressBnt.wxbnt {
 		background-color: #fe960f;
 	}
 </style>

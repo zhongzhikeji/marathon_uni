@@ -3,10 +3,10 @@
 		<view class='order-submission'>
 			<view class="allAddress" :style="store_self_mention ? '':'padding-top:10rpx;'">
 				<view class="nav acea-row">
-					<view class="item font-color" :class="deliveryType === 1 ? 'on' : 'on2'"
+			<!-- 		<view class="item font-color" :class="deliveryType === 1 ? 'on' : 'on2'"
                 @tap="addressType(1)" v-if='store_self_mention' />
 					<view class="item font-color" :class="deliveryType === 2 ? 'on' : 'on2'"
-                @tap="addressType(2)" v-if='store_self_mention' />
+                @tap="addressType(2)" v-if='store_self_mention' /> -->
 				</view>
         <!-- 收货地址的选择 -->
 				<view class='address acea-row row-between-wrapper' @tap='onAddress' v-if='deliveryType === 1'
@@ -20,6 +20,8 @@
 							<text class="line2">{{ addressInfo.areaName }} {{addressInfo.detailAddress}}</text>
 						</view>
 					</view>
+					
+					  
 					<view class='addressCon' v-else>
 						<view class='setaddress'>设置收货地址</view>
 					</view>
@@ -157,7 +159,7 @@
       @OnChangeAddress="OnChangeAddress"
       @changeClose="changeClose"
     />
-		<home></home>
+    
 	</view>
 </template>
 <script>

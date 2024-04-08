@@ -29,8 +29,9 @@
 							<view class='introduce'>{{ spu.name }}</view>
 							<view class='share acea-row row-between row-bottom'>
 								<view class='money font-color flex'>
-									<view v-for="item in tagList" class="tagItem">
-										<u-tag size="mini" :text="item.text" plain type="info"> </u-tag>
+									<view v-for="(item,index) in tagList" class="tagItem">
+									<view :class="index ==0?'tagsColor':'tagsColorY'" class="mr5">{{item.text}}</view>
+									
 
 									</view>
                   <image v-if="spu.vipPrice && spu.vipPrice > 0" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/vip.png" />
@@ -43,7 +44,7 @@
 									<text class='ft16 ftw600'>￥{{ fen2yuan(spu.price) }}</text>
                   <!-- 会员价 -->
                   <view>
-                    <text class="ml10 ft16 ftw600" style="color:red" v-if="spu.vipPrice">￥{{fen2yuan(spu.vipPrice)}}VIP</text>
+                    <text class="ml10 ft16 ftw600 cl-eb"  v-if="spu.vipPrice">￥{{fen2yuan(spu.vipPrice)}}VIP</text>
 
                   </view>
 
@@ -182,7 +183,7 @@
 					</form>
 				</view>
 				<!-- 有库存，允许购买 -->
-				<view class="bnt bntVideo acea-row" v-if="attr.productSelect.stock > 0 && type === 'video'">
+				<view class="bnt bntVideo acea-row" v-if="attr.productSelect.stock > 0 && type === 'video'" >
 					<form @submit="goBuy" report-submit="true"><button class="buy bnts" form-type="submit">立即购买</button>
 					</form>
 				</view>
@@ -582,6 +583,7 @@
 				if (!sku) {
 					return
 				}
+				console.log(this.spu)
 				this.$set(this.attr.productSelect, "spuName", this.spu.name);
 				this.$set(this.attr.productSelect, "id", sku.id);
 				this.$set(this.attr.productSelect, "picUrl", sku.picUrl);
@@ -781,6 +783,7 @@
 			isFavoriteExists: function() {
 				ProductFavoriteApi.isFavoriteExists(this.id).then(res => {
 					this.userCollect = res.data;
+			
 				});
 			},
 			/**
@@ -1441,13 +1444,13 @@
 	}
 
 	.product-con .footer .bnt .joinCart {
-		border-radius: 50rpx 0 0 50rpx;
-		background-image: linear-gradient(to right, #fea10f 0%, #fa8013 100%);
+		border-radius: 15rpx 0 0 15rpx;
+		background-color: #F5C21A;
 	}
 
 	.product-con .footer .bnt .buy {
-		border-radius: 0 50rpx 50rpx 0;
-		background-image: linear-gradient(to right, #fa6514 0%, #e93323 100%);
+		border-radius: 0 15rpx 15rpx 0;
+        background-color: #EB3D74;
 	}
 
 	.product-con .store-info {
@@ -1806,5 +1809,22 @@
 
 	.tagItem:nth-of-type(2) {
 		margin-left: 20rpx;
+	}
+	.tagsColor{
+		font-size: 24rpx;
+		background: #E4ECFF;
+			border-radius: 6rpx 6rpx 6rpx 6rpx;
+			padding: 5rpx 8rpx;
+			border: 1rpx solid #E4ECFF;
+			color: #2D71FF;
+	
+	}
+	.tagsColorY{
+	font-size: 24rpx;
+	background: #FFF2F6;
+	border-radius: 6rpx 6rpx 6rpx 6rpx;
+	padding: 5rpx 8rpx;
+	border: 1rpx solid #EB3D74;
+	color: #EB3D74;
 	}
 </style>

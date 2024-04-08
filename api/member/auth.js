@@ -58,3 +58,13 @@ export function weixinMiniAppLogin(phoneCode, loginCode) {
     noAuth: true // TODO 芋艿：后续要做调整
   });
 }
+
+//获取我的
+export function getUserInfo() {
+  return request.get('app-api/member/user/getMemberInfo',{},{  noAuth: true});
+}
+export function registey(data) {
+  return request.post('app-api/member/auth/register', data, {
+    noAuth: true // TODO 芋艿：后续要做调整
+  });
+}

@@ -76,7 +76,7 @@ function baseRequest(url, method, data, {
 			// url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
       url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
         :'https://app.runplus.cc/' + url, // TODO 芋艿：搞个 url 的配置
-        // : 'http://192.168.2.102:48080/' + url, // TODO 芋艿：搞个 url 的配置
+         //: 'http://192.168.2.102:48080/' + url, // TODO 芋艿：搞个 url 的配置
          //: 'https://marathon.zznet.live/' + url, // TODO 芋艿：搞个 url 的配置
       method: method || 'GET',
 			header: header,

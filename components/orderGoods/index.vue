@@ -1,8 +1,8 @@
 <template>
 	<view class="orderGoods borRadius14">
 		<view class='total'>共{{ totalNmu }}件商品</view>
-		<view class='goodWrapper pad30'>
-			<view class='item acea-row row-between-wrapper' v-for="(item,index) in cartInfo" :key="index"
+		<view class='goodWrapper '>
+			<view class='item acea-row row-between-wrapper pl10 pr10 ' v-for="(item,index) in cartInfo" :key="index"
 				@click="jumpCon(item.spuId)">
 				<view class='pictrue'>
 					<image :src='item.picUrl' />
@@ -10,16 +10,20 @@
 				<view class='text'>
 					<view class='acea-row row-between-wrapper'>
 						<view class='name line1'>{{ item.spuName }}</view>
-						<view class='num'>x {{ item.count }}</view>
+					
 					</view>
 					<view class='attr line1'>
             <text v-for="(property, propertyIndex) in item.properties" :key="propertyIndex" style="padding-right: 10rpx;">
               {{ property.valueName }}　
             </text>
           </view>
-					<view class='money font-color'>￥{{ fen2yuan(item.price) }}</view>
+		  <view class="flex space alcenter">
+			<view class='money cl-eb ftw600 '  >￥{{ fen2yuan(item.price) }}</view>  
+				<view class='num'>x {{ item.count }}</view>
+		  </view>
+					
           <!-- 售后状态 -->
-          <!-- TODO 芋艿：这样式不太合理；应该顺着向右对齐 -->
+          
           <view class="evaluate" style="right: 60px;" v-if="afterSale" @click.stop="afterSaleTap(item)">
             {{
               item.afterSaleStatus === 0 ? '申请退款' :
@@ -94,9 +98,9 @@
           })
           return;
         }
-        // uni.navigateTo({
-        //   url: "/pages/users/user_return_detail/index?id=" + item.afterSaleId
-        // })
+        uni.navigateTo({
+          url: "/page_home/user/user_return_detail/index?id=" + item.afterSaleId
+        })
       },
 			jumpCon: function(id) {
 				let type = this.productType === 0 ?'normal':'video'
@@ -116,7 +120,7 @@
 <style scoped lang="scss">
 	.orderGoods {
 		background-color: #fff;
-		margin-top: 15rpx;
+		margin: 0 0rpx 20rpx 0rpx;
 	}
 
 	.orderGoods .total {

@@ -106,14 +106,15 @@
 						<view class="info-text">
 							<u--text :lines="2" size="14px" color="#333333" :text="item.name"></u--text>
 						     <view class="flex mt10">
-						     	<view class="u-page__tag-item " v-for="tag in item.tags" >
-						     		<u-tag size="mini" :text="tag" plain type="info"> </u-tag>
+						     	<view class="u-page__tag-item " v-for="(tag,index) in item.tags" >
+									<view :class="index ==0?'tagsColor':'tagsColorY'">{{tag}}</view>
+						    
 						     	</view>
 						     </view>
 						</view>
 						<view class="price-and-cart">
-							<yd-text-price color="red" size="12" intSize="18" :price="fen2yuan(item.price)"></yd-text-price>
-							<u-icon name="shopping-cart" color="#2979ff" size="28"></u-icon>
+							<yd-text-price color="#EB3D74" size="12" intSize="18" :price="fen2yuan(item.price)"></yd-text-price>
+						
 						</view>
 					</view>
 				</view>
@@ -295,5 +296,21 @@
 	.u-page__tag-item {
 		margin-right: 20rpx;
 
+	}
+	.tagsColor{
+		font-size: 24rpx;
+		background: #FFF2F6;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #EB3D74;
+		color: #EB3D74;
+	}
+	.tagsColorY{
+		font-size: 24rpx;
+	background: #FFF1E2;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #F5881A;
+		color: #F5881A;
 	}
 </style>

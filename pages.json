@@ -52,9 +52,10 @@
 		},
 		{
 			"path": "pages/user/user",
-			"style": {
-				"navigationBarTitleText": "我的"
-			}
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
 		},
 		{
 			"path": "pages/user/vip",
@@ -62,19 +63,6 @@
 				"navigationBarTitleText": "开通VIP"
 			}
 		},
-	
-	
-
-
-	
-	
-	
-	
-	
-
-
-
-	
 		{
 			"path": "pages/user/vote/index",
 			"style": {
@@ -87,17 +75,20 @@
 				"navigationBarTitleText": "投票详情"
 			}
 		},
-		{
-			"path": "pages/login/mobile",
-			"style": {
-				"navigationBarTitleText": "手机登录"
-			}
-		},
+	
 		{
 			"path": "pages/login/index",
-			"style": {
-				"navigationBarTitleText": "手机登录"
-			}
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
+		},
+		{
+			"path": "pages/login/registeyOrFrogt",
+		"style": {
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+		}
 		},
 		{
 			"path": "pages/login/wxchat",
@@ -201,6 +192,12 @@
 						"navigationStyle": "custom", // 隐藏系统导航栏
 						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
+				},
+				{
+					"path": "competition/trackChart",
+					"style": {
+						"navigationBarTitleText": "赛道图"
+					}
 				}
 			]
 		},
@@ -243,16 +240,11 @@
 					}
 				},
 				{
-					"path": "mail/orderDetails",
-					"style": {
-						"navigationBarTitleText": "订单详情"
-					}
-				},
-				{
 					"path": "mail/address",
-					"style": {
-						"navigationBarTitleText": "收货地址"
-					}
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
 				},
 				{
 					"path": "mail/addressEdit",
@@ -270,6 +262,12 @@
 					"path": "mail/userAddress",
 					"style": {
 						"navigationBarTitleText": "新增地址"
+					}
+				},
+				{
+					"path": "mail/allClass",
+					"style": {
+						"navigationBarTitleText": "分类"
 					}
 				}
 
@@ -313,9 +311,17 @@
 				},
 				{
 					"path": "coupon/index",
-					"style": {
-						"navigationBarTitleText": "优惠劵"
-					}
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				},
+				{
+					"path": "coupon/myCouon",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
 				},
 				{
 					"path": "lottery-draw/lottery-draw",
@@ -357,19 +363,35 @@
 				{
 					"path": "user/collect/index",
 					"style": {
-						"navigationBarTitleText": "我的收藏"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
 				},
 				{
 					"path": "user/energy/index",
 					"style": {
-						"navigationBarTitleText": "我的能量"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
 				},
 				{
 					"path": "user/entrant/index",
 					"style": {
-						"navigationBarTitleText": "参赛选手"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+					}
+				},
+				{
+					"path": "user/matchOrder/index",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				},
+				{
+					"path": "user/matchDetails/index",
+					"style": {
+						"navigationBarTitleText": "赛事详情"
 					}
 				},
 				{
@@ -391,21 +413,31 @@
 					}
 				},
 				{
+					"path": "user/user_return_detail/index",
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
+				},
+				{
 					"path": "user/order_details/index",
 					"style": {
-						"navigationBarTitleText": "订单详情"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
 				},
 				{
 					"path": "user/order_list/index",
-					"style": {
-						"navigationBarTitleText": "商城订单"
-					}
+				"style": {
+					"navigationStyle": "custom", // 隐藏系统导航栏
+					"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+				}
 				},
 				{
 					"path": "user/purse/index",
 					"style": {
-						"navigationBarTitleText": "我的钱包"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
 				},
 				{
@@ -418,15 +450,11 @@
 				{
 					"path": "user/tram/index",
 					"style": {
-						"navigationBarTitleText": "我的团队"
-					}
-				},
-				{
-					"path": "user/user_coupon/index",
-					"style": {
-						"navigationBarTitleText": "优惠券"
+						"navigationStyle": "custom", // 隐藏系统导航栏
+						"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 					}
 				}
+			
 			]
 		}
 	],
@@ -461,8 +489,8 @@
 			{
 				"pagePath": "pages/message/index",
 				"text": "资讯",
-				"iconPath": "static/images/tabbar/category.png",
-				"selectedIconPath": "static/images/tabbar/category-active.png"
+				"iconPath": "static/images/tabbar/Information.png",
+				"selectedIconPath": "static/images/tabbar/Information-active.png"
 				// "iconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category.png",
 				// "selectedIconPath": "https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/category-active.png"
 			},

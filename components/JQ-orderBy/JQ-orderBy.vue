@@ -61,10 +61,12 @@
 				default () {
 					return [{
 						text: '距离最近',
-						value: ['acs', 'desc'],
+						value: ['asc', 'desc'],
+						field:'distance'
 					}, {
 						text: '时间最近',
-						value: ['acs', 'desc'],
+						value: ['asc', 'desc'],
+						field:'time'
 					}]
 				}
 			},
@@ -108,7 +110,7 @@
 					this.sortArrIndex = this.sortDefArrIndex
 				}
 				// (返回当前选择条件列表下标,返回当前条件下的排序value)
-				this.$emit('switchSort', index, this.sortList[index].value[this.sortArrIndex])
+				this.$emit('switchSort', index, this.sortList[index].value[this.sortArrIndex],this.sortList[index].field)
 			}
 		}
 	}

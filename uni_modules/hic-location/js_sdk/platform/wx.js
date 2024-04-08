@@ -15,7 +15,7 @@ export async function getLocation (loading = false, noHideLoading = false) {
 	// 提前判断是否授权
 	await getAuthorize();
 	if (loading) {
-		uni.showLoading({ title: '获取信息中' });
+		uni.showLoading({ title: '获取当前地址中' });
 	}
 	try {
 		// 定位 获取经纬度

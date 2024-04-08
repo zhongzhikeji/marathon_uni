@@ -12,7 +12,7 @@
 	   	      }" :inactiveStyle="{
 	   	          color: '#606266',
 	   	          transform: 'scale(1)'
-	   	      }" itemStyle="height: 50px;">
+	   	      }" itemStyle="height: 50px;" @click="onTabClick">
 	   	</u-tabs>
 		
 	   </view>	
@@ -22,11 +22,11 @@
 				src="https://marathon.zznet.live/file/uploadPath/image/competition/bannner.png" width="14px"
 				height="21px"></u--image>
 			<view class="ft18 ftw600 ml10">赛事列表<text
-					style="color: #AEAEAE;font-size: 14px;font-weight: 400;">(12场)</text></view>
+					style="color: #AEAEAE;font-size: 14px;font-weight: 400;">({{productList.length}}场)</text></view>
 		</view>
 	
 		<view class="flex">
-			<view class="ztab zbofore" >
+			<view class="ztab zbofore" @click="onAsc">
 				<u--image :showLoading="true"
 					src="https://marathon.zznet.live/file/uploadPath/image/home/sort.png" width="12px"
 					height="12px"></u--image>
@@ -34,11 +34,15 @@
 		
 		</view>
 	</view>
-	
+	  <view class="ml15 mr15">  
+		<yd-product-more :showType="showType" :product-list="productList" :more-status="moreStatus"
+			 @handleProdItemClick='onchangeItem'></yd-product-more>
+	  </view>
 	</view>
 </template>
 
 <script>
+	  import * as Api from '@/api/competition/list.js'
 	export default {
 		data(){
 			return{
@@ -56,12 +60,40 @@
 					name:'已关注'
 				}
 			],
+			type:'0',
+			showType: 'assistant',
+			productList: [],
+			asc:'true',
+			moreStatus: 'nomore'
 			}
 		},
 		methods:{
-		
+		onchangeItem(item) {
+			// console.log(item)
+			// uni.$u.route('/pages/subCompetition/competition/details', {
+			// 	id: item
+			// })
+		},
+		onAsc(){
+			this.asc = !this.asc
+			this.getheplerList()
+		},
+		getheplerList(){
+			Api.helper(this.type,1,10,this.asc).then(res=>{
+				this.productList = res.data.list
+				
+			})
+		},
+		onTabClick(item){
+			console.log(item.index)
+			this.type = item.index
+			this.getheplerList()
+		}
 			   
 				
+		},
+		onLoad() {
+			this.getheplerList()
 		}
 	}
 </script>

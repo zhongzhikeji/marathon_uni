@@ -4,8 +4,9 @@
     <u-cell-group class="setting-list" :border="false">
       <u-cell class="setting-item" icon="lock" title="修改密码" isLink></u-cell>
       <u-cell class="setting-item" icon="phone" title="换绑手机" isLink></u-cell>
-      <u-cell v-if="hasLogin" class="setting-item" icon="minus-circle" title="用户登出" @click="logout" isLink></u-cell>
-    </u-cell-group>
+      <u-cell  class="setting-item" icon="minus-circle" title="退出登陆" @click="logout" isLink></u-cell>
+     
+	</u-cell-group>
   </view>
 </template>
 
@@ -17,12 +18,10 @@ export default {
   data() {
     return {}
   },
-  computed: {
-    hasLogin() {
-      return this.$store.getters.hasLogin
-    }
+
+  onLoad() {
+	  console.log(this.$Cache)
   },
-  onLoad() {},
   methods: {
     logout() {
       uni.showModal({
@@ -30,11 +29,8 @@ export default {
         content: '您确定要退出登录吗',
         success: res => {
           if (res.confirm) {
-            this.$store.dispatch('Logout').then(res => {
-              uni.switchTab({
-                url: '/pages/user/user'
-              })
-            })
+			this.$Cache.clear('LOGIN_STATUS_TOKEN')
+            this.$u.route('/pages/login/index')
           } else if (res.cancel) {
             //console.log('用户点击取消')
           }

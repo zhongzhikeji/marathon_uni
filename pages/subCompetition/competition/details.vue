@@ -44,7 +44,7 @@
         </view>
         <view>
           <view class="sdbg">
-            <view class="pl20 pt10">
+            <view class="pl20 pt10" @click="$u.route(`/pages/subCompetition/competition/trackChart?spuId=${content.id}`)">
               <view>赛道图</view>
               <view>查看明细场地路线</view>
             </view>
@@ -932,9 +932,7 @@
     }
 
     .btn {
-      width: 148rpx;
-      height: 70rpx;
-      line-height: 70rpx;
+      padding: 20rpx 40rpx;
       background: #EB3D74;
       box-shadow: 0rpx 0rpx 22rpx 2rpx rgba(180, 5, 60, 0.42);
       border-radius: 12rpx;

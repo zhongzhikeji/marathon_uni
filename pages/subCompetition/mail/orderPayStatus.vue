@@ -124,9 +124,8 @@
         uni.showLoading({
           title: '正在加载',
         })
-	uni.navigateTo({
-				  
-	  url: '/pages/subCompetition/mail/orderDetails?order_id=' + this.orderId
+	uni.navigateTo({		  
+	  url: '/page_home/user/order_details/index?order_id=' + this.orderId
 	});
    //      openOrderSubscribe().then(res => {
    //        uni.hideLoading();

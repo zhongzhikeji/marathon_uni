@@ -24,6 +24,9 @@
 .flex.flexStart{
 	align-items: flex-start;
 }
+.flex.flex1{
+	flex:1
+}
 
 .ft12{font-size: 24rpx;}
 .ft14{font-size: 28rpx;}
@@ -114,6 +117,8 @@
 .cl-d9{
 	color: #D95B00;
 }
+.cl-8bf{color: #328BFF;}
+.cl-8d3{color: #FF8D33;}
 .bg-eb{
 	background-color:#EB3D74 ;
 }
@@ -122,6 +127,8 @@
 .bg-default{background: #F7F8FA;}
 .bg-b{background-color: #0F31B0;}
 .bg-e{background-color: #eee;}
+.bg-f8{background-color: #F8F8F8;}
+.bg-f6{background-color: #F6F6F6;}
 .title-line{
 	width: 120rpx;
 	height: 2rpx;
@@ -266,6 +273,7 @@
 .op9{opacity: .9;}
 
 .w-full{width: 100%;}
+.h-full{height: 100%;}
 .radis{
 	border-radius: 10rpx;
 }

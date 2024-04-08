@@ -3,14 +3,12 @@
 		<view class="wrapper">
 			<view>
 				<u-navbar  leftIcon=' '  :safeAreaInsetTop="true" :placeholder='true' :fixed="false"
-					bgColor="transparent">
-			   <view  slot="left">
-			   	<view class="ft16 cl-w">商城</view>
-			   </view>
+					bgColor="transparent" title="优选商城">
+			
 				</u-navbar>
 			</view>
 			<view class="ml10 mr10 pb10">
-				<u-search inputAlign='center'  bgColor='#fff' placeholderColor='#F9A4C3' searchIconColor='#F9A4C3' placeholder="厦门马拉松"
+				<u-search inputAlign='left'  bgColor='#fff'  searchIconColor='#F9A4C3' placeholder="搜索商品名称"
 					disabled :show-action="false" @click="handleSearchClick"></u-search>
 			</view>
 
@@ -18,7 +16,7 @@
 
 
     <!--轮播图-->
-	<view class="mt10">
+	<view class="mt10 ml10 mr10">
 		    <yd-banner :preMargin="'0'" :nextMargin="'0'" :banner-list="bannerList" ></yd-banner>
 	</view>
 
@@ -27,52 +25,56 @@
 
     <!--宫格菜单按钮-->
       <view class="mail_grid">
-		   <view class="ft18 cl-zi ftw600 mb10">超值热卖</view>
-		   <view class="flex around">
-			   <view class="flex cloum alcenter" v-for="i in 4" style="width: 23%;">
+		  <view class="flex  alcenter">
+			  <u--image :showLoading="true" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/hot.png" width="15px" height="17px" ></u--image>
+			  <text class="ft18   ml4">超值热卖</text>
+		  </view>
+		
+		   <view class="flex around mt10">
+			   <view class="flex cloum " v-for="i in 4" style="width: 23%;">
 				   <image src="https://marathon.zznet.live/file/uploadPath/img/1.jpg" class="i_img"></image>
-				   <view class="tag">积分抵扣</view>
-				    <view class="ftw600">￥59.9</view>
+				 <view class="ftw600">￥59.9</view>
+				<view class="tag">能量抵扣</view>
+		
 			   </view>
 
 		   </view>
 	  </view>
 
     <u-gap height="15px"></u-gap>
-     <view>
+     <view class="ml10 mr10 ">
 		<!-- 优惠券 -->
 		<!-- 商品 -->
-	<view>
-		  <u-tabs
-		        :list="list4"
-		        lineWidth="0"
-		        lineColor=""
-		        :activeStyle="{
-		            color: '#303133',
-		            fontWeight: 'bold',
-		            transform: 'scale(1.05)'
-		        }"
-					@click="tabItem"
-		        :inactiveStyle="{
-		            color: '#606266',
-		            transform: 'scale(1)'
-		        }"
-		        itemStyle="padding-left: 20px; padding-right: 20px; height: 34px;"
-		    >
-		    </u-tabs>
+	<view class="bg-w radis">
+	<u-tabs :list="list4" lineWidth="20" lineHeight="7" :lineColor="`url(${lineBg}) 100% 100%`" :activeStyle="{
+			          color: '#EB3D74',
+			          fontWeight: 'bold',
+					  fontSize:'16px',
+			          transform: 'scale(1.05)',
+
+			      }" :inactiveStyle="{
+			          color: '#606266',
+			          transform: 'scale(1)'
+			      }" itemStyle="padding-left: 20px; padding-right: 10px; height: 50px;">
+			</u-tabs>
 			 <yd-product-box :product-list="productList"  show-type="mail"></yd-product-box>
 	</view>
 	 </view>
 	 <view style="height: 200px;"></view>
      <view class="footerRight">
-		 <view class="flex alcenter bg-w mb10 item" @click="$u.route('/pages/subCompetition/mail/orderAddcart')">
-			<view class='iconfont icon-gouwuche1'></view>
-			<view class="ml5">购物车</view>
+		 <view class="flex alcenter bg-w item" @click="$u.route('/pages/subCompetition/mail/allClass')">
+		 			  <u--image :showLoading="true" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/AllClass.png" width="15px" height="15px" ></u--image>
+		 			<view class="ml5">全部分类</view>
 		 </view>
 		 <view class="flex alcenter bg-w item" @click="$u.route('/page_home/user/order_list/index')">
-			<u-icon name="bag"></u-icon>
-			<view>订单</view>
+		 			  <u--image :showLoading="true" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/mailOrder.png" width="15px" height="15px" ></u--image>
+		 			<view class="ml5">我的订单</view>
 		 </view>
+		 <view class="flex alcenter bg-w  item" @click="$u.route('/pages/subCompetition/mail/orderAddcart')">
+		  <u--image :showLoading="true" src="https://runplus-marathon.oss-cn-hangzhou.aliyuncs.com/mailCart.png" width="15px" height="15px" ></u--image>
+			<view class="ml5">购物车</view>
+		 </view>
+	
 	 </view>
     <u-gap height="5px"></u-gap>
   </view>
@@ -88,8 +90,7 @@ export default {
   components: {},
   data() {
     return {
-		lineBg:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAOCAYAAABdC15GAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFxSURBVHgBzZNRTsJAEIb/WTW+lpiY+FZPIDew3ABP4GJ8hxsI9zBpOYHeQDwBPQI+mRiRvpLojtPdYhCorQqF/6GdbGd2vvwzBXZcNAt4oj1ANeUoAT5iqkUjbEFLHNmhD1YPEvpZ3ghkGlVDCkc94/BmHMq998I5ONiY1ZBfpKAyuOtgAc5yOEDmYEWNh32BHF91sGHZHmwW4azciN9aQwnz3SJEgOmte+R2tdLprTYoa50mvuomlLpD4Y3oQZnov6D2RzCqI93bWOHaEmAGqQUyRBlZR1WfarcD/EJ2z8DtzDGvsMCwpm8XOCfDUsVOCYhiqRxI/CTQo4UOvjzO7Pow18vfywneuUHHUUxLn55lLw5JFpZ8bEUcY8oXdOLWiHLTxvoGpLqoUmy6dBT15o/ox3znpoycAmxUsiJTbs1cmxeVKp+0zmFIS7bGWiVghC7Vwse8jFKAX9eljh4ggKLLv7uaQvG9/F59Oo2SouxPu7OTCxN/s8wAAAAASUVORK5CYII=',
-
+	     lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
 		 list4: [],
       bannerList: [
         // {
@@ -185,10 +186,10 @@ export default {
   background: $custom-bg-color;
   padding: 20rpx;
 }
-	.wrapper {
-		background-image: url('https://marathon.zznet.live/file/uploadPath/img/bg.png');
-		background-size: cover;
-		 }
+	// .wrapper {
+	// 	background-image: url('https://marathon.zznet.live/file/uploadPath/img/bg.png');
+	// 	background-size: cover;
+	// 	 }
 .grid-title {
   line-height: 50rpx;
   font-size: 26rpx;
@@ -199,26 +200,30 @@ export default {
 	margin: 0 20rpx;
 	border-radius: 15rpx;
 	.tag{
-		background-color: #f84f91;
-		font-size: 28rpx;
-		border-radius: 30rpx;
-		color: #fff;
-		padding: 10rpx 20rpx;
+		background-color: #E4ECFF;
+		color: #2D71FF;
 		margin: 10rpx 0;
+		font-size: 24rpx;
+		width: 80%;
+		line-height: 50rpx;
+		text-align: center;
+	
 	}
 	.i_img{
 		border-radius: 10px;
 		width: 100%;
-		height: 180rpx;
+		height: 150rpx;
 
 	}
 }
 .footerRight{
 	position: fixed;
 	right: 0;
-	bottom: 15%;
+	bottom: 10%;
 	.item{
-		padding: 15rpx 15rpx;
+		padding: 15rpx 10rpx;
+		margin-bottom: 20rpx;
+		border-radius: 10rpx;
 	}
 }
 

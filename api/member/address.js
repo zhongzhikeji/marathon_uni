@@ -55,6 +55,9 @@ export function deleteInfo(id) {
 export function updateInfo(data) {
   return request.put('app-api/meet/member_entrants/update', data);
 }
+export function updateDefault(data) {
+  return request.get('app-api/meet/member_entrants/updateDefault', data);
+}
 
 //获取参赛注意事项
 export function getPrecautions(id) {

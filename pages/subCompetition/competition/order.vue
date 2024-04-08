@@ -129,6 +129,7 @@
 							<view class="flex alcenter">
 								<u--image src="https://marathon.zznet.live/file/uploadPath/image/competition/wx.png"
 									width="19px" height="18px"></u--image>
+									<view>模拟支付</view>
 								<view class="ml10">微信支付</view>
 							</view>
 							<u-checkbox-group v-model="checkboxValue1" @change="checkboxChange1" iconPlacement="right">
@@ -241,7 +242,8 @@
 				checkboxValue: [],
 				checkboxList1: [
 					{
-				    code: 'wx_lite'
+				    // code: 'wx_lite',
+						    code: 'mock'
 					}
 
 				],

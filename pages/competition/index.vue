@@ -71,7 +71,7 @@
 
 			<view class="ml15 mr15 mt15 ">
 				<yd-product-more :showType="showType" :product-list="productList" :more-status="moreStatus"
-					:u_tagList='tagList' @handleProdItemClick='onchangeItem'></yd-product-more>
+					 @handleProdItemClick='onchangeItem' @setCollect='setCollect' ></yd-product-more>
 
 			</view>
 			<view>
@@ -153,6 +153,10 @@
 			return {
 				scrollTop: 0,
 				isbg: 0,
+				latitude:'',
+				latitude:'',
+				sortField:'',
+				sortOrder:'',
 				radios: [{
 						checked: true,
 						icon: 'list-dot'
@@ -239,6 +243,22 @@
 					this.categoryId = res.data[0].id
 				})
 			},
+			setCollect(item){
+				console.log(item,999)
+				if(item.favorite){
+					Api.deleteFavorite(item.id).then(res=>{
+						uni.$u.toast('取消收藏')
+					this.mescroll.resetUpScroll()
+					})
+				}else{
+					Api.createFavorite(item.id).then(res=>{
+						this.mescroll.resetUpScroll()
+						
+						uni.$u.toast('收藏成功')
+					})
+				}
+			
+			},
 			onTab(num){
 				this.isbg = num
 				if(num == 0){
@@ -246,8 +266,14 @@
 				}else{
 					this.showType = 'list'				}
 			},
-			switchSort(index, value) {
-				
+			switchSort(index, value,type) {
+			this.sortOrder = value
+			const city =JSON.parse(this.$Cache.get('CurrentCity'))
+			this.latitude = city.latitude
+			this.longitude = city.longitude
+			this.sortField = type
+					this.mescroll.resetUpScroll()
+			 console.log(index,value,type)
 			},
 			upCallback(page) {
 				let pageNum = page.num;
@@ -255,8 +281,11 @@
 				Api.getList({
 					pageNo: pageNum,
 					pageSize,
-					categoryId:this.categoryId
-
+					categoryId:this.categoryId,
+                   sortOrder:this.sortOrder,
+				    latitude:this.latitude,
+				   longitude:this.longitude,
+				   sortField:this.sortField
 				}).then(res => {
 
 					console.log(res.data.list)

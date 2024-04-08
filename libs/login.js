@@ -63,7 +63,7 @@ export function _toLogin(push, pathLogin) {
 		} else {
 			if (['/pages/user/user'].indexOf(login_back_url) === -1) {
 				uni.navigateTo({
-					url: '/pages/login/wxchat'
+					url: '/pages/login/index'
 				})
 			}
 		}
@@ -79,7 +79,7 @@ export function _toLogin(push, pathLogin) {
 	if (['pages/user/user','/pages/user/user'].indexOf(login_back_url) === -1) {
 		// #ifdef MP
     uni.navigateTo({
-      url: '/pages/login/wxchat'
+      url: '/pages/login/index'
     })
 		// #endif
 	}

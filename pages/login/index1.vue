@@ -45,7 +45,6 @@
 			</div>
       <!-- 登录方式一：验证码登录 -->
 			<div class="logon" @click="loginMobile" v-if="current !== 0">登录</div>
-
       <!-- 登录方式二：密码登录 -->
       <div class="logon" @click="submit" v-if="current === 0">登录</div>
 			<div class="tips">
@@ -228,7 +227,6 @@
        * 手机 + 验证码登录
        */
       async loginMobile() {
-	
 				if (!this.account) {
           return this.$util.Tips({
             title: '请填写手机号码'
@@ -256,13 +254,13 @@
         let socialState = undefined;
         // 1.1 微信小程序的情况
         // #ifdef MP
-        // socialType = 34;
-        // socialCode = await Routine.getCode();
-        // socialState = 'default'
+        socialType = 34;
+        socialCode = await Routine.getCode();
+        socialState = 'default'
         // #endif
 
         // 2. 短信登录
-		AuthApi.smsLogin({
+			AuthApi.smsLogin({
           mobile: this.account,
           code: this.captcha,
           socialType: socialType,
@@ -283,7 +281,6 @@
         });
 			},
 			async code() {
-				
 				if (!this.account) {
           return this.$util.Tips({
             title: '请填写手机号码'
@@ -309,7 +306,6 @@
        * 手机 + 密码登录
        */
 			async submit() {
-				
 				if (!this.account) {
           return this.$util.Tips({
             title: '请填写账号'
@@ -346,14 +342,12 @@
           socialState: socialState
         }).then(({ data }) => {
           // TODO 芋艿：refreshToken 机制
-	
           this.$store.commit("LOGIN", {
             'token': data.accessToken
           });
           this.getUserInfo(data);
           this.bindBrokerUser();
         }).catch(e => {
-			
           this.$util.Tips({
             title: e
           });
@@ -363,7 +357,6 @@
        * 微信一键登录
        */
       async getPhoneNumber(e) {
-		 console.log(e)
         // 情况一：拒绝授权手机号码
         const phoneCode = e.detail.code
         if (!e.detail.code) {
@@ -376,11 +369,8 @@
           return;
         }
         // 情况二：允许授权手机号码
-		
         const loginCode = await Routine.getCode()
-		
         AuthApi.weixinMiniAppLogin(phoneCode, loginCode).then(res => {
-	
           const data = res.data;
           // TODO 芋艿：refreshToken 机制
           this.$store.commit("LOGIN", {
@@ -395,21 +385,20 @@
         });
       },
       getUserInfo(data) {
-	
         this.$store.commit("SETUID", data.userId);
         this.$store.commit("OPENID", data.openid);
         UserApi.getUserInfo().then(res => {
           this.$store.commit("UPDATE_USERINFO", res.data);
           // 调回登录前页面
-          // let backUrl = this.$Cache.get(BACK_URL) || "/pages/index/index";
-          // if (backUrl.indexOf('/') !== 0) {
-          //   backUrl = '/' + backUrl;
-          // }
-          // if (backUrl.indexOf('/pages/login/mobile') === 0) {
-          //   backUrl = '/pages/index/index';
-          // }
+          let backUrl = this.$Cache.get(BACK_URL) || "/pages/index/index";
+          if (backUrl.indexOf('/') !== 0) {
+            backUrl = '/' + backUrl;
+          }
+          if (backUrl.indexOf('/pages/users/login/index') === 0) {
+            backUrl = '/pages/index/index';
+          }
           uni.reLaunch({
-            url: '/pages/index/index'
+            url: backUrl
           });
         })
 			},

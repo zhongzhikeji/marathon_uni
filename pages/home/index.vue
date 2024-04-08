@@ -103,22 +103,51 @@
 			      }" :inactiveStyle="{
 			          color: '#606266',
 			          transform: 'scale(1)'
-			      }" itemStyle="padding-left: 20px; padding-right: 20px; height: 50px;">
+			      }" itemStyle="padding-left: 20px; padding-right: 20px; height: 50px;" @click="onTabClick">
 			</u-tabs>
-			<view class="ml10 mr10">
+			<view class="ml10 mr10" v-show="index == 0">
 				<view class="mt20 ">
-					<view class="flex mb10" v-for="i in 4">
+					<view class="flex mb10" v-for="i in reList" :key="i.id">
 						<view>
-							<u--image :showLoading="true" radius='5' src="https://cdn.uviewui.com/uview/album/1.jpg"
+							<u--image :showLoading="true" radius='5' :src="i.picUrl"
 								width="94px" height="94px"></u--image>
 						</view>
 						<view class="ml10">
-							<view class="ft16  mb10">2023摇滚马拉松洛阳站11月18日开跑</view>
+							<view class="ft16  mb10">{{i.title}}</view>
 							<u--text size='14' color='#ccc' :lines="2"
-								text="2023摇滚马拉松洛阳站共设置两个项目分别是半程马拉松（21.0975公里）与欢..."></u--text>
+								:text="i.introduction"></u--text>
 						</view>
 					</view>
 				</view>
+			</view>
+			<view v-show="index ==1" style="margin: 10px; ">
+				<yd-product-more showType="listHome" :product-list="productList" 
+					 @handleProdItemClick='onchangeItem'></yd-product-more>
+				
+			</view>
+			<view class="ml10 mr10" v-show="index==2" v-for="item in orderData" :key='item.id'>
+				<view class=" orderBorder">
+					<view class="flex pt5 pb5 pl5 pr5">
+						<view class="mr10">
+							<u--image :showLoading="true"
+								:src="item.picUrl" width="94px"
+								height="94px"></u--image>
+						</view>
+						<view class="">
+							<u--text :lines="1" size="16px" color="#333333" :text="item.name"></u--text>
+							
+							<view class="flex mt15 mb10">
+								<view v-for="(tag,index) in item.tags">
+										<view :class="index ==0?'tagsColor':'tagsColorY'" class="mr5">{{tag}}</view>
+								</view>
+							</view>
+							
+							<view class="cl-eb">￥{{fen2yuan(item.price)}}</view>
+						</view>
+					</view>
+				
+				</view>
+			
 			</view>
 			<u-loadmore marginTop='25' status="loadmore" @loadmore="loadmore" loadmoreText='查看全部' />
 		</view>
@@ -136,21 +165,26 @@
 	} from "vuex";
 	import location from '@/uni_modules/hic-location/js_sdk/index.js';
 	import * as AreaApi from '@/api/system/area.js';
+	import * as Api from '@/api/competition/list.js'
+	  import * as Util from '@/utils/util.js';
 	import {
 		toLogin
 	} from '@/libs/login.js';
 	export default {
 		components: {},
-		computed: mapGetters(['isLogin']),
+	
 		data() {
 			return {
 				bannerList: [],
+					
 				text1: '江西上饶半马赛事推荐田协认证 2023铅山..',
 				moreStatus: 'nomore',
 				status: 'loadmore',
 				list: 5,
 				page: 0,
 				cityName:'',
+				index:0,
+				productList:[],
 				lineBg: 'https://marathon.zznet.live/file/uploadPath/image/tabImg.png',
 				list4: [{
 						name: '头条资讯'
@@ -162,12 +196,14 @@
 						name: '热销商品'
 					}
 				],
-
+               reList:[],
+			   orderData:[]
 			}
 		},
 		onLoad() {
 			this.loadBannerData()
-
+            this.getRecommend()
+			this.getlocation()
 		},
 
 		methods: {
@@ -179,27 +215,67 @@
 				AreaApi.getBanner({
 					position: 1
 				}).then(res => {
-					console.log(res, 998)
+				
 					this.bannerList = res.data
-
-
+				})
+			},
+			getListSaiShi(){
+				Api.getListSai().then(res=>{
+					this.productList = res.data
+				})
+			},
+			getRecommend(){
+				Api.recommend().then(res=>{
+					this.reList = res.data
+					console.log(res)
+				})
+				
+				
+			},
+			getOrderList(){
+				Api.getListOrder().then(res=>{
+					this.orderData = res.data
+					
+					})
+			},
+			onTabClick(item){
+				if(item.index ==0){
+					this.index =0
+				  this.getRecommend()
+				}else if(item.index == 1){
+					this.index = 1
+				   this.getListSaiShi()
+				}else{
+					this.index = 2
+					this.getOrderList()
+				}
+			},
+			onchangeItem(item) {
+				console.log(item)
+				uni.$u.route('/pages/subCompetition/competition/details', {
+					id: item
 				})
 			},
 			async getlocation() {
 				const res = await location.reverseGeocoder();
-				console.log(res,99)
+				const city = JSON.parse(this.$Cache.get('CurrentCity'))
+				if(city.cityName == res.cityName){
+					this.cityName = res.cityName
+					return
+				}
+				
+				this.$Cache.set('CurrentCity',JSON.stringify(res))
 				this.cityName = res.cityName
 
 			},
 			handleSearchClick(e) {
-				// 未登录，需要跳转
-				if (!this.isLogin) {
-					toLogin();
-					return;
-				} else {
+		
 					uni.$u.route('/page_home/search/search')
-				}
+				
 
+			},
+			fen2yuan(price) {
+			  return Util.fen2yuan(price)
 			}
 		},
 		computed: {
@@ -279,5 +355,26 @@
 		background-color: #fff;
 		border-radius: 20rpx;
 		padding-bottom: 20rpx;
+	}
+	.tagsColor{
+		font-size: 24rpx;
+		background: #FFF2F6;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #EB3D74;
+		color: #EB3D74;
+	}
+	.tagsColorY{
+		font-size: 24rpx;
+	background: #FFF1E2;
+		border-radius: 6rpx 6rpx 6rpx 6rpx;
+		padding: 5rpx 8rpx;
+		border: 1rpx solid #F5881A;
+		color: #F5881A;
+	}
+	.orderBorder{
+		border: 1px solid #eee;
+		margin: 10rpx 0;
+		box-shadow: 0rpx -6rpx 40rpx 2rpx rgba(0,0,0,0.1);
 	}
 </style>

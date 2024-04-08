@@ -449,7 +449,7 @@
           });
         }
         uni.navigateTo({
-          url: '/pages/order/orderConfirm?cartIds=' + selectValue.join(',')
+          url: '/pages/subCompetition/mail/orderConfirm?cartIds=' + selectValue.join(',')
         });
 			},
 			/**

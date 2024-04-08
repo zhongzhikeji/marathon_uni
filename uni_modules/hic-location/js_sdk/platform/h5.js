@@ -12,7 +12,7 @@ import { jsonp } from '../vue-jsonp/index';
  */
 export async function getLocation (loading = false, noHideLoading = false) {
 	if (loading) {
-		uni.showLoading({ title: '获取信息中' });
+		uni.showLoading({ title: '获取当前地址中' });
 	}
 	try {
 		console.time('location');
