@@ -44,7 +44,8 @@
         </view>
         <view>
           <view class="sdbg">
-            <view class="pl20 pt10" @click="$u.route(`/pages/subCompetition/competition/trackChart?spuId=${content.id}`)">
+            <view class="pl20 pt10"
+              @click="$u.route(`/pages/subCompetition/competition/trackChart?spuId=${content.id}`)">
               <view>赛道图</view>
               <view>查看明细场地路线</view>
             </view>
@@ -287,7 +288,9 @@
                   <view class="flex alcenter">
                     <view :class="isSelected(item)?'b_radis':'b_isradis'" class="mr10"></view>
                     <view class="flex cloum">
+
                       <view class="ft16 ftw600">{{item.name}}</view>
+
                       <view class="ft12 mt8" style="color:#AEAEAE">
                         {{item.idCard}}
                       </view>
@@ -298,22 +301,26 @@
 
 
                   <view class="mr20" style="color: #EB3D74;">
-                    <view v-show="content.skuList[currentIndex].gender != item.gender && content.skuList[currentIndex].gender<3">性别不符合报名条件</view>
+                    <view
+                      v-show="content.skuList[currentIndex].gender != item.gender && content.skuList[currentIndex].gender<3">
+                      性别不符合报名条件</view>
                     <view
                       v-show="content.skuList[currentIndex].minAge >= item.age || content.skuList[currentIndex].maxAge <=item.age">
                       年龄不符合报名条件</view>
 
-										 <view v-for=" i in item.memberInfoConfigList">
+                    <view v-for=" i in item.memberInfoConfigList">
                       <view v-show="!i.checked">{{i.description}}</view>
 
                     </view>
 
 
                     <u-button text="上传" color="#D2D2D7"
-                      v-if='(content.skuList[currentIndex].minAge >= item.age || content.skuList[currentIndex].maxAge <=item.age) && content.skuList[currentIndex].gender != item.gender'></u-button>
+                      v-if='(content.skuList[currentIndex].minAge >= item.age || content.skuList[currentIndex].maxAge <=item.age)
+                      && content.skuList[currentIndex].gender != item.gender'>
+                    </u-button>
                     <u-button text="上传" color="#EB3D74"
-                      @click="$u.route(`/page_home/user/entrant/addInfo?id=${item.id}&skuId=${infoId}`)"
-                      v-else></u-button>
+                      @click="$u.route(`/page_home/user/entrant/addInfo?id=${item.id}&skuId=${infoId}`)" v-else>
+                    </u-button>
                   </view>
                 </view>
 
@@ -598,7 +605,7 @@
         console.log(this.infoId)
       },
       isSelected(item) {
-
+        // console.log('11111')
         return this.selected.includes(item);
       },
       reloadList() {
@@ -613,21 +620,22 @@
           uni.$u.toast('年龄不符合报名条件')
         }
         // 如果不是不限制性别 或者 性别非情侣 的比赛
-        else if(this.content.skuList[this.currentIndex].gender<3){
-          if(this.content.skuList[this.currentIndex].gender != item.gender ){
-            console.log('系统性别要求:'+this.content.skuList[this.currentIndex].gender+'参赛选手性别:'+item.gender)
+        else if (this.content.skuList[this.currentIndex].gender < 3) {
+          if (this.content.skuList[this.currentIndex].gender != item.gender) {
+            console.log('系统性别要求:' + this.content.skuList[this.currentIndex].gender + '参赛选手性别:' + item.gender)
             uni.$u.toast('性别不符合报名条件')
+          }else{
+            if (index === -1) {
+
+              this.selected.push(item);
+            } else {
+              this.selected.splice(index, 1);
+            }
           }
         }
 
-        else {
 
-          if (index === -1) {
-            this.selected.push(item);
-          } else {
-            this.selected.splice(index, 1);
-          }
-        }
+
 
 
 

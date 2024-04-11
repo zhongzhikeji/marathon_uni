@@ -1,15 +1,17 @@
 import {
-	HTTP_REQUEST_URL,
-	HEADER,
-	TOKENNAME,
-	HEADERPARAMS
+  HTTP_REQUEST_URL,
+  HEADER,
+  TOKENNAME,
+  HEADERPARAMS
 } from '@/config/app';
 import {
-	toLogin,
-	checkLogin
+  toLogin,
+  checkLogin
 } from '../libs/login';
 import store from '../store';
-import {getTerminal} from "./util.js";
+import {
+  getTerminal
+} from "./util.js";
 // TODO 芋艿：临时解决 uniapp 在小程序，undefined 会被 tostring 的问题
 function deleteUndefinedProperties(obj) {
   for (let key in obj) {
@@ -27,32 +29,33 @@ function deleteUndefinedProperties(obj) {
  * 发送请求
  */
 function baseRequest(url, method, data, {
-	noAuth = false,
-	noVerify = false
+  noAuth = false,
+  noVerify = false
 }, params) {
-		// 显示加载中 效果
-		// uni.showLoading({
-		// 	title: "加载中",
+  // 显示加载中 效果
+  // uni.showLoading({
+  // 	title: "加载中",
 
-		// });
-	let Url = HTTP_REQUEST_URL,header = HEADER
-	if (params != undefined) {
-		header = HEADERPARAMS;
-	}
+  // });
+  let Url = HTTP_REQUEST_URL,
+    header = HEADER
+  if (params != undefined) {
+    header = HEADERPARAMS;
+  }
 
-	// if (!noAuth) {
+  // if (!noAuth) {
 
-	// 	//登录过期自动登录
+  // 	//登录过期自动登录
 
-	// 	if (!store.state.app.token && !checkLogin()) {
-	// 		 uni.hideLoading();
+  // 	if (!store.state.app.token && !checkLogin()) {
+  // 		 uni.hideLoading();
 
-	// 		toLogin();
-	// 		return Promise.reject({
-	// 			msg: '未登录'
-	// 		});
-	// 	}
-	// }
+  // 		toLogin();
+  // 		return Promise.reject({
+  // 			msg: '未登录'
+  // 		});
+  // 	}
+  // }
 
   deleteUndefinedProperties(data)
 
@@ -65,47 +68,48 @@ function baseRequest(url, method, data, {
 
   }
 
-    	// 终端
-    	header['terminal'] = getTerminal()
-	if (store.state.app.token) {
-     header['Authorization'] = `Bearer ${store.state.app.token}` ;
+  // 终端
+  header['terminal'] = getTerminal()
+  if (store.state.app.token) {
+    header['Authorization'] = `Bearer ${store.state.app.token}`;
 
   }
-	return new Promise((reslove, reject) => {
-		uni.request({
-			// url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
-      url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
-        :'https://app.runplus.cc/' + url, // TODO 芋艿：搞个 url 的配置
-         //: 'http://192.168.2.102:48080/' + url, // TODO 芋艿：搞个 url 的配置
-         //: 'https://marathon.zznet.live/' + url, // TODO 芋艿：搞个 url 的配置
+  return new Promise((reslove, reject) => {
+    uni.request({
+      // url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url
+      url: url.indexOf('app-api') < 0 ? Url + '/api/front/' + url :
+        'http://localhost:48080/' + url, // TODO 芋艿：搞个 url 的配置
+      // :'https://app.runplus.cc/' + url, // TODO 芋艿：搞个 url 的配置
+      //: 'http://192.168.2.102:48080/' + url, // TODO 芋艿：搞个 url 的配置
+      //: 'https://marathon.zznet.live/' + url, // TODO 芋艿：搞个 url 的配置
       method: method || 'GET',
-			header: header,
-			data: data || {},
-			success: (res) => {
-				 // uni.hideLoading();
-				if (noVerify)
+      header: header,
+      data: data || {},
+      success: (res) => {
+        // uni.hideLoading();
+        if (noVerify)
 
-					reslove(res.data, res);
-				else if (res.data.code === 200 || res.data.code === 0)
-					reslove(res.data, res);
-				else if ([410000, 410001, 410002, 401].indexOf(res.data.code) !== -1) {
-					toLogin();
-					reject(res.data);
-				} else
-					reject(res.data.msg || res.data.message || '系统错误');
-			},
-			fail: (msg) => {
+          reslove(res.data, res);
+        else if (res.data.code === 200 || res.data.code === 0)
+          reslove(res.data, res);
+        else if ([410000, 410001, 410002, 401].indexOf(res.data.code) !== -1) {
+          toLogin();
+          reject(res.data);
+        } else
+          reject(res.data.msg || res.data.message || '系统错误');
+      },
+      fail: (msg) => {
 
-				reject('请求失败');
-			}
-		})
-	});
+        reject('请求失败');
+      }
+    })
+  });
 }
 
 const request = {};
 
 ['options', 'get', 'post', 'put', 'head', 'delete', 'trace', 'connect'].forEach((method) => {
-	request[method] = (api, data, opt, params) => baseRequest(api, method, data, opt || {}, params)
+  request[method] = (api, data, opt, params) => baseRequest(api, method, data, opt || {}, params)
 });
 
 
